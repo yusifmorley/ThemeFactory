@@ -2,5 +2,5 @@
 
 ## 运行
 
--   命令 `ts-node http-server.ts`
+-   运行 `ts-node http-server.ts`
 
