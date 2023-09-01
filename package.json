@@ -1,0 +1,73 @@
+{
+  "name": "themerbot",
+  "version": "0.1.0",
+  "description": "Create themes for telegram android from a picture.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node build/index.js",
+    "dev": "ts-node src/index.ts",
+    "build": "tsc",
+    "test": "tsc --noEmit",
+    "lint": "eslint src/ --format codeframe",
+    "i18n": "node scripts/download-translations.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ThemerBot/ThemerBot.git"
+  },
+  "author": "Andrew Lane <contact@lungers.com>",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/ThemerBot/ThemerBot/issues"
+  },
+  "homepage": "https://github.com/ThemerBot/ThemerBot#readme",
+  "dependencies": {
+    "@grammyjs/runner": "^1.0.2",
+    "@grammyjs/transformer-throttler": "^1.0.0",
+    "@jimp/core": "^0.22.10",
+    "@youtwitface/ntcjs": "^1.0.1",
+    "color": "^4.0.1",
+    "convert-svg-to-png": "^0.6.4",
+    "dotenv": "^10.0.0",
+    "envalid": "^7.1.1",
+    "get-image-colors": "^4.0.0",
+    "grammy": "^1.2.1",
+
+    "jimp": "^0.22.10",
+    "jsdom": "^22.1.0",
+    "mkdirp": "^1.0.4",
+    "new-i18n": "^3.0.0-5",
+    "node-fetch": "^2.6.1",
+    "svg2img": "^1.0.0-beta.2",
+    "svg2png": "^4.1.1",
+    "unzipper": "^0.10.11",
+      "@snejugal/color": "^2.1.1",
+      "attheme-editor-api": "^1.1.0",
+      "attheme-js": "^3.0.0",
+      "image-size": "^0.6.3",
+      "puppeteer": "^21.0.0",
+      "request-promise": "^4.2.6",
+      "sharp": "^0.26.3",
+      "tdesktop-theme": "^0.3.2",
+      "telegraf": "^3.38.0",
+      "xmldom": "^0.5.0"
+  },
+  "devDependencies": {
+    "@types/color": "^3.0.2",
+    "@types/get-image-colors": "^4.0.1",
+    "@types/jsdom": "^21.1.2",
+    "@types/mkdirp": "^1.0.2",
+    "@types/node": "^16.4.12",
+    "@types/node-fetch": "^2.5.12",
+    "@types/redis": "^2.8.31",
+    "@types/sharp": "^0.28.5",
+    "@types/svg2png": "^4.1.2",
+    "@types/unzipper": "^0.10.4",
+    "@types/xmldom": "^0.1.31",
+    "@typescript-eslint/eslint-plugin": "^4.29.0",
+    "@typescript-eslint/parser": "^4.29.0",
+    "eslint": "^7.32.0",
+    "ts-node": "^10.1.0",
+    "typescript": "^4.3.5"
+  }
+}
