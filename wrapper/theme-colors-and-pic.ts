@@ -65,9 +65,8 @@ export async function basePicCreateTheme(req:http.IncomingMessage, res:http.Serv
             body+=chunk;
         });
         req.on('end' ,async ()=>{
-            console.log(body)
             picObj=JSON.parse(body);
-            let buffer = new Buffer(picObj?.picb,'base64');
+            let buffer = Buffer.from(picObj?.picb,'base64');
             let theme= createTheme({
                 username:'',
                 image:buffer,
