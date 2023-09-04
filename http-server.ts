@@ -2,6 +2,11 @@ import url from 'url';
 import * as http from 'http';
 import fs from 'fs';
 
+/*
+ctrl + z
+bg
+disown -a
+ */
 
 import {basePicCreateColorPic} from "./wrapper/theme-colors-and-pic";
 import {basePicCreateTheme} from './wrapper/theme-colors-and-pic';
