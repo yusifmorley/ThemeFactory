@@ -518,7 +518,8 @@ const makePrevAndroid = async (
 };
 
 const makePrev = async (themeBuffer, themeName, themeAuthor, template) => {
-  let preview;
+
+    let preview;
 
   if (template == DESKTOP_TEMPLATE) {
     preview = await makePrevDesktop(themeBuffer);
