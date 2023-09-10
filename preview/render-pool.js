@@ -19,7 +19,7 @@ const render = async ({ theme, name, template, resolve, reject }) => {
   renderersNumber--;
 
   if (queue.length > 0) {
-    render(queue.shift());
+    await render(queue.shift());
   }
 };
 
@@ -32,7 +32,12 @@ module.exports = (previewParameters) =>
     };
 
     if (renderersNumber < MAX_RENDERERS_AT_ONCE) {
-      render(renderParameters);
+        render(renderParameters).then((result) => {
+            resolve(result);
+        })
+            .catch((error) => {
+                reject(error); // 捕获并传递错误
+            });
     } else {
       queue.push(renderParameters);
     }
