@@ -490,6 +490,7 @@ const makePrevAndroid = async (
     const randomWallpaper = Math.floor(Math.random() * WALLPAPERS_AMOUNT);
     const image = wallpapers[randomWallpaper];
 
+
     theme[Attheme.IMAGE_KEY] = image;
   }
 
