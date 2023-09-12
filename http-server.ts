@@ -14,10 +14,14 @@ import {basePicCreateTheme} from './wrapper/theme-colors-and-pic';
 import {createPreview} from './wrapper/theme-preview';
 const port=3000;
 const server = http.createServer(async (req, res) => {
-    await createPreview(req,res);
+    try {
+        await createPreview(req,res);
+        await basePicCreateTheme(req,res);
+        await basePicCreateColorPic(req,res);
+    }catch (e){
+        console.log(e)
+    }
 
-    await basePicCreateTheme(req,res);
-    await basePicCreateColorPic(req,res);
 
 });
 
