@@ -213,6 +213,7 @@ const fill = (rootNode, color) => {
 };
 
 const makePrevDesktop = async (themeBuffer) => {
+
   const originalTheme = new TdesktopTheme(themeBuffer);
   const theme = originalTheme.fallbackTo(defaultTheme);
   originalTheme.free();
@@ -521,18 +522,21 @@ const makePrevAndroid = async (
 const makePrev = async (themeBuffer, themeName, themeAuthor, template) => {
 
     let preview;
-
-  if (template == DESKTOP_TEMPLATE) {
-    preview = await makePrevDesktop(themeBuffer);
-  } else {
-    preview = await makePrevAndroid(
-      themeBuffer,
-      themeName,
-      themeAuthor,
-      template
-    );
-  }
-
+    try {
+    if (template == DESKTOP_TEMPLATE) {
+        preview = await makePrevDesktop(themeBuffer);
+    } else {
+        preview = await makePrevAndroid(
+            themeBuffer,
+            themeName,
+            themeAuthor,
+            template
+        );
+    }
+  }catch (error) {
+    console.error("发生错误：", error);
+    throw error; //继续抛出
+ }
   const svg = preview.getElementsByTagName(`svg`)[0];
   const widthSvg = parseInt(svg.getAttribute(`width`));
   const heightSvg = parseInt(svg.getAttribute(`height`));
