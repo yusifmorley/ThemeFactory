@@ -43,7 +43,7 @@
     "unzipper": "^0.10.11",
       "@snejugal/color": "^2.1.1",
       "attheme-editor-api": "^1.1.0",
-      "attheme-js": "^3.0.0",
+      "attheme-js": "^1.1.2",
       "image-size": "^0.6.3",
       "puppeteer": "^21.0.0",
       "request-promise": "^4.2.6",
