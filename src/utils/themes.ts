@@ -4,7 +4,7 @@ import atthemeVariables from '../variables/attheme';
 import tgiosVariables from '../variables/tgios-theme';
 import tgxVariables from '../variables/tgx-theme';
 import { getColorName } from './colors';
-
+//此文件使用了attheme 3.0.0
 export const getThemeName = (background: string, primary: string): string =>
     `${getColorName(primary)} on ${getColorName(background)}`;
 
