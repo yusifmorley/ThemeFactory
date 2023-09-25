@@ -1,0 +1,18 @@
+{
+  "name": "@snejugal/color",
+  "private": false,
+  "version": "2.1.1",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "npx ava tests",
+    "build": "npx tsc -p .",
+    "watch": "npm run build -- -w",
+    "prepublishOnly": "npm run build && npm t"
+  },
+  "author": "SnejUgal <contact@snejugal.ru> (snejugal.ru)",
+  "license": "MIT",
+  "devDependencies": {
+    "ava": "^0.25.0",
+    "typescript": "^3.1.6"
+  }
+}

@@ -1,4 +1,4 @@
-import Attheme from 'attheme-js';
+import Attheme from "../../atthemejs";
 import { ThemeType } from '../types';
 import atthemeVariables from '../variables/attheme';
 import tgiosVariables from '../variables/tgios-theme';
@@ -26,6 +26,7 @@ export const createTheme = ({
             const variables = atthemeVariables(colors);
 
             const theme = new Attheme(variables);
+
             theme.setWallpaper(image.toString('binary'));
 
             return theme.toString('int');

@@ -473,7 +473,7 @@ const makePrevAndroid = async (
     )) {
       fill(chatOutLoader, chatOutMediaIcon);
     }
-  }
+  }f
 
   if (theme[Attheme.IMAGE_KEY] && !theme.chat_wallpaper) {
     // Check that the wallpaper is valid, and delete it if it's invalid

@@ -17,6 +17,7 @@ import  {
 } from "../preview/preview-maker.js";
 
 export async function createPreview(req:http.IncomingMessage, res:http.ServerResponse) {
+
     // 获取url的各个部分
     // url.parse可以将req.url解析成一个对象
     // 里面包含有pathname和querystring等
