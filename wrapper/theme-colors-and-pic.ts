@@ -50,50 +50,33 @@ export async function basePicCreateColorPic(req:http.IncomingMessage, res:http.S
 //请求体为 三个颜色参数 一张图片 返回 attheme
 export async function basePicCreateTheme(req:http.IncomingMessage, res:http.ServerResponse){
     // @ts-ignore
-    let body:string= '';
-    let picObj:any=null;
-    let pic:Buffer;
-
+    let body:string= ''; //base64 格式
     try {
         // @ts-ignore
     const urlObject = url.parse(req.url);
     const { pathname,query } = urlObject;
     const method = req.method;
-    if (method=='POST'&&pathname==='/attheme-create'){
+
+    if (method==='POST'&&(pathname==='/attheme-create'||pathname==='/attheme-create/tran')){
         req.on('data', chunk => {
             // @ts-ignore
             body+=chunk;
         });
+
         req.on('end' ,async ()=>{
-            picObj=JSON.parse(body);
+           const picObj=JSON.parse(body);
             let buffer = Buffer.from(picObj?.picb,'base64');
+            const type = pathname === '/attheme-create' ? 'attheme' : 'attheme-tran';
             let theme= createTheme({
                 username:'',
                 image:buffer,
                 name:'',
                 colors:picObj?.colors,
-                type:'attheme',
+                type:type,
             });
             res.end(Buffer.from(theme, 'binary')) //返回的时二进制 最后默认响应的是二进制
         })
-    }else if(method=='POST'&&pathname==='/attheme-create/tran') {
-        req.on('data', chunk => {
-            // @ts-ignore
-            body+=chunk;
-        });
-        req.on('end' ,async ()=>{
-            picObj=JSON.parse(body);
-            let buffer = Buffer.from(picObj?.picb,'base64');
-            let theme= createTheme({
-                username:'',
-                image:buffer,
-                name:'',
-                colors:picObj?.colors,
-                type:'attheme-tran',
-            });
-            res.end(Buffer.from(theme, 'binary')) //返回的时二进制 最后默认响应的是二进制
-        })
-      }else {
+    }else {
         return;
     }
     }catch (e){
