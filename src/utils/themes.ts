@@ -31,6 +31,20 @@ export const createTheme = ({
 
             return theme.toString('int');
         }
+        case 'attheme-tran':{
+
+            const variables = atthemeVariables(colors);
+
+            let theme = new Attheme(variables);
+
+            theme.setWallpaper(image.toString('binary'));
+
+
+            theme= setvalue(theme,'chat_inBubble',98)
+            theme= setvalue(theme,'chat_messagePanelBackground',98)
+
+            return theme.toString('int');
+        }
 
         case 'tgios-theme': {
             return tgiosVariables(name, colors);
@@ -44,3 +58,11 @@ export const createTheme = ({
             throw new TypeError(`Unknown theme type: ${type}`);
     }
 };
+function  setvalue(theme:Attheme,str:string,alpha:number){
+       let key=  theme.get(str)
+       if(key!==null){
+           key.alpha=alpha;
+           theme.set(str,key);
+       }
+       return theme
+}

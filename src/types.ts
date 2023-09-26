@@ -15,4 +15,4 @@ export interface Theme {
     }[];
 }
 
-export type ThemeType = 'attheme' | 'tgios-theme' | 'tgx-theme';
+export type ThemeType = 'attheme' | 'tgios-theme' | 'tgx-theme'|'attheme-tran';

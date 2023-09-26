@@ -76,9 +76,26 @@ export async function basePicCreateTheme(req:http.IncomingMessage, res:http.Serv
             });
             res.end(Buffer.from(theme, 'binary')) //返回的时二进制 最后默认响应的是二进制
         })
-    }else {
+    }else if(method=='POST'&&pathname==='/attheme-create/tran') {
+        req.on('data', chunk => {
+            // @ts-ignore
+            body+=chunk;
+        });
+        req.on('end' ,async ()=>{
+            picObj=JSON.parse(body);
+            let buffer = Buffer.from(picObj?.picb,'base64');
+            let theme= createTheme({
+                username:'',
+                image:buffer,
+                name:'',
+                colors:picObj?.colors,
+                type:'attheme-tran',
+            });
+            res.end(Buffer.from(theme, 'binary')) //返回的时二进制 最后默认响应的是二进制
+        })
+      }else {
         return;
-      }
+    }
     }catch (e){
         res.end("fail")
     }
