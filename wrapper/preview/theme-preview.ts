@@ -5,7 +5,7 @@ import fs from 'fs';
 
 
 // @ts-ignore
-import render from '../preview/render-pool.js';
+import render from '../../preview/render-pool.js';
 
 
 // @ts-ignore
@@ -14,7 +14,7 @@ import  {
     REGULAR_TEMPLATE, //移动端主题
     NEW_TEMPLATE,
     DESKTOP_TEMPLATE, //桌面模板
-} from "../preview/preview-maker.js";
+} from "../../preview/preview-maker.js";
 
 export async function createPreview(req:http.IncomingMessage, res:http.ServerResponse) {
 

@@ -8,16 +8,21 @@ bg
 disown -a
  */
 
-import {basePicCreateColorPic} from "./wrapper/theme-colors-and-pic";
-import {basePicCreateTheme} from './wrapper/theme-colors-and-pic';
+import {basePicCreateColorPic} from "./wrapper/android/theme-colors-and-pic";
+import {basePicCreateTheme} from './wrapper/android/theme-colors-and-pic';
 
-import {createPreview} from './wrapper/theme-preview';
+import {createPreview} from './wrapper/preview/theme-preview';
+import {basePicCreateDesktop} from "./wrapper/desktop/theme-desktop-api";
 const port=3000;
 const server = http.createServer(async (req, res) => {
     try {
+
         await createPreview(req,res);
         await basePicCreateTheme(req,res);
+        await basePicCreateDesktop(req,res);
         await basePicCreateColorPic(req,res);
+
+
     }catch (e){
         console.log(e)
     }

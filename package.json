@@ -32,7 +32,8 @@
     "envalid": "^7.1.1",
     "get-image-colors": "^4.0.0",
     "grammy": "^1.2.1",
-
+      "adm-zip": "^0.5.10",
+      "jszip": "^3.10.1",
     "jimp": "^0.22.10",
     "jsdom": "^22.1.0",
     "mkdirp": "^1.0.4",

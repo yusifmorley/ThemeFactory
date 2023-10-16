@@ -10,5 +10,5 @@
         "noImplicitAny": false
     },
 
-    "include": ["src/","wrapper","preview/"]
+    "include": ["src/","wrapper/","preview/"]
 }
