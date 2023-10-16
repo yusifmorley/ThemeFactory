@@ -25,9 +25,15 @@ export async function basePicCreateColorPic(req:http.IncomingMessage, res:http.S
                 body.push(chunk);
             });
             req.on('end', async () => {
-
+                let arrs
                 pic = Buffer.concat(body);
-                const arrs = await getImageColors(pic, 'image/jpeg');
+
+                try {
+                    arrs= await getImageColors(pic, 'image/jpeg')
+                }catch (e){
+                    res.end("fail")
+                }
+
                 let str=setColor(arrs) //获取svg字符串
                 // @ts-ignore
                 const data = await sharp(Buffer.from(str))
