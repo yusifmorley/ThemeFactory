@@ -3,7 +3,7 @@ import * as Buffer from "buffer";
 import JSZip from "jszip";
 import fs from "fs";
 
-export class TDesktop{
+export class Tdesktop {
     private _str: string;
     public _v_map:Map<string, string>;
     private _backbit:Buffer;
@@ -79,29 +79,10 @@ export class TDesktop{
                _background?.async("nodebuffer").then(b=>{
                    _values?.async("string").then(async e=>{
                        if (!e.includes("sideBarBg")){
-                           let td= new TDesktop(e,b)
+                           let td= new Tdesktop(e,b)
                            //侧边栏 背景
-                           td._v_map.set("sideBarBg","windowBg")
-
-                           //侧边栏 活动背景
-                           td._v_map.set("sideBarBgActive","dialogsBgActive")
-
-                           //侧边字体
-                           td._v_map.set("sideBarTextFg","dialogsTextFg")
-                           //侧边活动字体
-                           td._v_map.set("sideBarTextFgActive","windowBg")
-
-                           //侧边栏小圆圈背景
-                           td._v_map.set("sideBarBadgeBg","dialogsTextFgService")
-
-                           //侧边栏小圆圈字体
-                           td._v_map.set("sideBarBadgeFg","windowBg")
-
-                           //侧边栏 图标背景
-                           td._v_map.set("sideBarIconFg","dialogsBgActive")
-                           //侧边栏 活动图标背景
-                           td._v_map.set("sideBarIconFgActive","windowBg")
-                          td.toZip().then(e=>{
+                           td.optimistic(); //优化侧边栏
+                           td.toZip().then(e=>{
                               return resolve(e);
                          })
                        }
