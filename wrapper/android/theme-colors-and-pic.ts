@@ -7,6 +7,7 @@ import {ThemeType} from "../../src/types";
 import http from "http";
 import url from "url";
 import {stringify} from "querystring";
+import {getTextColor} from "../../util/text-color.js"
 //产生颜色数组 和颜色图片
 //第一次 请求
 export async function basePicCreateColorPic(req:http.IncomingMessage, res:http.ServerResponse){
@@ -50,7 +51,6 @@ export async function basePicCreateColorPic(req:http.IncomingMessage, res:http.S
         res.end("fail")
     }
 
-
 }
 //第二次请求
 //请求体为 三个颜色参数 一张图片 返回 attheme
@@ -73,13 +73,26 @@ export async function basePicCreateTheme(req:http.IncomingMessage, res:http.Serv
            const picObj=JSON.parse(body);
             let buffer = Buffer.from(picObj?.picb,'base64');
             const type = pathname === '/attheme-create' ? 'attheme' : 'attheme-tran';
+            let coarr=Array(3)
+            coarr[0]=picObj?.colors[0]
+            coarr[1]=picObj?.colors[1]
+            coarr[2]=picObj?.colors[2]
+
+           //  let text_color= getTextColor(picObj?.colors[1])
+           //  if (text_color!==null){
+           //      coarr[1]=text_color
+           //      console.log(text_color)
+           // }
+           //  console.log(text_color)
+           //  console.log(coarr)
             let theme= createTheme({
                 username:'',
                 image:buffer,
                 name:'',
-                colors:picObj?.colors,
+                colors:coarr,
                 type:type,
             });
+
             res.end(Buffer.from(theme, 'binary')) //返回的时二进制 最后默认响应的是二进制
         })
     }else {

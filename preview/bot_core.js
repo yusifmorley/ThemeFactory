@@ -223,19 +223,19 @@ const handleDocument = async (context) => {
         [
           {
             text:
-              callbackQuery.data == `ordinary` ? `Minimalistic` : `Ordinary`,
+              callbackQuery.data === `ordinary` ? `Minimalistic` : `Ordinary`,
             callback_data:
-              callbackQuery.data == `ordinary` ? `minimalistic` : `ordinary`,
+              callbackQuery.data === `ordinary` ? `minimalistic` : `ordinary`,
           },
         ],
       ],
     };
     const caption =
-      callbackQuery.data == `minimalistic`
+      callbackQuery.data === `minimalistic`
         ? `Design by @voidrainbow`
         : `Created by @ThemePreviewBot`;
     try {
-      if (callbackMessage.text == `Select the style`) {
+      if (callbackMessage.text === `Select the style`) {
         await context.replyWithPhoto(
           { source: preview },
           {

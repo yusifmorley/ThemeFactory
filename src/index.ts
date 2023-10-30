@@ -43,4 +43,4 @@ const main = async () => {
     console.log('Bot started');
 };
 
-main();
+
