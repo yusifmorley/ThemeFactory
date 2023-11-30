@@ -6,15 +6,17 @@ import {createTheme} from '../../src/utils/themes';
 import {ThemeType} from "../../src/types";
 import http from "http";
 import url from "url";
+import log from '../../config/log_config.js'
 import {stringify} from "querystring";
 import {getTextColor} from "../../util/text-color.js"
-//产生颜色数组 和颜色图片
+
+//产生颜色数组 和颜色预览图片
 //第一次 请求
 export async function basePicCreateColorPic(req:http.IncomingMessage, res:http.ServerResponse){
     // @ts-ignore
     const body: any[] | readonly Uint8Array[]= [];
     let pic:Buffer;
-
+    log.info(`创建颜色预览 url 为 ${req.url}`)
     try {
         // @ts-ignore
         const urlObject = url.parse(req.url);
@@ -56,6 +58,7 @@ export async function basePicCreateColorPic(req:http.IncomingMessage, res:http.S
 //请求体为 三个颜色参数 一张图片 返回 attheme
 export async function basePicCreateTheme(req:http.IncomingMessage, res:http.ServerResponse){
     // @ts-ignore
+    log.info(`正在创建attheme url 为 ${req.url}`)
     let body:string= ''; //base64 格式
     try {
         // @ts-ignore

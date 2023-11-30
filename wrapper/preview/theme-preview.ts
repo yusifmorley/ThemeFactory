@@ -2,11 +2,8 @@ import url from 'url';
 import * as http from 'http';
 import fs from 'fs';
 
-
-
 // @ts-ignore
 import render from '../../preview/render-pool.js';
-
 
 // @ts-ignore
 import  {
@@ -15,7 +12,7 @@ import  {
     NEW_TEMPLATE,
     DESKTOP_TEMPLATE, //桌面模板
 } from "../../preview/preview-maker.js";
-
+import log from "../../config/log_config";
 export async function createPreview(req:http.IncomingMessage, res:http.ServerResponse) {
 
     // 获取url的各个部分
@@ -23,6 +20,7 @@ export async function createPreview(req:http.IncomingMessage, res:http.ServerRes
     // 里面包含有pathname和querystring等
     // @ts-ignore
     const urlObject = url.parse(req.url);
+    log.info(`创建颜色预览 url 为 ${req.url}`)
     const { pathname,query } = urlObject;
 
     const method = req.method;

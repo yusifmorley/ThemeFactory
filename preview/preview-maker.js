@@ -10,6 +10,7 @@ const Color = require(`@snejugal/color`);
 const rgbToHsl = Color.rgbToHsl;
 const puppeteer = require(`puppeteer`);
 const { fallbacks } = require(`./fallbacks`);
+const log_config = require("../config/log_config");
 
 const browser = puppeteer.launch({
   args:[
@@ -227,7 +228,15 @@ const makePrevDesktop = async (themeBuffer) => {
       fill(element, color);
     }
     const dialogsBg = rgbToHsl(theme.resolveVariable(`dialogsBg`));
-    const colorHsl = rgbToHsl(color);
+
+    let colorHsl;
+    try {
+        colorHsl = rgbToHsl(color);
+    }catch (e) {
+        log_config.error(`makePrevDesktop出错(创建桌面主题出错 ) 传入的 rgbToHsl函数参数 color 为 ${color}`)
+        log_config.error(e.stack)
+    }
+
     if (!areColorsEqual(dialogsBg, colorHsl) && elements.length > 0) {
       colors.push(colorHsl);
     }
