@@ -57,7 +57,6 @@ export async function createPreview(req:http.IncomingMessage, res:http.ServerRes
             res.write(preview);
             res.end();
         }).catch((e: any)=>{
-            console.log(e);
             res.end('fail');
         });
     });

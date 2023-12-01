@@ -541,7 +541,7 @@ const makePrev = async (themeBuffer, themeName, themeAuthor, template) => {
         );
     }
   }catch (error) {
-    console.error("发生错误：", error);
+    log_config.error(` makePrev 发生错误 , ${error}`);
     throw error; //继续抛出
  }
   const svg = preview.getElementsByTagName(`svg`)[0];
