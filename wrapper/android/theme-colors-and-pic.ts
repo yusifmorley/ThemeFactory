@@ -38,6 +38,10 @@ export async function basePicCreateColorPic(req:http.IncomingMessage, res:http.S
                 }
 
                 let str=setColor(arrs) //获取svg字符串
+                if (str===null){
+                    res.end("fail")
+                    return ;
+                }
                 // @ts-ignore
                 const data = await sharp(Buffer.from(str))
                                                 .toBuffer();

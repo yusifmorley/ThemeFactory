@@ -28,6 +28,9 @@ function isLight([r, g, b]) {
 
 
 export default function setColor(clolors: string[]):string |null {
+    if (clolors===undefined){
+        return null
+    }
     if (clolors.length!==5) {
         return null;
     }
