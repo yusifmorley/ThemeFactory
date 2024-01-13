@@ -1,4 +1,4 @@
-import Attheme from "../../atthemejs";
+import Attheme from "../atthemejs";
 import { ThemeType } from '../types';
 import atthemeVariables from '../variables/attheme';
 import tgiosVariables from '../variables/tgios-theme';

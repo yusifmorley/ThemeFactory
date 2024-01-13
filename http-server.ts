@@ -5,11 +5,11 @@ ctrl + z
 bg
 disown -a
  */
-import {basePicCreateColorPic} from "./wrapper/android/theme-colors-and-pic";
-import {basePicCreateTheme} from './wrapper/android/theme-colors-and-pic';
-import log from './config/log_config.js'
-import {createPreview} from './wrapper/preview/theme-preview';
-import {basePicCreateDesktop} from "./wrapper/desktop/theme-desktop-api";
+import {basePicCreateColorPic} from "./src/wrapper/android/theme-colors-and-pic";
+import {basePicCreateTheme} from './src/wrapper/android/theme-colors-and-pic';
+import log from './src/config/log_config.js'
+import {createPreview} from './src/wrapper/preview/theme-preview';
+import {basePicCreateDesktop} from "./src/wrapper/desktop/theme-desktop-api";
 const port=3000;
 const server = http.createServer(async (req, res) => {
     try {

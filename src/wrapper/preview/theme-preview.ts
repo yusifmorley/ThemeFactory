@@ -1,6 +1,6 @@
+// @ts-ignore
 import url from 'url';
 import * as http from 'http';
-import fs from 'fs';
 
 // @ts-ignore
 import render from '../../preview/render-pool.js';
@@ -40,6 +40,7 @@ export async function createPreview(req:http.IncomingMessage, res:http.ServerRes
     }else
         return;
 
+    // @ts-ignore
     name =decodeURIComponent(name).replaceAll('.attheme','');
     req.on('data', chunk => {
         // @ts-ignore

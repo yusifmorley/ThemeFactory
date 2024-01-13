@@ -2,7 +2,7 @@
 /// <reference types="node" />
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs = require("fs");
-const __1 = require("../..");
+const __1 = require("../../index");
 const fromFile = (path) => new Promise((resolve, reject) => {
     fs.readFile(path, `binary`, (error, contents) => {
         if (error) {

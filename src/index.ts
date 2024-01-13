@@ -2,8 +2,10 @@ import { Bot } from 'grammy';
 import { apiThrottler } from '@grammyjs/transformer-throttler';
 import { run } from '@grammyjs/runner';
 import env from './env';
+// @ts-ignore
 import fs from 'fs';
 import handlers from './handlers';
+// @ts-ignore
 import path from 'path';
 import { middleware as i18n } from './utils/i18n';
 import { I18nContext } from './types';

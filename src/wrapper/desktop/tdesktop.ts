@@ -41,26 +41,26 @@ export class Tdesktop {
 
     //加入 侧边栏优化
     public  optimistic(){
-        this._v_map.set("sideBarBg","windowBg")
+        this._v_map.set("sideBarBg",<string>this._v_map.get("windowBg"))
 
         //侧边栏 活动背景
-        this._v_map.set("sideBarBgActive","dialogsBgActive")
+        this._v_map.set("sideBarBgActive",<string>this._v_map.get("dialogsBgActive"))
 
         //侧边字体
-        this._v_map.set("sideBarTextFg","dialogsTextFg")
+        this._v_map.set("sideBarTextFg",<string>this._v_map.get("dialogsTextFg"))
         //侧边活动字体
-        this._v_map.set("sideBarTextFgActive","windowBg")
+        this._v_map.set("sideBarTextFgActive",<string>this._v_map.get("windowBg"))
 
         //侧边栏小圆圈背景
-        this._v_map.set("sideBarBadgeBg","dialogsTextFgService")
+        this._v_map.set("sideBarBadgeBg",<string>this._v_map.get("dialogsTextFgService"))
 
         //侧边栏小圆圈字体
-        this._v_map.set("sideBarBadgeFg","windowBg")
+        this._v_map.set("sideBarBadgeFg",<string>this._v_map.get("windowBg"))
 
         //侧边栏 图标背景
-        this._v_map.set("sideBarIconFg","dialogsBgActive")
+        this._v_map.set("sideBarIconFg",<string>this._v_map.get("dialogsBgActive"))
         //侧边栏 活动图标背景
-        this._v_map.set("sideBarIconFgActive","windowBg")
+        this._v_map.set("sideBarIconFgActive",<string>this._v_map.get("windowBg"))
     }
     //静态方法 分解 zip
    public static async parseZip(theme:Buffer){
