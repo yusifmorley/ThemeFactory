@@ -1,4 +1,6 @@
+//主题创建的核心逻辑
 //提供两种颜色 主次颜色 和背景 图片生成桌面主题
+// @ts-ignore
 import JSZip from "jszip";
 
 
@@ -44,8 +46,6 @@ export default async function makeThemeDesktop(colorArray,bgbase64,str0="",str2=
             primaryBG6 = '#000000';
             primaryText = '#f5f5f5';
             primaryText2 = '#ffffff';
-
-
         } else if (str0==="theme-Dark") {
             primaryBG = '#1d1d1d';
             primaryBG2 = '#212121';

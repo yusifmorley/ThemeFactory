@@ -1,4 +1,5 @@
 import { cleanEnv, str, bool, url, host, port } from 'envalid';
+// @ts-ignore
 import dotenv from 'dotenv';
 
 dotenv.config();

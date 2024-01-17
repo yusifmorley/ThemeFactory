@@ -1,7 +1,7 @@
-//TDesktop 主题
+//TDesktop 主题对象 同时也可以 优化侧边栏
 import * as Buffer from "buffer";
+// @ts-ignore
 import JSZip from "jszip";
-import fs from "fs";
 
 export class Tdesktop {
     private _str: string;
@@ -41,26 +41,23 @@ export class Tdesktop {
 
     //加入 侧边栏优化
     public  optimistic(){
-        this._v_map.set("sideBarBg",<string>this._v_map.get("windowBg"))
-
-        //侧边栏 活动背景
-        this._v_map.set("sideBarBgActive",<string>this._v_map.get("dialogsBgActive"))
-
-        //侧边字体
-        this._v_map.set("sideBarTextFg",<string>this._v_map.get("dialogsTextFg"))
-        //侧边活动字体
-        this._v_map.set("sideBarTextFgActive",<string>this._v_map.get("windowBg"))
-
+        //侧边栏 背景为聊天列表 背景
+        this._v_map.set("sideBarBg","dialogsBg")
+        //侧边栏 活动背景 聊天列表 激活活动背景
+        this._v_map.set("sideBarBgActive","dialogsBgActive")
+        //侧边字体 为聊天列表 群组名称
+        this._v_map.set("sideBarTextFg","dialogsNameFg")
+        //侧边活动字体 为聊天列表 群组名称 激活时字体
+        this._v_map.set("sideBarTextFgActive","dialogsNameFgActive")
         //侧边栏小圆圈背景
-        this._v_map.set("sideBarBadgeBg",<string>this._v_map.get("dialogsTextFgService"))
-
+        this._v_map.set("sideBarBadgeBg","dialogsUnreadBg")
         //侧边栏小圆圈字体
-        this._v_map.set("sideBarBadgeFg",<string>this._v_map.get("windowBg"))
-
-        //侧边栏 图标背景
-        this._v_map.set("sideBarIconFg",<string>this._v_map.get("dialogsBgActive"))
-        //侧边栏 活动图标背景
-        this._v_map.set("sideBarIconFgActive",<string>this._v_map.get("windowBg"))
+        this._v_map.set("sideBarBadgeFg","dialogsUnreadFg")
+        //dialogsUnreadFgActive
+        //侧边栏 图标背景 为聊天列表 群组名称
+        this._v_map.set("sideBarIconFg","dialogsNameFg")
+        //侧边栏 活动图标背景 为聊天列表 群组名称 激活
+        this._v_map.set("sideBarIconFgActive","dialogsNameFgActive")
     }
     //静态方法 分解 zip
    public static async parseZip(theme:Buffer){
