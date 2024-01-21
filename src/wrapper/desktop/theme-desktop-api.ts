@@ -4,6 +4,8 @@ import makeThemeDesktop from "./make-desktop-theme-util";
 import {Tdesktop} from "./tdesktop";
 import { Logger} from 'log4js';
 import log from '../../config/log_config.js'
+import {TdesktopTheme} from "tdesktop-theme/node";
+import overRefine from "./override";
 export async function basePicCreateDesktop(req:http.IncomingMessage, res:http.ServerResponse){
     // @ts-ignore
     let body:string= ''; //base64 格式
@@ -22,9 +24,10 @@ export async function basePicCreateDesktop(req:http.IncomingMessage, res:http.Se
                 const picObj=JSON.parse(body);
                 let buffer = Buffer.from(picObj?.picb,'base64');
                 await makeThemeDesktop(picObj?.colors,buffer).then(e=>{
-                   Tdesktop.parseZip(e).then(bu=>{
-                       res.end(bu)
-                   })
+                        let tdesktop = new TdesktopTheme(e)
+                        let tdesktopTheme = overRefine(tdesktop);
+                        let uint8Array = tdesktopTheme.toZipBytes();
+                        res.end(Buffer.from(uint8Array))
                 });
                  //返回的时二进制 最后默认响应的是二进制
             })
