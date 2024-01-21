@@ -20,15 +20,11 @@ export  default  function overRefine(vatheme:TdesktopTheme){
     for (const tdesktopTheme1Element of vatheme.variables()) {
 
         let variable= getColor(tdesktopTheme1Element,vatheme)
-        try {
-            model.setVariable(tdesktopTheme1Element, <Color>variable)
-        }
-        catch (e){
-            console.log(tdesktopTheme1Element)
-            console.log(e)
 
-        }
+        model.setVariable(tdesktopTheme1Element, <Color>variable)
+
     }
+    model.wallpaper=vatheme.wallpaper
     return model
 }
 

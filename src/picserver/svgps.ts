@@ -34,7 +34,7 @@ export default function setColor(clolors: string[]):string |null {
     if (clolors.length!==5) {
         return null;
     }
-    const svgData = fs.readFileSync('./assets/colors.svg', 'utf8');
+    const svgData = fs.readFileSync('static/assets/colors.svg', 'utf8');
     // Parse the SVG string
     const {document}= new JSDOM(svgData,{contentType: 'image/svg+xml'}).window;
 
