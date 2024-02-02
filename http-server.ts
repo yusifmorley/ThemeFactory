@@ -1,6 +1,7 @@
 
 import * as http from 'http';
 /*
+nohup npx ts-node http-server.ts
 ctrl + z
 bg
 disown -a

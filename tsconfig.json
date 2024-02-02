@@ -12,6 +12,6 @@
 
     "include": ["src/",
         "src/wrapper/",
-      "src/preview/"
+        "src/preview/"
     ]
 }

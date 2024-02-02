@@ -25,8 +25,7 @@ export async function basePicCreateDesktop(req:http.IncomingMessage, res:http.Se
                 let buffer = Buffer.from(picObj?.picb,'base64');
                 await makeThemeDesktop(picObj?.colors,buffer).then(e=>{
                         let tdesktop = new TdesktopTheme(e)
-                        let tdesktopTheme = overRefine(tdesktop);
-                        let uint8Array = tdesktopTheme.toZipBytes();
+                        let uint8Array = tdesktop.toZipBytes();
                         res.end(Buffer.from(uint8Array))
                 });
                  //返回的时二进制 最后默认响应的是二进制

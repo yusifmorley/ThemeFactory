@@ -531,7 +531,17 @@ export default async function makeThemeDesktop(colorArray,bgbase64,str0="",str2=
  overviewCheckBorder: #e4eaef;
  profileOtherAdminStarFg: primaryColor;
  profileOtherAdminStarFgOver: primaryColor;
-
+ sideBarBg: dialogsBg;
+ sideBarBgActive: dialogsBgActive;
+ sideBarTextFg: dialogsNameFg;
+ sideBarTextFgActive: dialogsNameFgActive;
+ sideBarBadgeBg: dialogsUnreadBg;
+ sideBarBadgeFg: dialogsUnreadFg;
+ sideBarIconFg: dialogsNameFg;
+ sideBarIconFgActive: dialogsNameFgActive;
+ historyComposeAreaBg: dialogsBg;
+ historyReplyBg: historyComposeAreaBg;
+ historyComposeButtonBg: historyComposeAreaBg;
 `;
 
         //生成zip
