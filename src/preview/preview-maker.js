@@ -224,6 +224,11 @@ const makePrevDesktop = async (themeBuffer) => {
   for (const variable of variables) {
     const elements = getElementsByClassName(preview, variable);
     const color = theme.resolveVariable(variable);
+    if (!color){
+        log_config.warn(`变量${variable}为空, 已经跳过!`)
+        continue
+    }
+
     for (const element of elements) {
       fill(element, color);
     }
@@ -237,9 +242,11 @@ const makePrevDesktop = async (themeBuffer) => {
         log_config.error(e.stack)
     }
 
+
     if (!areColorsEqual(dialogsBg, colorHsl) && elements.length > 0) {
       colors.push(colorHsl);
     }
+
   }
 
   let { background, shadow } = calculateAccentColor(colors);

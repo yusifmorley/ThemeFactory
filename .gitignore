@@ -7,4 +7,4 @@ node_modules/
 /testdic/
 /build/
 /android-theme/
-
+/test/**
