@@ -5,7 +5,7 @@ node_modules/
 /步骤
 /pic/
 /testdic/
-/build/
+/build/**
 /android-theme/
 /test/**
 /log/**

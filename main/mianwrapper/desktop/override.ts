@@ -1,6 +1,6 @@
 import {Color, TdesktopTheme} from "tdesktop-theme/node";
 import * as fs from "fs";
-import log from '../../config/log_config.js'
+import log from '../../../lib/config/log_config.js'
 
 let path="static/model/asakuravin.tdesktop-theme"
 

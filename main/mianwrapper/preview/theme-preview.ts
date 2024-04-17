@@ -3,7 +3,7 @@ import url from 'url';
 import * as http from 'http';
 
 // @ts-ignore
-import render from '../../preview/render-pool.js';
+import render from '../../../lib/preview/render-pool.js';
 
 // @ts-ignore
 import  {
@@ -11,7 +11,7 @@ import  {
     REGULAR_TEMPLATE, //移动端主题
     NEW_TEMPLATE,
     DESKTOP_TEMPLATE, //桌面模板
-} from "../../preview/preview-maker.js";
+} from "../../../lib/preview/preview-maker.js";
 import log from "../../config/log_config";
 export async function createPreview(req:http.IncomingMessage, res:http.ServerResponse) {
 

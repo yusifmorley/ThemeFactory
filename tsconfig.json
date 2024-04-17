@@ -10,8 +10,9 @@
         "noImplicitAny": false
     },
 
-    "include": ["src/",
-        "src/wrapper/",
-        "src/preview/"
+    "include": [
+        "lib/",
+        "main/mianwrapper/",
+        "lib/preview/"
     ]
 }

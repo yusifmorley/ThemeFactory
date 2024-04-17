@@ -1,14 +1,14 @@
 import fs from 'fs';
-import {getImageColors} from '../../utils/colors';
-import setColor from '../../picserver/svgps';
+import {getImageColors} from '../../../lib/utils/colors';
+import setColor from '../../../lib/picserver/svgps';
 import sharp from 'sharp';
-import {createTheme} from '../../utils/themes';
-import {ThemeType} from "../../types";
+import {createTheme} from '../../../lib/utils/themes';
+import {ThemeType} from "../../../lib/types";
 import http from "http";
 import url from "url";
-import log from '../../config/log_config.js'
+import log from '../../../lib/config/log_config.js'
 import {stringify} from "querystring";
-import {getTextColor} from "../../util/text-color.js"
+import {getTextColor} from "../../../lib/util/text-color.js"
 
 //产生颜色数组 和颜色预览图片
 //第一次 请求

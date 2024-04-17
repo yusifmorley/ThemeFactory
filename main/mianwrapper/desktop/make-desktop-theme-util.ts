@@ -1,8 +1,11 @@
 //主题创建的核心逻辑
 //提供两种颜色 主次颜色 和背景 图片生成桌面主题
+// 主颜色 为windowbg
+// 次颜色 为字体颜色
+//我们把主题分为亮色 和暗色 两套 模板
 // @ts-ignore
 import JSZip from "jszip";
-import log from '../../config/log_config.js'
+import log from '../../../lib/config/log_config.js'
 export default async function makeThemeDesktop(colorArray,bgbase64,str0="",str2="") {
         let BGColor,customColor;
         if (colorArray !== null) {
@@ -256,8 +259,8 @@ export default async function makeThemeDesktop(colorArray,bgbase64,str0="",str2=
  dialogsUnreadBgActive: dialogsTextFgActive; // chat list unread badge background for not muted chat for current (active) chat
  dialogsUnreadBgMutedActive: #cbf7e9; // chat list unread badge background for muted chat for current (active) chat
  dialogsUnreadFgActive: primaryColor; // chat list unread badge text for current (active) chat
- dialogsRippleBg: #0055aa; //
- dialogsRippleBgActive: primaryColor; //
+ dialogsRippleBg: windowBG; //
+ dialogsRippleBgActive: windowBG; //
  dialogsForwardBg: primaryDark; // forwarding panel background (when forwarding messages in the smallest window size)
  dialogsForwardFg: dialogsNameFgActive; // forwarding panel text (when forwarding messages in the smallest window size)
  searchedBarBg: secondaryDark; // search results bar background (in chats list, contacts box..)

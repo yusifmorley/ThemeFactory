@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "node build/index.js",
-    "dev": "ts-node src/index.ts",
+    "dev": "ts-node lib/index.ts",
     "build": "tsc",
     "test": "tsc --noEmit",
-    "lint": "eslint src/ --format codeframe",
+    "lint": "eslint lib/ --format codeframe",
     "i18n": "node scripts/download-translations.js"
   },
   "repository": {

@@ -3,7 +3,7 @@ import url from "url";
 import makeThemeDesktop from "./make-desktop-theme-util";
 import {Tdesktop} from "./tdesktop";
 import { Logger} from 'log4js';
-import log from '../../config/log_config.js'
+import log from '../../../lib/config/log_config.js'
 import {TdesktopTheme} from "tdesktop-theme/node";
 import overRefine from "./override";
 export async function basePicCreateDesktop(req:http.IncomingMessage, res:http.ServerResponse){
