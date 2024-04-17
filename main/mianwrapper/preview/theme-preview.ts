@@ -12,7 +12,7 @@ import  {
     NEW_TEMPLATE,
     DESKTOP_TEMPLATE, //桌面模板
 } from "../../../lib/preview/preview-maker.js";
-import log from "../../config/log_config";
+import log from "../../../lib/config/log_config.js";
 export async function createPreview(req:http.IncomingMessage, res:http.ServerResponse) {
 
     // 获取url的各个部分
