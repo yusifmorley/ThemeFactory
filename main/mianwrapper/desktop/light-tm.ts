@@ -26,12 +26,12 @@ export default async function makeThemeDesktop(colorArray,bgbase64,str0="",str2=
     let background;
 
         primaryBG = '#ffffff';
-        primaryBG2 = '#dedede';
-        primaryBG3 = '#d9d9d9';
-        primaryBG4 = '#d2d2d2';
-        primaryBG4Trans = '#d2d2d2d4';
-        primaryBG5 = '#cecece';
-        primaryBG6 = '#c9c9c9';
+        primaryBG2 = '#ffffff';
+        primaryBG3 = '#ffffff';
+        primaryBG4 = '#ffffff';
+        primaryBG4Trans = '#ffffff';
+        primaryBG5 = '#ffffff';
+        primaryBG6 = '#ffffff';
         primaryText = '#222222';
         primaryText2 = '#000000';
 
