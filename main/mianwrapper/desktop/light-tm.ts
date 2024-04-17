@@ -188,7 +188,7 @@ export default async function makeThemeDesktop(colorArray,bgbase64,str0="",str2=
  dialogsUnreadBgMuted: quaternaryDark; // chat list unread badge background for muted chat
  dialogsUnreadFg: primaryText; // chat list unread badge text
  dialogsBgOver: tertiaryDark; // chat list background with mouse over
- dialogsNameFgOver: windowBoldFgOver; // chat list name text with mouse over
+ dialogsNameFgOver: primaryColor; // chat list name text with mouse over
  dialogsChatIconFgOver: dialogsNameFgOver; // chat list group or channel icon with mouse over
  dialogsDateFgOver: #6d727c; // chat list date text with mouse over
  dialogsTextFgOver: #a3a7ae; // chat list message text with mouse over
@@ -202,7 +202,6 @@ export default async function makeThemeDesktop(colorArray,bgbase64,str0="",str2=
  dialogsUnreadBgMutedOver: #555e67; // chat list unread badge background for muted chat with mouse over
  dialogsUnreadFgOver: dialogsUnreadFg; // chat list unread badge text with mouse over
  dialogsBgActive: primaryColor; // chat list background for current (active) chat
- dislogsNameFgOver:primaryColor;
  dialogsNameFgActive: windowFgActive; // chat list name text for current (active) chat
  dialogsChatIconFgActive: dialogsNameFgActive; // chat list group or channel icon for current (active) chat
  dialogsDateFgActive: windowFgActive; // chat list date text for current (active) chat
