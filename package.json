@@ -37,6 +37,7 @@
     "get-image-colors": "^4.0.0",
     "grammy": "^1.2.1",
     "image-size": "^0.6.3",
+    "imageinfo": "^1.0.4",
     "jimp": "^0.22.10",
     "jsdom": "^22.1.0",
     "jszip": "^3.10.1",

@@ -2,7 +2,9 @@
 import * as Buffer from "buffer";
 // @ts-ignore
 import JSZip from "jszip";
-
+/**
+ * @deprecated
+ */
 export class Tdesktop {
     private _str: string;
     public _v_map:Map<string, string>;

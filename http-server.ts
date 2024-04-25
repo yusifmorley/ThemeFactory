@@ -8,7 +8,7 @@ disown -a
  */
 import {basePicCreateColorPic} from "./main/mianwrapper/android/theme-colors-and-pic";
 import {basePicCreateTheme} from './main/mianwrapper/android/theme-colors-and-pic';
-import log from './lib/config/log_config.js'
+import log from './lib/config/log_config'
 import {createPreview} from './main/mianwrapper/preview/theme-preview';
 import {basePicCreateDesktop} from "./main/mianwrapper/desktop/theme-desktop-api";
 const port=3000;

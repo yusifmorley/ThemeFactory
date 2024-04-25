@@ -1058,3 +1058,28 @@
 [2024-04-14T13:21:50.986] [INFO] default - 正在创建attheme url 为 /desktop?query=43Emik8lQZLQEsyKdzqY2vYw72ePVfVph1b94i_syLgdksarkcwsiwvAr20Z-xFY.tdesktop-theme
 [2024-04-14T13:21:50.986] [INFO] default - 正在进行桌面主题创建 url 为/desktop?query=43Emik8lQZLQEsyKdzqY2vYw72ePVfVph1b94i_syLgdksarkcwsiwvAr20Z-xFY.tdesktop-theme
 [2024-04-14T13:21:50.987] [INFO] default - 创建颜色预览 url 为 /desktop?query=43Emik8lQZLQEsyKdzqY2vYw72ePVfVph1b94i_syLgdksarkcwsiwvAr20Z-xFY.tdesktop-theme
+[2024-04-25T11:01:30.575] [INFO] default - 创建颜色预览 url 为 /attheme
+[2024-04-25T11:39:18.381] [INFO] default - 创建颜色预览 url 为 /attheme
+[2024-04-25T11:48:29.721] [INFO] default - 创建颜色预览 url 为 /attheme
+[2024-04-25T11:48:29.723] [INFO] default - 正在创建attheme url 为 /attheme
+[2024-04-25T11:48:29.724] [INFO] default - 正在进行桌面主题创建 url 为/attheme
+[2024-04-25T11:48:29.724] [INFO] default - 创建颜色预览 url 为 /attheme
+[2024-04-25T20:41:15.390] [INFO] default - 创建颜色预览 url 为 /attheme
+[2024-04-25T20:41:15.392] [INFO] default - 正在创建attheme url 为 /attheme
+[2024-04-25T20:41:15.392] [INFO] default - 正在进行桌面主题创建 url 为/attheme
+[2024-04-25T20:41:15.393] [INFO] default - 创建颜色预览 url 为 /attheme
+[2024-04-25T20:41:15.394] [INFO] default - {
+  type: 'image',
+  format: 'PNG',
+  mimeType: 'image/png',
+  width: 300,
+  height: 158
+}
+[2024-04-25T20:42:21.449] [INFO] default - 创建颜色预览 url 为 /attheme
+[2024-04-25T20:42:21.451] [INFO] default - 正在创建attheme url 为 /attheme
+[2024-04-25T20:42:21.451] [INFO] default - 正在进行桌面主题创建 url 为/attheme
+[2024-04-25T20:42:21.452] [INFO] default - 创建颜色预览 url 为 /attheme
+[2024-04-25T20:42:37.316] [INFO] default - 创建颜色预览 url 为 /attheme-create
+[2024-04-25T20:42:37.317] [INFO] default - 正在创建attheme url 为 /attheme-create
+[2024-04-25T20:42:37.317] [INFO] default - 正在进行桌面主题创建 url 为/attheme-create
+[2024-04-25T20:42:37.317] [INFO] default - 创建颜色预览 url 为 /attheme-create

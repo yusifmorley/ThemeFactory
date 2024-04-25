@@ -5,7 +5,7 @@
 //我们把主题分为亮色 和暗色 两套 模板
 // @ts-ignore
 import JSZip from "jszip";
-import log from '../../../lib/config/log_config.js'
+import log from '../../../lib/config/log_config'
 export default async function makeThemeDesktop(colorArray,bgbase64,str0="") {
     let BGColor,customColor;
     customColor = colorArray[0] //来自图片里的强调色

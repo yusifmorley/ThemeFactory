@@ -6,9 +6,10 @@ import {createTheme} from '../../../lib/utils/themes';
 import {ThemeType} from "../../../lib/types";
 import http from "http";
 import url from "url";
-import log from '../../../lib/config/log_config.js'
+import log from '../../../lib/config/log_config'
 import {stringify} from "querystring";
 import {getTextColor} from "../../../lib/util/text-color.js"
+import fun from "imageinfo"
 
 //产生颜色数组 和颜色预览图片
 //第一次 请求
@@ -30,15 +31,17 @@ export async function basePicCreateColorPic(req:http.IncomingMessage, res:http.S
             req.on('end', async () => {
                 let arrs
                 pic = Buffer.concat(body);
-
+                let info= fun(pic)
                 try {
-                    arrs= await getImageColors(pic, 'image/jpeg')
+                    arrs= await getImageColors(pic, info.mimeType)
                 }catch (e){
+                   log.error(`getImageColors生成颜色数组异常 : ${e}`)
                     res.end("fail")
                 }
 
                 let str=setColor(arrs) //获取svg字符串
                 if (str===null){
+                    log.error("svg 字符串为空! ")
                     res.end("fail")
                     return ;
                 }
@@ -54,6 +57,7 @@ export async function basePicCreateColorPic(req:http.IncomingMessage, res:http.S
             return;
         }
     }catch (e){
+        log.error(`未知异常,调用栈:${e}`)
         res.end("fail")
     }
 

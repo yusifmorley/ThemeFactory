@@ -7,7 +7,7 @@
 import JSZip from "jszip";
 import bt from "./black-tm"
 import lt from "./light-tm"
-import log from '../../../lib/config/log_config.js'
+import log from '../../../lib/config/log_config'
 export default async function makeThemeDesktop(colorArray:string[],bgbase64,str0="",str2="") {
     let BGColor:string="", customColor:string="";
     if (colorArray !== null) {

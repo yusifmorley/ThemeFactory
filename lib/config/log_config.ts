@@ -1,4 +1,5 @@
-const log4js = require('log4js');
+import log4js from "log4js"
+
 
 const logConfig = {
     appenders: {
@@ -12,4 +13,4 @@ const logConfig = {
 
 const log=log4js.configure(logConfig).getLogger();
 
-module.exports=log;
+export  default log;
