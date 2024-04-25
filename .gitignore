@@ -8,4 +8,4 @@ node_modules/
 /build/**
 /android-theme/
 /test/**
-/log/**
+/log/app.log
