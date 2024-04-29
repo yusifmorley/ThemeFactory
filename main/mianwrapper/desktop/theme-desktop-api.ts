@@ -20,7 +20,7 @@ export async function basePicCreateDesktop(req:http.IncomingMessage, res:http.Se
             req.on('end' ,async ()=>{
                 const picObj=JSON.parse(body);
                 let buffer = Buffer.from(picObj?.picb,'base64');
-                await makeThemeDesktop(picObj?.colors,buffer).then(e=>{
+                await makeThemeDesktop(picObj?.colors,buffer,picObj?.flag).then(e=>{
                         let tdesktop = new TdesktopTheme(e)
                         let uint8Array = tdesktop.toZipBytes();
                         res.end(Buffer.from(uint8Array))
