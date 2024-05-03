@@ -3,6 +3,7 @@ import url from "url";
 import makeThemeDesktop from "./make-desktop-theme-util";
 import log from '../../../lib/config/log_config'
 import {TdesktopTheme} from "tdesktop-theme/node";
+import overRefine from "./override";
 export async function basePicCreateDesktop(req:http.IncomingMessage, res:http.ServerResponse){
     // @ts-ignore
     let body:string= ''; //base64 格式
@@ -22,6 +23,7 @@ export async function basePicCreateDesktop(req:http.IncomingMessage, res:http.Se
                 let buffer = Buffer.from(picObj?.picb,'base64');
                 await makeThemeDesktop(picObj?.colors,buffer,picObj?.flag).then(e=>{
                         let tdesktop = new TdesktopTheme(e)
+                        //overRefine(tdesktop)
                         let uint8Array = tdesktop.toZipBytes();
                         res.end(Buffer.from(uint8Array))
                 });

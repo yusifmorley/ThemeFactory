@@ -3,10 +3,6 @@ import * as fs from "fs";
 import log from '../../../lib/config/log_config'
 
 let path="static/model/asakuravin.tdesktop-theme"
-
-/**
- * @deprecated
- */
 function getColor(td:TdesktopTheme,str:string){
     let variable = td.getVariable(str);
     if (typeof variable==='string'){
@@ -16,9 +12,7 @@ function getColor(td:TdesktopTheme,str:string){
         return variable
     }
 }
- /**
- * @deprecated
- */
+
 export  default  function overRefine(vatheme:TdesktopTheme){
 
     vatheme.setVariable("sideBarBg",<Color>vatheme.getVariable("dialogsBg"))
