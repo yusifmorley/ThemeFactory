@@ -23,7 +23,7 @@ const server = http.createServer(async (req, res) => {
         //主题预览图片
         await basePicCreateColorPic(req,res);
     }catch (e){
-        log.info(e)
+        log.error(e)
     }
 });
 

@@ -154,12 +154,12 @@ requireTheme.on('callback_query', async ctx => {
     switch (data) {
         case 'black':
             color = '#000000';
-            label = 'Black';
+            label = 'BlackDomian';
             break;
 
         case 'white':
             color = '#ffffff';
-            label = 'White';
+            label = 'WhiteDomian';
             break;
 
         default: {

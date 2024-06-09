@@ -36,7 +36,8 @@ export async function basePicCreateColorPic(req:http.IncomingMessage, res:http.S
                     arrs= await getImageColors(pic, info.mimeType)
                 }catch (e){
                    log.error(`getImageColors生成颜色数组异常 : ${e}`)
-                    res.end("fail")
+                   res.end("fail")
+                    return;
                 }
 
                 let str=setColor(arrs) //获取svg字符串
