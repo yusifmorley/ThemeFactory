@@ -242,8 +242,8 @@ export default async function black_theme(colorArray,bgbase64,flag:boolean,str2=
  stickerPreviewBg: #000000b0; // sticker and GIF preview background (when you press and hold on a sticker)
  historyTextInFg: windowFg; // inbox message text
  historyTextInFgSelected: primaryText; // inbox message selected text or text in a selected message
- historyTextOutFg: #e4ecf2; // outbox message text
- historyTextOutFgSelected: primaryText; // outbox message selected text or text in a selected message
+ historyTextOutFg: primaryColor; // outbox message text
+ historyTextOutFgSelected: primaryColor; // outbox message selected text or text in a selected message
  historyLinkInFg: primaryColor; // inbox message link
  historyLinkInFgSelected: primaryColorDark; // inbox message link in a selected text or message
  historyLinkOutFg: primaryColorDark; // outbox message link

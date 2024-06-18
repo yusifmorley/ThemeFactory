@@ -10,7 +10,7 @@ import log from '../../../lib/config/log_config'
 import {stringify} from "querystring";
 import {getTextColor} from "../../../lib/util/text-color.js"
 import fun from "imageinfo"
-
+import  Vibrant from 'node-vibrant'
 //产生颜色数组 和颜色预览图片
 //第一次 请求
 export async function basePicCreateColorPic(req:http.IncomingMessage, res:http.ServerResponse){
@@ -33,7 +33,22 @@ export async function basePicCreateColorPic(req:http.IncomingMessage, res:http.S
                 pic = Buffer.concat(body);
                 let info= fun(pic)
                 try {
-                    arrs= await getImageColors(pic, info.mimeType)
+                    // 获取图片色彩颜色数组
+                    let palette=  await Vibrant.from(pic).quality(10).getPalette()
+                    //@ts-ignore
+                    arrs=[palette.Vibrant.hex,
+                                    //@ts-ignore
+                                    palette.LightVibrant.hex,
+                                    //@ts-ignore
+                                    palette.DarkVibrant.hex,
+                                    //@ts-ignore
+                                    palette.DarkMuted.hex,
+                                    //@ts-ignore
+                                    palette.Muted.hex
+                    ];
+
+                    //arrs= await getImageColors(pic, info.mimeType)
+                    log.info(arrs)
                 }catch (e){
                    log.error(`getImageColors生成颜色数组异常 : ${e}`)
                    res.end("fail")
