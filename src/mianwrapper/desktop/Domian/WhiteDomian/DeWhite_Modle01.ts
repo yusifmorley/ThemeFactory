@@ -1,7 +1,7 @@
-import Simple_Domian from "../simple_domian";
+import Desimple_domian from "../desimple_domian";
 import {TdesktopTheme} from "tdesktop-theme/node";
 
-class White_d extends Simple_Domian{
+class DeWhite_Modle01 extends Desimple_domian{
 
     //domian:Map<string ,string[]>
     constructor(tdesktop:TdesktopTheme) {

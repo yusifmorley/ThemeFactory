@@ -23,6 +23,7 @@ export async function basePicCreateColorPic(req:http.IncomingMessage, res:http.S
                 // @ts-ignore
                 body.push(chunk);
             });
+
             req.on('end', async () => {
                 let arrs
                 pic = Buffer.concat(body);

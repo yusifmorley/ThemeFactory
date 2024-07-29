@@ -1,9 +1,7 @@
 import {TdesktopTheme} from "tdesktop-theme/node";
 import {Color} from "../../../lib/atthemejs/lib/types";
 
-
-
-export default class Simple_Domian{
+export default class Desimple_domian {
     tdesktop:TdesktopTheme;
     //基本优化处理
     constructor(tdesktop:TdesktopTheme) {

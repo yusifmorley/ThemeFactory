@@ -7,8 +7,9 @@ import {NAttheme as Attheme} from "./NAttheme";
 function translteHueAn(templeteP:string,toHueColor:number,mianColorSelect:string,background:Buffer){
     let buff=fs.readFileSync(templeteP)
     let ta=new Attheme(buff)
-// 目标hue
-// sideBarBgActive 为主要改变颜色 标准
+    // 目标hue
+    // sideBarBgActive 为主要改变颜色 标准
+    // @ts-ignore
     let {red:r,green:g,blue:b,alpha:a} = ta.get(mianColorSelect)
     let instance = tinycolor({ r,g,b,a});
     let mianH=instance.toHsv().h
@@ -17,6 +18,7 @@ function translteHueAn(templeteP:string,toHueColor:number,mianColorSelect:string
     for (const e of en) {
         let kp:HSVA;
         let po= ta.get(e)
+        // @ts-ignore
         let {red:r,green:g,blue:b,alpha:a} = ta.get(e)
         console.log(po)
         kp=  tinycolor({ r,g,b,a}).toHsv()

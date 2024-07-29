@@ -1,7 +1,7 @@
-import Simple_Domian from "../simple_domian";
+import Desimple_domian from "../desimple_domian";
 import {TdesktopTheme} from "tdesktop-theme/node";
 
-class Black_d extends Simple_Domian {
+class Black_d extends Desimple_domian {
 
     constructor(tdesktop:TdesktopTheme) {
       super(tdesktop);

@@ -26,6 +26,7 @@
     "@grammyjs/transformer-throttler": "^1.0.0",
     "@jimp/core": "^0.22.10",
     "@snejugal/color": "^2.1.1",
+    "@types/express": "^4.17.21",
     "@youtwitface/ntcjs": "^1.0.1",
     "adm-zip": "^0.5.10",
     "attheme-editor-api": "^1.1.0",
@@ -55,6 +56,7 @@
     "tdesktop-theme": "^0.3.2",
     "telegraf": "^3.38.0",
     "unzipper": "^0.10.11",
+    "winston": "^3.13.1",
     "xmldom": "^0.5.0"
   },
   "devDependencies": {
