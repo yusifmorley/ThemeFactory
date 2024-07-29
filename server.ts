@@ -6,11 +6,11 @@ ctrl + z
 bg
 disown -a
  */
-import {basePicCreateColorPic} from "./main/mianwrapper/android/theme-colors-and-pic-api";
-import {basePicCreateTheme} from './main/mianwrapper/android/theme-colors-and-pic-api';
-import {createPreview} from './main/mianwrapper/preview/theme-preview-api';
-import {basePicCreateDesktop} from "./main/mianwrapper/desktop/theme-desktop-api";
-import log from "./main/lib/config/log_config";
+import {basePicCreateColorPic} from "./src/mianwrapper/android/theme-colors-and-pic-api";
+import {basePicCreateTheme} from './src/mianwrapper/android/theme-colors-and-pic-api';
+import {createPreview} from './src/mianwrapper/preview/theme-preview-api';
+import {basePicCreateDesktop} from "./src/mianwrapper/desktop/theme-desktop-api";
+import log from "./src/lib/config/log_config";
 const port=3000;
 const server = http.createServer(async (req, res) => {
     try {

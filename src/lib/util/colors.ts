@@ -1,5 +1,5 @@
 import getColors from 'get-image-colors';
-import { Theme } from '../types';
+import { Theme } from './types';
 import ntc from '@youtwitface/ntcjs';
 
 export const labelColors = (

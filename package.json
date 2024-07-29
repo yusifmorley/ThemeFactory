@@ -29,7 +29,7 @@
     "@youtwitface/ntcjs": "^1.0.1",
     "adm-zip": "^0.5.10",
     "attheme-editor-api": "^1.1.0",
-    "attheme-js": "^1.1.2",
+    "attheme-js": "^3.0.0",
     "color": "^4.0.1",
     "convert-svg-to-png": "^0.3.1",
     "dotenv": "^10.0.0",

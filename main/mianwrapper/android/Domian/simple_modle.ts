@@ -1,5 +1,0 @@
-class Simple_modle {
-
-
-
-}
