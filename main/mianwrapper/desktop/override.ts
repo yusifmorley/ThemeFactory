@@ -2,7 +2,7 @@ import {Color, TdesktopTheme} from "tdesktop-theme/node";
 import * as fs from "fs";
 import log from '../../../lib/config/log_config'
 
-let path="static/model/asakuravin.tdesktop-theme"
+let path="public/model/asakuravin.tdesktop-theme"
 function getColor(td:TdesktopTheme,str:string){
     let variable = td.getVariable(str);
     if (typeof variable==='string'){

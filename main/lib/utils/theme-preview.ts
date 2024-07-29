@@ -16,7 +16,7 @@ import { DOMParser, XMLSerializer } from 'xmldom';
 
 const { serializeToString: serialize } = new XMLSerializer();
 
-const templatePath = path.join(__dirname, '../../static/assets/theme-preview.svg');
+const templatePath = path.join(__dirname, '../../public/assets/theme-preview.svg');
 const template = fs.readFileSync(templatePath, 'utf8');
 const parser = new DOMParser();
 

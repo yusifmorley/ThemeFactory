@@ -1,16 +1,16 @@
 
 import * as http from 'http';
 /*
-nohup npx ts-node http-server.ts
+nohup npx ts-node server.ts
 ctrl + z
 bg
 disown -a
  */
-import {basePicCreateColorPic} from "./main/mianwrapper/android/theme-colors-and-pic";
-import {basePicCreateTheme} from './main/mianwrapper/android/theme-colors-and-pic';
-import log from './lib/config/log_config'
-import {createPreview} from './main/mianwrapper/preview/theme-preview';
+import {basePicCreateColorPic} from "./main/mianwrapper/android/theme-colors-and-pic-api";
+import {basePicCreateTheme} from './main/mianwrapper/android/theme-colors-and-pic-api';
+import {createPreview} from './main/mianwrapper/preview/theme-preview-api';
 import {basePicCreateDesktop} from "./main/mianwrapper/desktop/theme-desktop-api";
+import log from "./main/lib/config/log_config";
 const port=3000;
 const server = http.createServer(async (req, res) => {
     try {

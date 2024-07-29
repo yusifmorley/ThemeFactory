@@ -11,8 +11,8 @@
     },
 
     "include": [
-        "lib/",
+      "origin/",
         "main/mianwrapper/",
-        "lib/preview/"
+      "origin/preview/"
     ]
 }
