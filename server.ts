@@ -28,17 +28,23 @@ app.post("/desktop*",async(req,res)=>{
 app.post("/attheme-create",async(req,res)=>{
   await  basePicCreateTheme(req,res);
 })
-
 //创建 透明安卓主题
 app.post("/attheme-create/tran",async(req,res)=>{
    await basePicCreateTheme(req,res);
 })
-
 //创建桌面主题
 app.post("/tdesktop-create",async (req,res)=>{
    await basePicCreateDesktop(req,res);
 })
+// 安卓模板应用类
+app.post("/attheme/templete/:type/:id",async(req,res)=>{
+
+})
+// 桌面模板应用类
+app.post("/desktop/templete/:type/:id",async(req,res)=>{
+
+})
 
 app.listen(port, () => {
-    console.log(`app 已经运行 端口: ${port}`)
+    log.info(`app 已经运行 端口: ${port}`)
 })
