@@ -1,15 +1,14 @@
 import * as fs from 'node:fs';
-import {TdesktopTheme} from "tdesktop-theme/node";
+import {Tdesktop as TdesktopTheme} from "./NTdesktop";
 import * as tinycolor from "tinycolor2";
 import HSVA = tinycolor.ColorFormats.HSVA;
 
-function translateHueDe(templeteP:string,toHueColor:number,mianColorSelect:string,background:Buffer){
-    let buff=fs.readFileSync(templeteP)
-    let tO=new TdesktopTheme(buff)
+async function  translateHueDe(templete:Buffer,toHueColor:number,mianColorSelect:string,background:Buffer){
+    let tO=new TdesktopTheme(templete)
     // 目标hue
     // sideBarBgActive 为主要改变颜色 标准
     //const mianColorSelect="sideBarBgActive"
-    //@ts-ignore
+    // @ts-ignore
     let {red:r,green:g,blue:b,alpha:a} = tO.resolveVariable(mianColorSelect)
     let instance = tinycolor({ r,g,b,a});
     let mianH=instance.toHsv().h
@@ -18,7 +17,7 @@ function translateHueDe(templeteP:string,toHueColor:number,mianColorSelect:strin
         let kp:HSVA;
         let ap;
         if(typeof e[1]=="string") {
-            //@ts-ignore
+            // @ts-ignore
             let {red:r,green:g,blue:b,alpha:a} = tO.resolveVariable(e[1]);
             // console.log(`${e[0]}}`);
             // console.log(JSON.stringify();
@@ -40,8 +39,7 @@ function translateHueDe(templeteP:string,toHueColor:number,mianColorSelect:strin
         }
     }
     // tO.wallpaper.free()
-    //@ts-ignore
-    tO.wallpaper.bytes=background
-    return tO.toZipBytes()
+    tO.backbit=background
+    return await tO.toZip()
 }
 
