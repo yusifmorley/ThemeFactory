@@ -3,7 +3,9 @@ import url from "url";
 import makeThemeDesktop from "./make-desktop-theme-util";
 import {TdesktopTheme} from "tdesktop-theme/node";
 import overRefine from "./override";
-import log from "../../lib/config/log_config";
+import log from "../../../lib/config/log_config";
+
+
 export async function basePicCreateDesktop(req:http.IncomingMessage, res:http.ServerResponse){
     // @ts-ignore
     let body:string= ''; //base64 格式

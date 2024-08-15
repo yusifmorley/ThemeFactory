@@ -3,9 +3,9 @@ import http from "http";
 import url from "url";
 import fun from "imageinfo"
 import  Vibrant from 'node-vibrant'
-import log from "../../lib/config/log_config";
-import setColor from "../../lib/picserver/svgps";
-import {createTheme} from "../../lib/util/themes";
+import log from "../../../lib/config/log_config";
+import setColor from "../../../lib/picserver/svgps";
+import {createTheme} from "../../../lib/util/themes";
 //产生颜色数组 和颜色预览图片
 //第一次 请求
 export async function basePicCreateColorPic(req:http.IncomingMessage, res:http.ServerResponse){

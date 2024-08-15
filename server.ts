@@ -4,9 +4,9 @@ ctrl + z
 bg
 disown -a
  */
-import {basePicCreateColorPic, basePicCreateTheme} from './src/mianwrapper/android/theme-colors-and-pic-api';
+import {basePicCreateColorPic, basePicCreateTheme} from './src/mianwrapper/android/OriginImpletement/theme-colors-and-pic-api';
 import {createPreview} from './src/mianwrapper/preview/theme-preview-api';
-import {basePicCreateDesktop} from "./src/mianwrapper/desktop/theme-desktop-api";
+import {basePicCreateDesktop} from "./src/mianwrapper/desktop/OriginImpletement/theme-desktop-api";
 import log from "./src/lib/config/log_config";
 import {app} from "./src/lib/store/expree";
 const port=3000;
@@ -41,7 +41,7 @@ app.post("/attheme/templete/:type/:id",async(req,res)=>{
 
 })
 // 桌面模板应用类
-app.post("/desktop/templete/:type/:id",async(req,res)=>{
+app.post("/tdesktop/templete/:type/:id",async(req,res)=>{
 
 })
 
