@@ -8,8 +8,17 @@ import {basePicCreateColorPic, basePicCreateTheme} from './src/mianwrapper/andro
 import {createPreview} from './src/mianwrapper/preview/theme-preview-api';
 import {basePicCreateDesktop} from "./src/mianwrapper/desktop/OriginImpletement/theme-desktop-api";
 import log from "./src/lib/config/log_config";
-import {app} from "./src/lib/store/expree";
+import express from "express"
+import cors from "cors"
+import fs from "fs";
+import { dataUriToBuffer } from 'data-uri-to-buffer';
+
 const port=3000;
+let  app = express()
+const staticPath="public/tempelete/tohuemodle"
+app.use(express.json())
+app.use(cors())
+app.use(express.static(staticPath))
 //获取图片的 颜色图片
 app.post("/colorlist",async (req,res)=>{
     await basePicCreateColorPic(req,res);
@@ -36,12 +45,27 @@ app.post("/attheme-create/tran",async(req,res)=>{
 app.post("/tdesktop-create",async (req,res)=>{
    await basePicCreateDesktop(req,res);
 })
-// 安卓模板应用类
-app.post("/attheme/templete/:type/:id",async(req,res)=>{
 
+//模板信息类
+app.get("/templete-info",async (req,res)=>{
+   let tree={
+       android_black:fs.readdirSync("public/tempelete/tohuemodle/android/black"),
+       android_white:fs.readdirSync("public/tempelete/tohuemodle/android/white"),
+       desktop_black:fs.readdirSync("public/tempelete/tohuemodle/desktop/black"),
+       desktop_white:fs.readdirSync("public/tempelete/tohuemodle/desktop/white"),
+   }
+    res.end(JSON.stringify(tree));
 })
+
+
 // 桌面模板应用类
-app.post("/tdesktop/templete/:type/:id",async(req,res)=>{
+app.post("/templete-editor/",async(req,res)=>{
+    let kind=req.body.kind;
+    let type=req.body.type;
+    let moudle=req.body.moudle;
+    let targetHue=req.body.hue;
+    let picBuffer = Buffer.from(dataUriToBuffer(req.body.pic).buffer);
+
 
 })
 
