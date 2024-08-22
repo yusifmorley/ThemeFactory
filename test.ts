@@ -1,6 +1,6 @@
-import Attheme from "./lib/atthemejs";
-import * as  fs from "node:fs";
+import fs from "fs";
 
-let j=new Attheme(fs.readFileSync("AloneSnowflake.attheme").toString())
-// @ts-ignore
-fs.writeFileSync("AloneSnowflake.jpg", j.getWallpaper());
+
+fs.readdir("public/tempelete/tohuemodle",{recursive:true},(e,files)=>{
+    console.log(files)
+});

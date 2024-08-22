@@ -3,7 +3,7 @@ import {Tdesktop as TdesktopTheme} from "./NTdesktop";
 import * as tinycolor from "tinycolor2";
 import HSVA = tinycolor.ColorFormats.HSVA;
 
-async function  translateHueDe(templete:Buffer,toHueColor:number,mianColorSelect:string,background:Buffer){
+export async function  translateHueDe(templete:Buffer,toHueColor:number,mianColorSelect:string,background:Buffer){
     let tO=new TdesktopTheme(templete)
     // 目标hue
     // sideBarBgActive 为主要改变颜色 标准

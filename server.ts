@@ -12,7 +12,10 @@ import express from "express"
 import cors from "cors"
 import fs from "fs";
 import { dataUriToBuffer } from 'data-uri-to-buffer';
+import {TeClassCollection} from "./src/mianwrapper/templete/TeClassCollection";
 
+//目录对应模板集合
+let teClassCollection = new TeClassCollection();
 const port=3000;
 let  app = express()
 const staticPath="public/tempelete/tohuemodle"
@@ -65,8 +68,13 @@ app.post("/templete-editor/",async(req,res)=>{
     let moudle=req.body.moudle;
     let targetHue=req.body.hue;
     let picBuffer = Buffer.from(dataUriToBuffer(req.body.pic).buffer);
+    let teMap = teClassCollection.getKindMap();
+    let pathP = teMap.get(kind).get(moudle);
+    if (kind=="android"){
 
+    }else {
 
+    }
 })
 
 app.listen(port, () => {

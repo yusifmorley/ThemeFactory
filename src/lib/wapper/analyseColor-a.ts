@@ -4,8 +4,7 @@ import * as tinycolor from "tinycolor2";
 import HSVA = tinycolor.ColorFormats.HSVA;
 import {NAttheme as Attheme} from "./NAttheme";
 //原模板
-function translteHueAn(templeteP:string,toHueColor:number,mianColorSelect:string,background:Buffer){
-    let buff=fs.readFileSync(templeteP)
+export function translteHueAn(buff:Buffer,toHueColor:number,mianColorSelect:string,background:Buffer){
     let ta=new Attheme(buff)
     // 目标hue
     // sideBarBgActive 为主要改变颜色 标准
