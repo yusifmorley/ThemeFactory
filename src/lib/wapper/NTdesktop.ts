@@ -97,7 +97,7 @@ export class Tdesktop {
             let color = this._tdesktheme.resolveVariable(v);
             if(color!==null){
                 let { red, green, blue, alpha }= color
-                console.log({ red, green, blue, alpha })
+                //console.log({ red, green, blue, alpha })
                 str+=`${v}:#${Buffer.from([ red, green, blue, alpha ]).toString("hex")};\n`;
             }
          })

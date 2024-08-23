@@ -13,15 +13,22 @@ import cors from "cors"
 import fs from "fs";
 import { dataUriToBuffer } from 'data-uri-to-buffer';
 import {TeClassCollection} from "./src/mianwrapper/templete/TeClassCollection";
-
+import {AndroidBlack} from "./src/mianwrapper/templete/android/black";
+import {AndroidWhite} from "./src/mianwrapper/templete/android/white";
+import {DesktopBlack} from "./src/mianwrapper/templete/desktop/black";
+import {DesktopWhite} from "./src/mianwrapper/templete/desktop/white";
+import path from "path";
+import {translteHueAn} from "./src/lib/wapper/analyseColor-a";
+import {translateHueDe} from "./src/lib/wapper/analyseColor-d";
+import BodyParser from "body-parser";
 //目录对应模板集合
 let teClassCollection = new TeClassCollection();
 const port=3000;
 let  app = express()
 const staticPath="public/tempelete/tohuemodle"
-app.use(express.json())
 app.use(cors())
 app.use(express.static(staticPath))
+app.use(BodyParser.json({limit: '210000kb'}))
 //获取图片的 颜色图片
 app.post("/colorlist",async (req,res)=>{
     await basePicCreateColorPic(req,res);
@@ -51,11 +58,12 @@ app.post("/tdesktop-create",async (req,res)=>{
 
 //模板信息类
 app.get("/templete-info",async (req,res)=>{
-   let tree={
-       android_black:fs.readdirSync("public/tempelete/tohuemodle/android/black"),
-       android_white:fs.readdirSync("public/tempelete/tohuemodle/android/white"),
-       desktop_black:fs.readdirSync("public/tempelete/tohuemodle/desktop/black"),
-       desktop_white:fs.readdirSync("public/tempelete/tohuemodle/desktop/white"),
+
+    let tree={
+       android_black:[...AndroidBlack.androidBlackMap.keys()],
+       android_white:[...AndroidWhite.androidWhiteMap.keys()],
+       desktop_black:[...DesktopBlack.desktopBalckMap.keys()],
+       desktop_white:[...DesktopWhite.desktopWhiteMap.keys()],
    }
     res.end(JSON.stringify(tree));
 })
@@ -66,15 +74,53 @@ app.post("/templete-editor/",async(req,res)=>{
     let kind=req.body.kind;
     let type=req.body.type;
     let moudle=req.body.moudle;
-    let targetHue=req.body.hue;
+    let targetHue=parseInt(req.body.hue);
     let picBuffer = Buffer.from(dataUriToBuffer(req.body.pic).buffer);
-    let teMap = teClassCollection.getKindMap();
-    let pathP = teMap.get(kind).get(moudle);
+    let newVar:any;
+    let filename=kind=="android"?"yusif.attheme":"yusif.tdesktop-theme"
+
+    res.set({
+        'content-type': 'application/octet-stream',
+        'content-disposition': 'attachment;filename=' + encodeURI(filename)
+    })
+
     if (kind=="android"){
 
+        if (type=="white"){
+            newVar = AndroidWhite.androidWhiteMap.get(moudle);
+
+        }
+        else {
+
+            newVar = AndroidBlack.androidBlackMap.get(moudle);
+        }
     }else {
 
+        if (type=="white"){
+            newVar= DesktopWhite.desktopWhiteMap.get(moudle);
+
+        }
+        else {
+             newVar = DesktopBlack.desktopBalckMap.get(moudle);
+
+        }
     }
+    console.log(newVar)
+    let buffer = fs.readFileSync(path.join(staticPath,kind,type,moudle,newVar.tP));
+
+    if (kind=="android"){
+       let bu= translteHueAn(buffer,targetHue,newVar.mianColorSelect,picBuffer)
+        res.end(bu,"binary");
+    }
+    else{
+      translateHueDe(buffer, targetHue, newVar.mianColorSelect, picBuffer).then(e=>{
+          res.end(e,"binary")
+      })
+
+
+    }
+
+
 })
 
 app.listen(port, () => {

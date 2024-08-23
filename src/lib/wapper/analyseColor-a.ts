@@ -1,6 +1,6 @@
 import * as fs from 'node:fs';
 import {TdesktopTheme} from "tdesktop-theme/node";
-import * as tinycolor from "tinycolor2";
+import  tinycolor from "tinycolor2";
 import HSVA = tinycolor.ColorFormats.HSVA;
 import {NAttheme as Attheme} from "./NAttheme";
 //原模板
@@ -19,7 +19,7 @@ export function translteHueAn(buff:Buffer,toHueColor:number,mianColorSelect:stri
         let po= ta.get(e)
         // @ts-ignore
         let {red:r,green:g,blue:b,alpha:a} = ta.get(e)
-        console.log(po)
+        //console.log(po)
         kp=  tinycolor({ r,g,b,a}).toHsv()
         let min=kp.h-mianH
         // hue 上下 15
@@ -29,7 +29,7 @@ export function translteHueAn(buff:Buffer,toHueColor:number,mianColorSelect:stri
             ta.set(e,{red,green,blue,alpha:a})
         }
     }
-    ta.setWallpaper(fs.readFileSync(background))
+    ta.setWallpaper(background)
     return ta.toFile()
 }
 

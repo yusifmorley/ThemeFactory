@@ -1,6 +1,6 @@
 import * as fs from 'node:fs';
 import {Tdesktop as TdesktopTheme} from "./NTdesktop";
-import * as tinycolor from "tinycolor2";
+import  tinycolor from "tinycolor2";
 import HSVA = tinycolor.ColorFormats.HSVA;
 
 export async function  translateHueDe(templete:Buffer,toHueColor:number,mianColorSelect:string,background:Buffer){
@@ -17,12 +17,16 @@ export async function  translateHueDe(templete:Buffer,toHueColor:number,mianColo
         let kp:HSVA;
         let ap;
         if(typeof e[1]=="string") {
-            // @ts-ignore
+            let resolveVariable = tO.resolveVariable(e[1]);
+            if (resolveVariable==null)
+                continue
+
             let {red:r,green:g,blue:b,alpha:a} = tO.resolveVariable(e[1]);
-            // console.log(`${e[0]}}`);
-            // console.log(JSON.stringify();
-            kp=  tinycolor({ r,g,b,a}).toHsv()
+                // console.log(`${e[0]}}`);
+                // console.log(JSON.stringify();
+            kp= tinycolor({ r,g,b,a}).toHsv()
             ap=a
+            // @ts-ignore
         }else {
             let {red:r,green:g,blue:b,alpha:a} = e[1];
             // console.log(`${e[0]}`)
@@ -40,6 +44,8 @@ export async function  translateHueDe(templete:Buffer,toHueColor:number,mianColo
     }
     // tO.wallpaper.free()
     tO.backbit=background
+    //fs.writeFileSync("j.jpg",tO.backbit)
+
     return await tO.toZip()
 }
 
