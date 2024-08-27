@@ -1,6 +1,3 @@
-//维护 一个镶套map
-import {NAttheme} from "../../lib/wapper/NAttheme"
-import {Tdesktop} from "../../lib/wapper/NTdesktop"
 import fs from "node:fs"
 import path from "path";
 

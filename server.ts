@@ -85,29 +85,22 @@ app.post("/templete-editor/",async(req,res)=>{
     })
 
     if (kind=="android"){
-
         if (type=="white"){
             newVar = AndroidWhite.androidWhiteMap.get(moudle);
-
         }
         else {
-
             newVar = AndroidBlack.androidBlackMap.get(moudle);
         }
     }else {
-
         if (type=="white"){
             newVar= DesktopWhite.desktopWhiteMap.get(moudle);
-
         }
         else {
              newVar = DesktopBlack.desktopBalckMap.get(moudle);
-
         }
     }
-    console.log(newVar)
+   // console.log(newVar)
     let buffer = fs.readFileSync(path.join(staticPath,kind,type,moudle,newVar.tP));
-
     if (kind=="android"){
        let bu= translteHueAn(buffer,targetHue,newVar.mianColorSelect,picBuffer)
         res.end(bu,"binary");
@@ -116,13 +109,8 @@ app.post("/templete-editor/",async(req,res)=>{
       translateHueDe(buffer, targetHue, newVar.mianColorSelect, picBuffer).then(e=>{
           res.end(e,"binary")
       })
-
-
     }
-
-
 })
-
 app.listen(port, () => {
     log.info(`app 已经运行 端口: ${port}`)
 })
