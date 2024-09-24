@@ -58,7 +58,7 @@ const createPngFromAttheme = (folderPath,aP) => {
         name:"",
         template:MINIMALISTIC_TEMPLATE,
     }).then((preview: any)=>{
-        fs.writeFileSync(path.join(aP+".png"),preview)
+        fs.writeFileSync(path.join(folderPath,"捕获.png"),preview)
     }).then(()=>{
         log.log(`创建PNG结束`)
     })

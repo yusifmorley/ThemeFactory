@@ -59,7 +59,7 @@ const createPngFromTdesktopTheme = (folderPath,dP) => {
         name:"",
         template:DESKTOP_TEMPLATE,
     }).then((preview: any)=>{
-        fs.writeFileSync(path.join(dP+".png"),preview)
+        fs.writeFileSync(path.join(folderPath,"捕获.png"),preview)
     }).then(()=>{
         log.log(`创建PNG结束`)
     })
