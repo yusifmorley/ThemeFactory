@@ -43,7 +43,7 @@ let  app = express()
 
 const staticPath="public/tempelete/tohuemodle"
 app.use(cors({
-    origin: 'https://www.yusme.link:3000' // 允许的来源
+    origin: '*' // 允许的来源
 }))
 app.use(express.static(staticPath))
 app.use(BodyParser.json({limit: '210000kb'}))
