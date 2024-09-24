@@ -32,7 +32,7 @@ const targetBl = 'public/tempelete/tohuemodle/desktop/black'; // 替换为你的
 const targetWh='public/tempelete/tohuemodle/desktop/white'
 checkDireDe(targetBl);
 checkDireDe(targetWh);
-
+const ip="167.179.118.142"
 const port=3000;
 let  app = express()
 const staticPath="public/tempelete/tohuemodle"
@@ -122,6 +122,7 @@ app.post("/templete-editor/",async(req,res)=>{
       })
     }
 })
-app.listen(port, () => {
+
+app.listen(port,"167.179.118.142", () => {
     log.info(`app 已经运行 端口: ${port}`)
 })
