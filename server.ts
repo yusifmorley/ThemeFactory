@@ -12,7 +12,6 @@ import express from "express"
 import cors from "cors"
 import fs from "fs";
 import { dataUriToBuffer } from 'data-uri-to-buffer';
-import {TeClassCollection} from "./src/mianwrapper/templete/TeClassCollection";
 import {AndroidBlack} from "./src/mianwrapper/templete/android/black";
 import {AndroidWhite} from "./src/mianwrapper/templete/android/white";
 import {DesktopBlack} from "./src/mianwrapper/templete/desktop/black";
@@ -21,8 +20,19 @@ import path from "path";
 import {translteHueAn} from "./src/lib/wapper/analyseColor-a";
 import {translateHueDe} from "./src/lib/wapper/analyseColor-d";
 import BodyParser from "body-parser";
+import checkDirectoriesAn from "./src/mianwrapper/DesktopCheck";
+import checkDireDe from "./src/mianwrapper/AndroidCheck";
 //目录对应模板集合
-let teClassCollection = new TeClassCollection();
+const targetAnb = 'public/tempelete/tohuemodle/android/black'; // 替换为你的目录路径
+const targetAnw = 'public/tempelete/tohuemodle/android/white'; // 替换为你的目录路径
+checkDirectoriesAn(targetAnb);
+checkDirectoriesAn(targetAnw);
+
+const targetBl = 'public/tempelete/tohuemodle/desktop/black'; // 替换为你的目录路径
+const targetWh='public/tempelete/tohuemodle/desktop/white'
+checkDireDe(targetBl);
+checkDireDe(targetWh);
+
 const port=3000;
 let  app = express()
 const staticPath="public/tempelete/tohuemodle"
@@ -33,6 +43,7 @@ app.use(BodyParser.json({limit: '210000kb'}))
 app.post("/colorlist",async (req,res)=>{
     await basePicCreateColorPic(req,res);
 })
+
 
 //安卓预览创建
 app.post("/android*",async(req,res)=>{
