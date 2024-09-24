@@ -131,10 +131,11 @@ app.post("/templete-editor/",async(req,res)=>{
     }
 })
 const options = {
-    key: fs.readFileSync('/etc/letsencrypt/live/www.yusme.link/privkey.pem'),
-    cert: fs.readFileSync('/etc/letsencrypt/live/www.yusme.link/fullchain.pem')
+    key: fs.readFileSync('/etc/letsencrypt/live/www.yusme.link/privkey.pem','utf8'),
+    cert: fs.readFileSync('/etc/letsencrypt/live/www.yusme.link/fullchain.pem','utf8'),
+    ca :fs.readFileSync('/etc/letsencrypt/live/www.yusme.link/chain.pem', 'utf8')
 };
 let httpsServer = https.createServer(options, app);
-app.listen(port, () => {
+httpsServer.listen(port, () => {
     log.info(`app 已经运行 端口: ${port}`)
 })
