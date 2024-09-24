@@ -43,7 +43,7 @@ let  app = express()
 
 const staticPath="public/tempelete/tohuemodle"
 app.use(cors({
-    origin: 'https://www.yusme.link' // 允许的来源
+    origin: 'https://www.yusme.link:3000' // 允许的来源
 }))
 app.use(express.static(staticPath))
 app.use(BodyParser.json({limit: '210000kb'}))
@@ -135,6 +135,6 @@ const options = {
     cert: fs.readFileSync('/etc/letsencrypt/live/www.yusme.link/fullchain.pem')
 };
 let httpsServer = https.createServer(options, app);
-app.listen(port,"167.179.118.142", () => {
+app.listen(port, () => {
     log.info(`app 已经运行 端口: ${port}`)
 })
