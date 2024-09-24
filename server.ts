@@ -39,22 +39,12 @@ checkDireDe(targetWh);
 const ip="167.179.118.142"
 const port=3000;
 let  app = express()
-app.all("*", (req, res, next) => {
-    // 设置允许跨域的域名，*代表允许任意域名跨域
-    res.header("Access-Control-Allow-Origin","*");
-    // 允许的header类型
-    res.header("Access-Control-Allow-Headers","content-type");
-    // 跨域允许的请求方式
-    res.header("Access-Control-Allow-Methods","DELETE,PUT,POST,GET,OPTIONS");
-    if (req.method.toLowerCase() == 'options')
-        res.send(200);  // 让options尝试请求快速结束
-    else
-        next();
-});
 
 
 const staticPath="public/tempelete/tohuemodle"
-app.use(cors())
+app.use(cors({
+    origin: 'https://www.yusme.link' // 允许的来源
+}))
 app.use(express.static(staticPath))
 app.use(BodyParser.json({limit: '210000kb'}))
 //获取图片的 颜色图片
