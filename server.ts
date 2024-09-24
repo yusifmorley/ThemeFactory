@@ -23,6 +23,7 @@ import BodyParser from "body-parser";
 import checkDirectoriesAn from "./src/mianwrapper/DesktopCheck";
 import checkDireDe from "./src/mianwrapper/AndroidCheck";
 import * as https from "node:https";
+import http from "http";
 //目录对应模板集合
 const targetAnb = 'public/tempelete/tohuemodle/android/black'; // 替换为你的目录路径
 const targetAnw = 'public/tempelete/tohuemodle/android/white'; // 替换为你的目录路径
@@ -36,10 +37,9 @@ checkDireDe(targetWh);
 
 
 
-const ip="167.179.118.142"
+let ip
 const port=3000;
 let  app = express()
-
 
 const staticPath="public/tempelete/tohuemodle"
 app.use(cors({
@@ -130,12 +130,28 @@ app.post("/templete-editor/",async(req,res)=>{
       })
     }
 })
-const options = {
-    key: fs.readFileSync('/etc/letsencrypt/live/www.yusme.link/privkey.pem','utf8'),
-    cert: fs.readFileSync('/etc/letsencrypt/live/www.yusme.link/fullchain.pem','utf8'),
-    ca :fs.readFileSync('/etc/letsencrypt/live/www.yusme.link/chain.pem', 'utf8')
-};
-let httpsServer = https.createServer(options, app);
-httpsServer.listen(port, () => {
-    log.info(`app 已经运行 端口: ${port}`)
-})
+
+if(1){
+    // ip=="167.179.118.142"
+    const options = {
+        key: fs.readFileSync('/etc/letsencrypt/live/www.yusme.link/privkey.pem','utf8'),
+        cert: fs.readFileSync('/etc/letsencrypt/live/www.yusme.link/fullchain.pem','utf8'),
+        ca :fs.readFileSync('/etc/letsencrypt/live/www.yusme.link/chain.pem', 'utf8')
+    };
+    let httpsServer = https.createServer(options, app);
+    httpsServer.listen(port, () => {
+        log.info(`https : app  已经运行 端口: ${port}`)
+    })
+    let httpsServers = http.createServer(app);
+    httpsServers.listen(5000, () => {
+        log.info(`http : app 已经运行 端口: ${5000}`)
+    })
+}else {
+    // ip="127.0.0.1"
+    let httpsServer = http.createServer(app);
+    httpsServer.listen(port, () => {
+        log.info(`app 已经运行 端口: ${port}`)
+    })
+
+}
+
