@@ -20,7 +20,7 @@ export async function  translateHueDe(templete:Buffer,toHueColor:number,mianColo
             let resolveVariable = tO.resolveVariable(e[1]);
             if (resolveVariable==null)
                 continue
-
+//@ts-ignore
             let {red:r,green:g,blue:b,alpha:a} = tO.resolveVariable(e[1]);
                 // console.log(`${e[0]}}`);
                 // console.log(JSON.stringify();
