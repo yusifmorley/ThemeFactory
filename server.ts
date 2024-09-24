@@ -22,6 +22,7 @@ import {translateHueDe} from "./src/lib/wapper/analyseColor-d";
 import BodyParser from "body-parser";
 import checkDirectoriesAn from "./src/mianwrapper/DesktopCheck";
 import checkDireDe from "./src/mianwrapper/AndroidCheck";
+import * as https from "node:https";
 //目录对应模板集合
 const targetAnb = 'public/tempelete/tohuemodle/android/black'; // 替换为你的目录路径
 const targetAnw = 'public/tempelete/tohuemodle/android/white'; // 替换为你的目录路径
@@ -139,7 +140,11 @@ app.post("/templete-editor/",async(req,res)=>{
       })
     }
 })
-
+const options = {
+    key: fs.readFileSync('/etc/letsencrypt/live/www.yusme.link/privkey.pem'),
+    cert: fs.readFileSync('/etc/letsencrypt/live/www.yusme.link/fullchain.pem')
+};
+let httpsServer = https.createServer(options, app);
 app.listen(port,"167.179.118.142", () => {
     log.info(`app 已经运行 端口: ${port}`)
 })
