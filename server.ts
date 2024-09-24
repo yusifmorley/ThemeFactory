@@ -144,8 +144,8 @@ if(1){
     })
 
     let httpsServerS = http.createServer(app);
-    httpsServerS.listen(5000,"127.0.0.1", () => {
-        log.info(`app 已经运行 端口: ${port}`)
+    httpsServerS.listen(5000, () => {
+        log.info(`app 已经运行 端口: ${5000}`)
     })
 
 }else {
