@@ -131,7 +131,7 @@ app.post("/templete-editor/",async(req,res)=>{
     }
 })
 
-if(1){
+if(0){
     // ip=="167.179.118.142"
     const options = {
         key: fs.readFileSync('/etc/letsencrypt/live/www.yusme.link/privkey.pem','utf8'),
@@ -142,14 +142,16 @@ if(1){
     httpsServer.listen(port, () => {
         log.info(`https : app  已经运行 端口: ${port}`)
     })
-    let httpsServers = http.createServer(app);
-    httpsServers.listen(5000, () => {
-        log.info(`http : app 已经运行 端口: ${5000}`)
+
+    let httpsServerS = http.createServer(app);
+    httpsServerS.listen(5000,"127.0.0.1", () => {
+        log.info(`app 已经运行 端口: ${port}`)
     })
+
 }else {
     // ip="127.0.0.1"
     let httpsServer = http.createServer(app);
-    httpsServer.listen(port, () => {
+    httpsServer.listen(5000,"127.0.0.1", () => {
         log.info(`app 已经运行 端口: ${port}`)
     })
 
