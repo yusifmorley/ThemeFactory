@@ -47,6 +47,9 @@ app.use(cors({
 }))
 app.use(express.static(staticPath))
 app.use(BodyParser.json({limit: '210000kb'}))
+app.get('/test', (req, res) => {
+    res.send('Hello World!')
+})
 //获取图片的 颜色图片
 app.post("/colorlist",async (req,res)=>{
     await basePicCreateColorPic(req,res);
@@ -131,7 +134,7 @@ app.post("/templete-editor/",async(req,res)=>{
     }
 })
 
-if(1){
+if(0){
     // ip=="167.179.118.142"
     const options = {
         key: fs.readFileSync('/etc/letsencrypt/live/www.yusme.link/privkey.pem','utf8'),
