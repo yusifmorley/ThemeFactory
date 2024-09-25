@@ -136,7 +136,7 @@ app.post("/templete-editor/",async(req,res)=>{
     }
 })
 
-if(0){
+if(1){
     // ip=="167.179.118.142"
     const options = {
         key: fs.readFileSync('/etc/letsencrypt/live/www.yusme.link/privkey.pem','utf8'),
