@@ -80,6 +80,7 @@ export async function basePicCreateColorPic(req:http.IncomingMessage, res:http.S
 export async function basePicCreateTheme(req:http.IncomingMessage, res:http.ServerResponse){
     // @ts-ignore
     log.info(`正在创建attheme url 为 ${req.url}`)
+    //@ts-ignore
     let body=req.body; //base64 格式
     try {
         // @ts-ignore
