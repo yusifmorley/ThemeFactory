@@ -1,5 +1,5 @@
 import sharp from 'sharp';
-import http from "http";
+import http from "node:http";
 import url from "url";
 import fun from "imageinfo"
 import  Vibrant from 'node-vibrant'
@@ -18,10 +18,11 @@ export async function basePicCreateColorPic(req:http.IncomingMessage, res:http.S
         const urlObject = url.parse(req.url);
         const {pathname, query} = urlObject;
         const method = req.method;
-        if (method == 'POST' && pathname === '/attheme') {
+        if (method == 'POST' && pathname === '/colorlist') {
             req.on('data', chunk => {
                 // @ts-ignore
                 body.push(chunk);
+                log.info("zhengzai chuli")
             });
 
             req.on('end', async () => {
@@ -79,7 +80,7 @@ export async function basePicCreateColorPic(req:http.IncomingMessage, res:http.S
 export async function basePicCreateTheme(req:http.IncomingMessage, res:http.ServerResponse){
     // @ts-ignore
     log.info(`正在创建attheme url 为 ${req.url}`)
-    let body:string= ''; //base64 格式
+    let body=req.body; //base64 格式
     try {
         // @ts-ignore
     const urlObject = url.parse(req.url);
@@ -87,20 +88,13 @@ export async function basePicCreateTheme(req:http.IncomingMessage, res:http.Serv
     const method = req.method;
 
     if (method==='POST'&&(pathname==='/attheme-create'||pathname==='/attheme-create/tran')){
-        req.on('data', chunk => {
-            // @ts-ignore
-            body+=chunk;
-        });
-
-        req.on('end' ,async ()=>{
-           const picObj=JSON.parse(body);
+           const picObj=body;
             let buffer = Buffer.from(picObj?.picb,'base64');
             const type = pathname === '/attheme-create' ? 'attheme' : 'attheme-tran';
             let coarr=Array(3)
             coarr[0]=picObj?.colors[0]
             coarr[1]=picObj?.colors[1]
             coarr[2]=picObj?.colors[2]
-
            //  let text_color= getTextColor(picObj?.colors[1])
            //  if (text_color!==null){
            //      coarr[1]=text_color
@@ -115,9 +109,8 @@ export async function basePicCreateTheme(req:http.IncomingMessage, res:http.Serv
                 colors:coarr,
                 type:type,
             });
-
             res.end(Buffer.from(theme, 'binary')) //返回的时二进制 最后默认响应的是二进制
-        })
+
     }else {
         return;
     }

@@ -24,6 +24,7 @@ import checkDirectoriesAn from "./src/mianwrapper/DesktopCheck";
 import checkDireDe from "./src/mianwrapper/AndroidCheck";
 import * as https from "node:https";
 import http from "http";
+
 //目录对应模板集合
 const targetAnb = 'public/tempelete/tohuemodle/android/black'; // 替换为你的目录路径
 const targetAnw = 'public/tempelete/tohuemodle/android/white'; // 替换为你的目录路径
@@ -47,6 +48,7 @@ app.use(cors({
 }))
 app.use(express.static(staticPath))
 app.use(BodyParser.json({limit: '210000kb'}))
+
 app.get('/test', (req, res) => {
     res.send('Hello World!')
 })
@@ -134,7 +136,7 @@ app.post("/templete-editor/",async(req,res)=>{
     }
 })
 
-if(1){
+if(0){
     // ip=="167.179.118.142"
     const options = {
         key: fs.readFileSync('/etc/letsencrypt/live/www.yusme.link/privkey.pem','utf8'),
@@ -154,7 +156,7 @@ if(1){
 }else {
     // ip="127.0.0.1"
     let httpsServer = http.createServer(app);
-    httpsServer.listen(5000,"127.0.0.1", () => {
+    httpsServer.listen(5000,() => {
         log.info(`app 已经运行 端口: ${port}`)
     })
 

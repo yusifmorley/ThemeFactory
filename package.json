@@ -33,7 +33,7 @@
     "attheme-editor-api": "^1.1.0",
     "attheme-js": "^3.0.0",
     "axios": "^1.7.4",
-    "body-parser": "^1.20.2",
+    "body-parser": "^1.20.3",
     "color": "^4.0.1",
     "convert-svg-to-png": "^0.3.1",
     "data-uri-to-buffer": "^6.0.2",
