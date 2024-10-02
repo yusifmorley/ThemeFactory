@@ -103,7 +103,6 @@ app.post("/templete-editor/",async(req,res)=>{
     let picBuffer = Buffer.from(dataUriToBuffer(req.body.pic).buffer);
     let newVar:any;
     let filename=kind=="android"?"yusif.attheme":"yusif.tdesktop-theme"
-
     res.set({
         'content-type': 'application/octet-stream',
         'content-disposition': 'attachment;filename=' + encodeURI(filename)
@@ -135,9 +134,11 @@ app.post("/templete-editor/",async(req,res)=>{
           res.end(e,"binary")
       })
     }
+    log.info(`收到模板制作主题请求，种类 :${kind}, type:${type}, moudle:${moudle},图片大小 ${picBuffer.length}`);
 })
 
 if(process.env.NODE_ENV!=="dev"){
+    log.info("生产环境启用")
     // ip=="167.179.118.142"
     const options = {
         key: fs.readFileSync('/etc/letsencrypt/live/www.yusme.link/privkey.pem','utf8'),
@@ -146,15 +147,16 @@ if(process.env.NODE_ENV!=="dev"){
     };
     let httpsServer = https.createServer(options, app);
     httpsServer.listen(port, () => {
-        log.info(`https : app  已经运行 端口: ${port}`)
+        log.info(`https: app  已经运行 端口: ${port}`)
     })
 
     let httpsServerS = http.createServer(app);
     httpsServerS.listen(5000, () => {
-        log.info(`app 已经运行 端口: ${5000}`)
+        log.info(`http: app 已经运行 端口: ${5000}`)
     })
 
 }else {
+    log.info("开发环境启用")
     // ip="127.0.0.1"
     let httpsServer = http.createServer(app);
     httpsServer.listen(3000,() => {
