@@ -134,7 +134,7 @@ app.post("/templete-editor/",async(req,res)=>{
           res.end(e,"binary")
       })
     }
-    log.info(`收到模板制作主题请求，种类 :${kind}, type:${type}, moudle:${moudle},图片大小 ${picBuffer.length}`);
+    log.info(`收到模板制作主题请求，种类 :${kind}, type:${type}, moudle:${moudle},图片大小: ${picBuffer.length}KB`);
 })
 
 if(process.env.NODE_ENV!=="dev"){
