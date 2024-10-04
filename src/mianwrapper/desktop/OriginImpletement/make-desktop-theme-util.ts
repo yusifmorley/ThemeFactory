@@ -7,9 +7,10 @@
 import JSZip from "jszip";
 import bt from "./black-tm"
 import lt from "./light-tm"
-import log from "../../../lib/config/log_config";
+import loge from "../../../lib/config/log_config";
 import is_light from "../../../lib/util/light-darkdem";
 
+let log=loge.getLogger(`${__filename}`);
 export default async function makeThemeDesktop(colorArray:string[],bgbase64,flag=false) {
     log.info(`背景色为${colorArray[0]},强调色为${colorArray[1]}, 辅助色 ${colorArray[2]} 透明为 ${flag} }`)
     if (is_light(colorArray[0])){

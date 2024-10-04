@@ -7,7 +7,7 @@ disown -a
 import {basePicCreateColorPic, basePicCreateTheme} from './src/mianwrapper/android/OriginImpletement/theme-colors-and-pic-api';
 import {createPreview} from './src/mianwrapper/preview/theme-preview-api';
 import {basePicCreateDesktop} from "./src/mianwrapper/desktop/OriginImpletement/theme-desktop-api";
-import log from "./src/lib/config/log_config";
+import loge from "./src/lib/config/log_config";
 import express from "express"
 import cors from "cors"
 import fs from "fs";
@@ -26,6 +26,7 @@ import * as https from "node:https";
 import http from "http";
 import * as process from "node:process";
 
+let log=loge.getLogger(`${__filename}`);
 //目录对应模板集合
 const targetAnb = 'public/tempelete/tohuemodle/android/black'; // 替换为你的目录路径
 const targetAnw = 'public/tempelete/tohuemodle/android/white'; // 替换为你的目录路径

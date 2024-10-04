@@ -12,7 +12,9 @@ import  {
     NEW_TEMPLATE,
     DESKTOP_TEMPLATE, //桌面模板
 } from "../../lib/preview/preview-maker.js";
-import log from "../../lib/config/log_config";
+import loge from "../../lib/config/log_config";
+
+let log=loge.getLogger(`${__filename}`);
 export async function createPreview(req:http.IncomingMessage, res:http.ServerResponse) {
     // 获取url的各个部分
     // url.parse可以将req.url解析成一个对象

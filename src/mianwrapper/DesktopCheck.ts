@@ -7,8 +7,9 @@ import  {
     NEW_TEMPLATE,
     DESKTOP_TEMPLATE, //桌面模板
 } from "../lib/preview/preview-maker.js";
-import log from "../lib/config/log_config";
+import loge from "../lib/config/log_config";
 
+let log=loge.getLogger(`${__filename}`);
 const checkDirectoriesAn = (dir) => {
     // 读取目录内容
     fs.readdir(dir, { withFileTypes: true }, (err, entries) => {

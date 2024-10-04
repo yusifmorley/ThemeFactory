@@ -10,7 +10,7 @@ const Color = require(`@snejugal/color`);
 const rgbToHsl = Color.rgbToHsl;
 const puppeteer = require(`puppeteer`);
 const { fallbacks } = require(`./fallbacks`);
-const log_config = require("../config/log_config").default;
+const log_config = require("../config/log_config").default.getLogger(`${__filename}`);
 
 const browser = puppeteer.launch({
   args:[

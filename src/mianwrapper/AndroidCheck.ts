@@ -7,8 +7,8 @@ import  {
 } from "../lib/preview/preview-maker.js";
 import fs from "fs";
 import path from "path";
-import log from "../lib/config/log_config";
-
+import loge from "../lib/config/log_config";
+let log=loge.getLogger(`${__filename}`);
 
 // 检查目录
 const checkDireDe = (dir) => {

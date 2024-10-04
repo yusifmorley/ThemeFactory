@@ -3,8 +3,9 @@ import url from "url";
 import makeThemeDesktop from "./make-desktop-theme-util";
 import {TdesktopTheme} from "tdesktop-theme/node";
 import overRefine from "./override";
-import log from "../../../lib/config/log_config";
+import loge from "../../../lib/config/log_config";
 
+let log=loge.getLogger(`${__filename}`);
 
 export async function basePicCreateDesktop(req:http.IncomingMessage, res:http.ServerResponse){
     // @ts-ignore
