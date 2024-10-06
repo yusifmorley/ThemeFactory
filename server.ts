@@ -25,6 +25,7 @@ import checkDireDe from "./src/mianwrapper/AndroidCheck";
 import * as https from "node:https";
 import http from "http";
 import * as process from "node:process";
+import log_config from "./src/lib/config/log_config";
 
 let log=loge.getLogger(`${__filename}`);
 //目录对应模板集合
@@ -101,6 +102,10 @@ app.post("/templete-editor/",async(req,res)=>{
     let type=req.body.type;
     let moudle=req.body.moudle;
     let targetHue=parseInt(req.body.hue);
+    let targetS=parseInt(req.body.sat);
+    let targetL=parseInt(req.body.lig);
+    log.info(targetL)
+    log.info(targetS)
     let picBuffer = Buffer.from(dataUriToBuffer(req.body.pic).buffer);
     let newVar:any;
     let filename=kind=="android"?"yusif.attheme":"yusif.tdesktop-theme"
@@ -118,20 +123,22 @@ app.post("/templete-editor/",async(req,res)=>{
         }
     }else {
         if (type=="white"){
-            newVar= DesktopWhite.desktopWhiteMap.get(moudle);
+            newVar = DesktopWhite.desktopWhiteMap.get(moudle);
         }
         else {
              newVar = DesktopBlack.desktopBalckMap.get(moudle);
         }
     }
    // console.log(newVar)
+    //读取模板
+
     let buffer = fs.readFileSync(path.join(staticPath,kind,type,moudle,newVar.tP));
     if (kind=="android"){
-       let bu= translteHueAn(buffer,targetHue,newVar.mianColorSelect,picBuffer)
+       let bu= translteHueAn(buffer,targetHue,targetS,targetL,newVar.mianColorSelect,picBuffer)
         res.end(bu,"binary");
     }
     else{
-      translateHueDe(buffer, targetHue, newVar.mianColorSelect, picBuffer).then(e=>{
+      translateHueDe(buffer, targetHue,targetS,targetL, newVar.mianColorSelect, picBuffer).then(e=>{
           res.end(e,"binary")
       })
     }

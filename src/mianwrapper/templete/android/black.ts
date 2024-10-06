@@ -1,5 +1,7 @@
 
 export namespace AndroidBlack {
+
+
     const prx = "public/tempelete/tohuemodle/android/black"
 
     class Black0 {
