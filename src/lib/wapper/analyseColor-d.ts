@@ -12,7 +12,7 @@ export async function  translateHueDe(templete:Buffer,toHueColor:number,targetS:
     // @ts-ignore
     let {red:r,green:g,blue:b,alpha:a} = tO.resolveVariable(mianColorSelect)
     let instance = tinycolor({ r,g,b,a});
-    let {h:mianH,s:mianS,l:mianL}=instance.toHsl()
+    let {h:mianH,s:mianS}=instance.toHsl()
 
     let en=tO.entries()
     for (const e of en) {
