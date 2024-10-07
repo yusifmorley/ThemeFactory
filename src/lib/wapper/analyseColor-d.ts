@@ -3,10 +3,14 @@ import {Tdesktop as TdesktopTheme} from "./NTdesktop";
 import  tinycolor from "tinycolor2";
 import HSLA = tinycolor.ColorFormats.HSLA;
 
-export async function  translateHueDe(templete:Buffer,toHueColor:number,targetS:number,targetL:number,mianColorSelect:string,background:Buffer,targetV=-1){
+const chatBg="msgInBg"
+
+export async function  translateHueDe(templete:Buffer,toHueColor:number,targetS:number,targetL:number,mianColorSelect:string,background:Buffer,alphaT=1){
 
     // sideBarBgActive
     let tO=new TdesktopTheme(templete)
+
+
     // 目标hue 为主要改变颜色 标准
     //const mianColorSelect="sideBarBgActive"
     // @ts-ignore
@@ -56,7 +60,11 @@ export async function  translateHueDe(templete:Buffer,toHueColor:number,targetS:
         // 目标变量
         // 当 H 和目标变量的H相等 并且S接近 差值为30 则修改S=targetS
         // L同理
+    }
+    if (alphaT<1){
+        let {red:r,green:g,blue:b} = tO.resolveVariable(chatBg)
 
+        tO.setVariable(chatBg,{red:r,green:g,blue:b,alpha:alphaT})
     }
     // tO.wallpaper.free()
     tO.backbit=background

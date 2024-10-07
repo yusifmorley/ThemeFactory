@@ -98,14 +98,15 @@ app.get("/templete-info",async (req,res)=>{
 
 // 桌面模板应用类
 app.post("/templete-editor/",async(req,res)=>{
+
     let kind=req.body.kind;
     let type=req.body.type;
     let moudle=req.body.moudle;
     let targetHue=parseInt(req.body.hue);
     let targetS=parseInt(req.body.sat);
     let targetL=parseInt(req.body.lig);
-    log.info(targetL)
-    log.info(targetS)
+    let alpha= parseFloat(req.body.alpha);
+    // log.info(`alpha的值为${alpha}`)
     let picBuffer = Buffer.from(dataUriToBuffer(req.body.pic).buffer);
     let newVar:any;
     let filename=kind=="android"?"yusif.attheme":"yusif.tdesktop-theme"
@@ -129,16 +130,17 @@ app.post("/templete-editor/",async(req,res)=>{
              newVar = DesktopBlack.desktopBalckMap.get(moudle);
         }
     }
+
    // console.log(newVar)
     //读取模板
 
     let buffer = fs.readFileSync(path.join(staticPath,kind,type,moudle,newVar.tP));
     if (kind=="android"){
-       let bu= translteHueAn(buffer,targetHue,targetS,targetL,newVar.mianColorSelect,picBuffer)
+       let bu= translteHueAn(buffer,targetHue,targetS,targetL,newVar.mianColorSelect,picBuffer,alpha)
         res.end(bu,"binary");
     }
     else{
-      translateHueDe(buffer, targetHue,targetS,targetL, newVar.mianColorSelect, picBuffer).then(e=>{
+      translateHueDe(buffer, targetHue,targetS,targetL, newVar.mianColorSelect, picBuffer,alpha).then(e=>{
           res.end(e,"binary")
       })
     }

@@ -3,9 +3,15 @@ import {TdesktopTheme} from "tdesktop-theme/node";
 import  tinycolor from "tinycolor2";
 import HSLA = tinycolor.ColorFormats.HSLA;
 import {NAttheme as Attheme} from "./NAttheme";
+import loge from "../config/log_config";
+
+let log = loge.getLogger(__filename);
+
+const chatBg="chat_inBubble"
 //原模板
-export function translteHueAn(buff:Buffer,toHueColor:number,targetS:number,targetL:number,mianColorSelect:string,background:Buffer,targetV=-1){
+export function translteHueAn(buff:Buffer,toHueColor:number,targetS:number,targetL:number,mianColorSelect:string,background:Buffer,alphaT:number=1){
     let ta=new Attheme(buff)
+
     // 目标hue
     // sideBarBgActive 为主要改变颜色 标准
     // @ts-ignore
@@ -32,6 +38,10 @@ export function translteHueAn(buff:Buffer,toHueColor:number,targetS:number,targe
             let {r:red,g:green,b:blue,a:alpha}= tinycolor(kp).toRgb()
             ta.set(e,{red,green,blue,alpha:a})
         }
+    }
+    if (alphaT<1){
+        let {red:r,green:g,blue:b} = ta.get(chatBg)
+        ta.set(chatBg,{red:r,green:g,blue:b,alpha:alphaT})
     }
     ta.setWallpaper(background)
     return ta.toFile()
