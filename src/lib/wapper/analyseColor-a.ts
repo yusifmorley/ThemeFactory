@@ -25,7 +25,7 @@ export function translteHueAn(buff:Buffer,toHueColor:number,targetS:number,targe
         let po= ta.get(e)
         // @ts-ignore
         let {red:r,green:g,blue:b,alpha:a} = ta.get(e)
-        //console.log(po)
+
         kp=  tinycolor({ r,g,b,a}).toHsl()
         let minH=kp.h-mianH
         let minS=(kp.s-mianS)*100
@@ -39,10 +39,13 @@ export function translteHueAn(buff:Buffer,toHueColor:number,targetS:number,targe
             ta.set(e,{red,green,blue,alpha:a})
         }
     }
+   // console.log(alphaT)
     if (alphaT<1){
+       // log.info(`${alphaT}`)
+
         // @ts-ignore
         let {red:r,green:g,blue:b} = ta.get(chatBg)
-        ta.set(chatBg,{red:r,green:g,blue:b,alpha:alphaT})
+        ta.set(chatBg,{red:r,green:g,blue:b,alpha:alphaT*255})
     }
     ta.setWallpaper(background)
     return ta.toFile()
