@@ -65,7 +65,7 @@ export async function  translateHueDe(templete:Buffer,toHueColor:number,targetS:
         // @ts-ignore
         let {red:r,green:g,blue:b} = tO.resolveVariable(chatBg)
 
-        tO.setVariable(chatBg,{red:r,green:g,blue:b,alpha:alphaT*255})
+        tO.setVariable(chatBg,{red:r,green:g,blue:b,alpha:Math.floor(alphaT*255)})
     }
     // tO.wallpaper.free()
     tO.backbit=background
