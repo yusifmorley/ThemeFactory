@@ -49,7 +49,7 @@ export async function  translateHueDe(templete:Buffer,toHueColor:number,targetS:
         // hue 上下 15
         if(minH<15 && minH>-15){
             kp.h=toHueColor
-            if(minS<30 && minS>-30){
+            if(minS<15 && minS>-15){
                 kp.l=targetL/100
             }
             // console.log(kp)
