@@ -62,6 +62,7 @@ export async function  translateHueDe(templete:Buffer,toHueColor:number,targetS:
         // L同理
     }
     if (alphaT<1){
+        // @ts-ignore
         let {red:r,green:g,blue:b} = tO.resolveVariable(chatBg)
 
         tO.setVariable(chatBg,{red:r,green:g,blue:b,alpha:alphaT})

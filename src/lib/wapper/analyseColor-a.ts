@@ -40,6 +40,7 @@ export function translteHueAn(buff:Buffer,toHueColor:number,targetS:number,targe
         }
     }
     if (alphaT<1){
+        // @ts-ignore
         let {red:r,green:g,blue:b} = ta.get(chatBg)
         ta.set(chatBg,{red:r,green:g,blue:b,alpha:alphaT})
     }
