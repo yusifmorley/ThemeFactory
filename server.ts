@@ -170,8 +170,8 @@ if(process.env.NODE_ENV!=="dev"){
     log.info("开发环境启用")
     // ip="127.0.0.1"
     let httpsServer = http.createServer(app);
-    httpsServer.listen(port,() => {
-        log.info(`app 已经运行 端口: ${port}`)
+    httpsServer.listen(port1,() => {
+        log.info(`app 已经运行 端口: ${port1}`)
     })
 
 }
