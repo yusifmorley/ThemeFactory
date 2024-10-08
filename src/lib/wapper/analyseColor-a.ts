@@ -8,6 +8,7 @@ import loge from "../config/log_config";
 let log = loge.getLogger(__filename);
 
 const chatBg="chat_inBubble"
+const chatBgOut="chat_outBubble"
 //原模板
 export function translteHueAn(buff:Buffer,toHueColor:number,targetS:number,targetL:number,mianColorSelect:string,background:Buffer,alphaT:number=1){
     let ta=new Attheme(buff)
@@ -42,11 +43,12 @@ export function translteHueAn(buff:Buffer,toHueColor:number,targetS:number,targe
    // console.log(alphaT)
     if (alphaT<1){
        // log.info(`${alphaT}`)
-
         // @ts-ignore
         let {red:r,green:g,blue:b} = ta.get(chatBg)
         ta.set(chatBg,{red:r,green:g,blue:b,alpha:Math.floor(alphaT*255)})
     }
+
+    ta.set(chatBgOut,ta.get(chatBg))
     ta.setWallpaper(background)
     return ta.toFile()
 }
