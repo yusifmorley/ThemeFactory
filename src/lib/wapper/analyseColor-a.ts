@@ -47,7 +47,7 @@ export function translteHueAn(buff:Buffer,toHueColor:number,targetS:number,targe
         let {red:r,green:g,blue:b} = ta.get(chatBg)
         ta.set(chatBg,{red:r,green:g,blue:b,alpha:Math.floor(alphaT*255)})
     }
-
+    //@ts-ignore
     ta.set(chatBgOut,ta.get(chatBg))
     ta.setWallpaper(background)
     return ta.toFile()
