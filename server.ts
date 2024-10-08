@@ -39,10 +39,7 @@ const targetWh='public/tempelete/tohuemodle/desktop/white'
 checkDireDe(targetBl);
 checkDireDe(targetWh);
 
-
-
-let ip
-const port=3000;
+const port=5000;
 let  app = express()
 
 const staticPath="public/tempelete/tohuemodle"
@@ -161,15 +158,15 @@ if(process.env.NODE_ENV!=="dev"){
     })
 
     let httpsServerS = http.createServer(app);
-    httpsServerS.listen(5000, () => {
-        log.info(`http: app 已经运行 端口: ${5000}`)
+    httpsServerS.listen(port, () => {
+        log.info(`http: app 已经运行 端口: ${port}`)
     })
 
 }else {
     log.info("开发环境启用")
     // ip="127.0.0.1"
     let httpsServer = http.createServer(app);
-    httpsServer.listen(3000,() => {
+    httpsServer.listen(port,() => {
         log.info(`app 已经运行 端口: ${port}`)
     })
 

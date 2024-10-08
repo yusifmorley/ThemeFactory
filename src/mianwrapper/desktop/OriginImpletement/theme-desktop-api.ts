@@ -17,7 +17,7 @@ export async function basePicCreateDesktop(req:http.IncomingMessage, res:http.Se
         const { pathname,query } = urlObject;
         const method = req.method;
         if (method==='POST'&&pathname==='/tdesktop-create'){
-                log.info(body)
+                // log.info(body)
                 const picObj=body;
                 let buffer = Buffer.from(picObj?.picb,'base64');
                 await makeThemeDesktop(picObj?.colors,buffer,picObj?.flag).then(e=>{

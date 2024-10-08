@@ -24,7 +24,6 @@ export async function basePicCreateColorPic(req:http.IncomingMessage, res:http.S
             req.on('data', chunk => {
                 // @ts-ignore
                 body.push(chunk);
-                log.info("zhengzai chuli")
             });
 
             req.on('end', async () => {
