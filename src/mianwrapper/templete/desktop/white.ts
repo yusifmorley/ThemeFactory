@@ -6,6 +6,7 @@ export namespace DesktopWhite {
         public tP:string="awesome.tdesktop-theme"
         public pP:string="捕获.PNG"
         public mianColorSelect:string="windowSubTextFg"
+
     }
 
     class White2{
