@@ -1,35 +1,40 @@
+import {AnBaseThemeOperation} from "../BaseThemeOperation";
+import Buffer from "node:buffer";
+import {translteHueAn} from "../../../lib/wapper/analyseColor-a";
+import path from "path";
+import fs from "fs";
 
 export namespace AndroidBlack {
+    class BlackThemeBase extends AnBaseThemeOperation{
+        type: string="black";
+        constructor(
+            public id: string,
+            public tP: string,
+            public pP: string = "捕获.PNG",  // 默认值
+            public mainColorSelect: string
+        ) {super();}
+        translateHue(...args:[Buffer,number,number,number,string,Buffer,number]){
+            return translteHueAn(...args)
+        }
+        private getPath(){
+            return  path.join(this.prx,this.type,this.id,this.tP)
+        }
 
-
-    const prx = "public/tempelete/tohuemodle/android/black"
-
-    class Black0 {
-        public static id: string = "black1"
-        public tP: string = "TwilightEbony.attheme"
-        public pP: string = "捕获.PNG"
-        public mianColorSelect: string = "actionBarDefaultTitle"
-
+        public getBuffer() {
+            return  fs.readFileSync(this.getPath())
+        }
     }
 
-    class Black1 {
-        public static id: string = "black2"
-        public tP: string = "@Gumiho_tem2.attheme"
-        public pP: string = "捕获.PNG"
-        public mianColorSelect: string = "actionBarDefaultTitle"
+    const blackThemes = [
+        new BlackThemeBase("black1", "TwilightEbony.attheme", "捕获.PNG", "actionBarDefaultTitle"),
+        new BlackThemeBase("black2", "@Gumiho_tem2.attheme", "捕获.PNG", "actionBarDefaultTitle"),
+        new BlackThemeBase("black3", "Gojo Purple Theme @aestheticpicsuwu.attheme", "捕获.PNG", "actionBarTabLine"),
+        new BlackThemeBase("black4", "Ghost @MyTelegramThemes 🎨.attheme", "捕获.PNG", "actionBarTabLine")
+    ];
 
-    }
-
-    class Black2 {
-        public static id: string = "black3"
-        public tP: string = "Gojo Purple Theme @aestheticpicsuwu.attheme"
-        public pP: string = "捕获.PNG"
-        public mianColorSelect: string = "actionBarTabLine"
-    }
-
-    export const androidBlackMap = new Map<string, any>
-    androidBlackMap.set(Black0.id, new Black0())
-    androidBlackMap.set(Black1.id, new Black1())
-    androidBlackMap.set(Black2.id, new Black2())
+    // 初始化 Map 并设置数据
+    export const androidBlackMap = new Map<string, BlackThemeBase>(
+        blackThemes.map(theme => [theme.id, theme])
+    );
 }
 

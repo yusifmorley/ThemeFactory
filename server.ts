@@ -90,7 +90,7 @@ app.get("/templete-info",async (req,res)=>{
     let tree={
        android_black:[...AndroidBlack.androidBlackMap.keys()],
        android_white:[...AndroidWhite.androidWhiteMap.keys()],
-       desktop_black:[...DesktopBlack.desktopBalckMap.keys()],
+       desktop_black:[...DesktopBlack.desktopBlackMap.keys()],
        desktop_white:[...DesktopWhite.desktopWhiteMap.keys()],
    }
     res.end(JSON.stringify(tree));
@@ -128,15 +128,17 @@ app.post("/templete-editor/",async(req,res)=>{
             newVar = DesktopWhite.desktopWhiteMap.get(moudle);
         }
         else {
-             newVar = DesktopBlack.desktopBalckMap.get(moudle);
+             newVar = DesktopBlack.desktopBlackMap.get(moudle);
         }
     }
 
-   // console.log(newVar)
+    // console.log(newVar)
     //读取模板
 
     let buffer = fs.readFileSync(path.join(staticPath,kind,type,moudle,newVar.tP));
+
     if (kind=="android"){
+
        let bu= translteHueAn(buffer,targetHue,targetS,targetL,newVar.mianColorSelect,picBuffer,alpha)
         res.end(bu,"binary");
     }

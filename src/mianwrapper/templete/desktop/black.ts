@@ -1,39 +1,39 @@
+import {AnBaseThemeOperation, DeBaseThemeOperation} from "../BaseThemeOperation";
+import Buffer from "node:buffer";
+import {translteHueAn} from "../../../lib/wapper/analyseColor-a";
+import path from "path";
+import fs from "fs";
 
 export namespace DesktopBlack{
-    const prx:string="public/tempelete/tohuemodle/desktop/black"
+    class BlackThemeBase extends DeBaseThemeOperation{
+        type: string="white";
+        constructor(
+            public id: string,
+            public tP: string,
+            public pP: string = "捕获.PNG",  // 默认值
+            public mainColorSelect: string
+        ) {super();}
 
-    class Black0 {
-        public static id:string="black1"
-        public tP:string="yusif.tdesktop-theme"
-        public pP:string="捕获.PNG"
-        public mianColorSelect:string="dialogsTextFg"
+        private getPath(){
+            return  path.join(this.prx,this.type,this.id,this.tP)
+        }
+
+        public getBuffer() {
+            return  fs.readFileSync(this.getPath())
+        }
 
     }
-    class Black1 {
-        public static id:string="black2"
-        public tP:string="awesome.tdesktop-theme"
-        public pP:string="捕获.PNG"
-        public mianColorSelect:string="sideBarIconFg"
 
-    }
-    class Black3 {
-        public static id:string="black3"
-        public tP:string="awesome02.tdesktop-theme"
-        public pP:string="捕获.PNG"
-        public mianColorSelect:string="sideBarIconFg"
-    }
-    class Black4 {
-        public static id:string="black4"
-        public tP:string="awesome.tdesktop-theme"
-        public pP:string="捕获.PNG"
-        public mianColorSelect:string="sideBarIconFgActive"
-    }
-    export const desktopBalckMap=new Map<string,any>
-
-    desktopBalckMap.set(Black0.id,new Black0())
-    desktopBalckMap.set(Black1.id,new Black1())
-    desktopBalckMap.set(Black3.id,new Black3())
-    desktopBalckMap.set(Black4.id,new Black4())
+    const blackThemes = [
+        new BlackThemeBase("black1", "yusif.tdesktop-theme", "捕获.PNG", "dialogsTextFg"),
+        new BlackThemeBase("black2", "awesome.tdesktop-theme", "捕获.PNG", "sideBarIconFg"),
+        new BlackThemeBase("black3", "awesome02.tdesktop-theme", "捕获.PNG", "sideBarIconFg"),
+        new BlackThemeBase("black4", "awesome.tdesktop-theme", "捕获.PNG", "sideBarIconFgActive")
+    ];
+    // 初始化 Map 并设置数据
+    export const desktopBlackMap = new Map<string, BlackThemeBase>(
+        blackThemes.map(theme => [theme.id, theme])
+    );
 }
 
 

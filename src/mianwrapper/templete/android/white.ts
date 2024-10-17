@@ -1,34 +1,45 @@
-export namespace AndroidWhite{
-    const prx="public/tempelete/tohuemodle/android/white"
-    class White0{
-        public static id:string="white1"
-        public tP:string="yusif.attheme"
-        public pP:string="捕获.PNG"
-        public mianColorSelect:string="actionBarDefaultTitle"
+import {translteHueAn} from "../../../lib/wapper/analyseColor-a";
+import {AnBaseThemeOperation} from "../BaseThemeOperation";
+
+import * as Buffer from "node:buffer";
+import path from "path";
+import fs from "fs";
+
+export namespace AndroidWhite {
+    // 创建一个通用的白色主题基类
+    class WhiteThemeBase extends AnBaseThemeOperation{
+        type: string="white";
+        constructor(
+            public id: string,
+            public tP: string,
+            public pP: string = "捕获.PNG",  // 默认值
+            public mainColorSelect: string
+        ) {super();}
+
+        translateHue(...args:[Buffer,number,number,number,string,Buffer,number]){
+            return translteHueAn(...args)
+        }
+
+       private getPath(){
+           return  path.join(this.prx,this.type,this.id,this.tP)
+        }
+
+       public getBuffer() {
+           return  fs.readFileSync(this.getPath())
+        }
 
     }
-    class White1{
-        public static id:string="white2"
-        public tP:string="Orange Flower @AloneSnowflake.attheme"
-        public pP:string="捕获.PNG"
-        public mianColorSelect:string="actionBarTabLine"
 
-    }
-    class White2{
-        public static id:string="white3"
-        public tP:string="Day.attheme"
-        public pP:string="捕获.PNG"
-        public mianColorSelect:string="actionBarTabLine"
+    // 创建不同的主题实例
+    const whiteThemes = [
+        new WhiteThemeBase("white1", "yusif.attheme", "捕获.PNG", "actionBarDefaultTitle"),
+        new WhiteThemeBase("white2", "Orange Flower @AloneSnowflake.attheme", "捕获.PNG", "actionBarTabLine"),
+        new WhiteThemeBase("white3", "Day.attheme", "捕获.PNG", "actionBarTabLine"),
+        new WhiteThemeBase("white4", "Ghost @MyTelegramThemes 🎨.attheme", "捕获.PNG", "actionBarTabLine")
+    ];
 
-    }
-
-    export const androidWhiteMap=new Map<string,any>
-
-    androidWhiteMap.set(White0.id,new White0())
-    androidWhiteMap.set(White1.id,new White1())
-    androidWhiteMap.set(White2.id,new White2())
-
-
+    // 初始化 Map 并设置数据
+    export const androidWhiteMap = new Map<string, WhiteThemeBase>(
+        whiteThemes.map(theme => [theme.id, theme])
+    );
 }
-
-
