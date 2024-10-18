@@ -1,6 +1,6 @@
 //NAtttheme 是新的Attheme类
-import Attheme from "attheme-js";
-import {Color} from "attheme-js/lib/types";
+import Attheme from "../atthemejs";
+import {Color} from "../atthemejs/lib/types";
 
 export class NAttheme{
      buff:Buffer

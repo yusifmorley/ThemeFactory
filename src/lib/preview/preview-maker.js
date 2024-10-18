@@ -1,4 +1,4 @@
-const Attheme=require('attheme-js').default;
+const Attheme=require('attheme-js')
 const { TdesktopTheme } = require(`tdesktop-theme/node`);
 const fs = require(`fs`);
 const defaultVariablesValues = require(`./attheme-default-values`).default;

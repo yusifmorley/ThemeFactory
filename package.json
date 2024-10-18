@@ -31,7 +31,7 @@
     "@youtwitface/ntcjs": "^1.0.1",
     "adm-zip": "^0.5.10",
     "attheme-editor-api": "^1.1.0",
-    "attheme-js": "^3.0.0",
+    "attheme-js": "^1.1.1",
     "axios": "^1.7.4",
     "body-parser": "^1.20.3",
     "color": "^4.0.1",

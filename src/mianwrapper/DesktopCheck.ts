@@ -1,4 +1,4 @@
-import fs from 'fs'
+import fs from 'node:fs'
 import path from 'path'
 import render from '../lib/preview/render-pool.js';
 import  {
