@@ -48,7 +48,7 @@ export namespace AndroidWhite {
         new WhiteThemeBase("white1", "yusif.attheme", "捕获.PNG", "actionBarDefaultTitle"),
         new WhiteThemeBase("white2", "Orange Flower @AloneSnowflake.attheme", "捕获.PNG", "actionBarTabLine"),
         new SpeTheme3("white3", "Day.attheme", "捕获.PNG", "actionBarTabLine"),
-        new WhiteThemeBase("white4", "Ghost.attheme", "捕获.PNG", "actionBarTabLine")
+       // new WhiteThemeBase("white4", "Ghost.attheme", "捕获.PNG", "actionBarTabLine")
     ];
 
     // 初始化 Map 并设置数据
