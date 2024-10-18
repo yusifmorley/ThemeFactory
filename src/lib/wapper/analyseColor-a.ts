@@ -9,6 +9,8 @@ let log = loge.getLogger(__filename);
 
 const chatBg="chat_inBubble"
 const chatBgOut="chat_outBubble"
+const chatFilInfo="chat_outFileInfoText"
+const chatFilNameText="chat_outFileNameText"
 //原模板
 export function translteHueAn(buff:Buffer,toHueColor:number,targetS:number,targetL:number,mianColorSelect:string,background:Buffer,alphaT:number=1){
     let ta=new Attheme(buff)
@@ -91,6 +93,7 @@ export function translteHueAnS(buff:Buffer,toHueColor:number,targetS:number,targ
         ta.set(chatBg,{red:r,green:g,blue:b,alpha:Math.floor(alphaT*255)})
     }
     //@ts-ignore
+    ta.set(chatFilInfo,ta.get(chatFilNameText))
     ta.setWallpaper(background)
     return ta.toFile()
 }
