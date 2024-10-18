@@ -1,7 +1,9 @@
+//@ts-nocheck
+
 import {translteHueAn} from "../../lib/wapper/analyseColor-a";
 import {translateHueDe} from "../../lib/wapper/analyseColor-d";
 import fs from "fs";
-//@ts-nocheck
+
 // 基本安卓抽象类
 export  abstract class AnBaseThemeOperation {
     abstract type: string;
