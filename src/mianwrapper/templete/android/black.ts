@@ -16,7 +16,7 @@ export namespace AndroidBlack {
         translateHue(...args:[Buffer,number,number,number,string,Buffer,number]){
             return translteHueAn(...args)
         }
-        private getPath(){
+        getPath(){
             return  path.join(this.prx,this.type,this.id,this.tP)
         }
 

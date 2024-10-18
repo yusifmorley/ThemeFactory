@@ -131,19 +131,14 @@ app.post("/templete-editor/",async(req,res)=>{
              newVar = DesktopBlack.desktopBlackMap.get(moudle);
         }
     }
-
     // console.log(newVar)
     //读取模板
-
-    let buffer = fs.readFileSync(path.join(staticPath,kind,type,moudle,newVar.tP));
-
     if (kind=="android"){
-
-       let bu= translteHueAn(buffer,targetHue,targetS,targetL,newVar.mianColorSelect,picBuffer,alpha)
-        res.end(bu,"binary");
+       let bu= newVar.translateHue(newVar.getBuffer(),targetHue,targetS,targetL,newVar.mainColorSelect,picBuffer,alpha)
+       res.end(bu,"binary");
     }
     else{
-      translateHueDe(buffer, targetHue,targetS,targetL, newVar.mianColorSelect, picBuffer,alpha).then(e=>{
+        newVar.translateHue(newVar.getBuffer(), targetHue,targetS,targetL, newVar.mainColorSelect, picBuffer,alpha).then(e=>{
           res.end(e,"binary")
       })
     }

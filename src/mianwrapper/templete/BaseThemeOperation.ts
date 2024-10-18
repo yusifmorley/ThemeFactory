@@ -19,7 +19,6 @@ export  abstract class AnBaseThemeOperation {
     getBuffer(){
         return  fs.readFileSync(this.getPath())
     }
-
 }
 
 // 基本桌面抽象类

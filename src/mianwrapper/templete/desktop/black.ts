@@ -6,7 +6,7 @@ import fs from "fs";
 
 export namespace DesktopBlack{
     class BlackThemeBase extends DeBaseThemeOperation{
-        type: string="white";
+        type: string="black";
         constructor(
             public id: string,
             public tP: string,
@@ -14,7 +14,7 @@ export namespace DesktopBlack{
             public mainColorSelect: string
         ) {super();}
 
-        private getPath(){
+        getPath(){
             return  path.join(this.prx,this.type,this.id,this.tP)
         }
 

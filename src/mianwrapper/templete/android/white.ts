@@ -20,7 +20,7 @@ export namespace AndroidWhite {
             return translteHueAn(...args)
         }
 
-       private getPath(){
+        getPath(){
            return  path.join(this.prx,this.type,this.id,this.tP)
         }
 
@@ -35,7 +35,7 @@ export namespace AndroidWhite {
         new WhiteThemeBase("white1", "yusif.attheme", "捕获.PNG", "actionBarDefaultTitle"),
         new WhiteThemeBase("white2", "Orange Flower @AloneSnowflake.attheme", "捕获.PNG", "actionBarTabLine"),
         new WhiteThemeBase("white3", "Day.attheme", "捕获.PNG", "actionBarTabLine"),
-        new WhiteThemeBase("white4", "Ghost @MyTelegramThemes 🎨.attheme", "捕获.PNG", "actionBarTabLine")
+        new WhiteThemeBase("white4", "Ghost.attheme", "捕获.PNG", "actionBarTabLine")
     ];
 
     // 初始化 Map 并设置数据
