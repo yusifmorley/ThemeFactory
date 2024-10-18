@@ -86,7 +86,6 @@ app.post("/tdesktop-create",async (req,res)=>{
 
 //模板信息类
 app.get("/templete-info",async (req,res)=>{
-
     let tree={
        android_black:[...AndroidBlack.androidBlackMap.keys()],
        android_white:[...AndroidWhite.androidWhiteMap.keys()],
@@ -99,7 +98,6 @@ app.get("/templete-info",async (req,res)=>{
 
 // 桌面模板应用类
 app.post("/templete-editor/",async(req,res)=>{
-
     let kind=req.body.kind;
     let type=req.body.type;
     let moudle=req.body.moudle;
