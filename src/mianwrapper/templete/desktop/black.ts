@@ -21,7 +21,6 @@ export namespace DesktopBlack{
         public getBuffer() {
             return  fs.readFileSync(this.getPath())
         }
-
     }
 
     const blackThemes = [
