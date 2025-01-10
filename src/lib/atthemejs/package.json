@@ -1,0 +1,37 @@
+{
+  "name": "atthemejs",
+  "version": "3.0.0",
+  "description": "A small package for working with .attheme files in JavaScript.",
+  "author": "SnejUgal <contact@snejugal.ru> (snejugal.ru)",
+  "license": "MIT",
+  "keywords": [
+    "telegram",
+    "attheme"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SnejUgal/attheme-js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/SnejUgal/attheme-js/issues"
+  },
+  "homepage": "https://github.com/SnejUgal/attheme-js#readme",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "npx tsc -p .",
+    "test": "npm run build && npx ava",
+    "format": "npx prettier --write \"{src,test}/**/*.{js,ts}\"",
+    "prepublishOnly": "rm -rf lib && npm run test"
+  },
+  "devDependencies": {
+    "@types/node": "^12.7.12",
+    "ava": "^2.4.0",
+    "jimp": "^0.8.4",
+    "jsdom": "^15.1.1",
+    "prettier": "^1.18.2",
+    "typescript": "^3.6.4"
+  },
+  "dependencies": {
+    "@snejugal/color": "^2.1.1"
+  }
+}

@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "strict": true,
+        "target": "ES2021",
+        "esModuleInterop": true,
+        "outDir": "build/",
+        "skipLibCheck": true,
+        "moduleResolution": "node",
+        "noImplicitAny": false
+    },
+
+    "include": [
+      "origin/",
+        "main/mianwrapper/",
+      "origin/preview/"
+    ]
+}

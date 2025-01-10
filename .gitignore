@@ -1,0 +1,11 @@
+.env
+.vscode/
+i18n/
+node_modules/
+/TODO
+/pic/
+/testdic/
+/build/**
+/android-theme/
+/test/**
+/log/app.log
