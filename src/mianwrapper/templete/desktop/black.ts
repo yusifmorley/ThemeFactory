@@ -1,4 +1,4 @@
-import {AnBaseThemeOperation, DeBaseThemeOperation} from "../BaseThemeOperation";
+import {AnBaseThemeOperation, DeBaseThemeOperation} from "../base-theme-operation";
 import Buffer from "node:buffer";
 import {translteHueAn} from "../../../lib/wapper/analyseColor-a";
 import path from "path";

@@ -1,4 +1,4 @@
-import {DeBaseThemeOperation} from "../BaseThemeOperation";
+import {DeBaseThemeOperation} from "../base-theme-operation";
 import Buffer from "node:buffer";
 import path from "path";
 import fs from "fs";

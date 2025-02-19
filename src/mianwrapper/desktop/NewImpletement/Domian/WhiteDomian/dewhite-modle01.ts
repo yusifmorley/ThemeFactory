@@ -1,6 +1,6 @@
 import {TdesktopTheme} from "tdesktop-theme/node";
 
-class DeWhite_Modle01{
+class DewhiteModle01 {
 
 
 

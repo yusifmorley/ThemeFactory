@@ -9,3 +9,4 @@ node_modules/
 /android-theme/
 /test/**
 /log/app.log
+config.ts

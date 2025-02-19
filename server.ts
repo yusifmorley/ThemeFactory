@@ -7,7 +7,7 @@ disown -a
 import {basePicCreateColorPic, basePicCreateTheme} from './src/mianwrapper/android/OriginImpletement/theme-colors-and-pic-api';
 import {createPreview} from './src/mianwrapper/preview/theme-preview-api';
 import {basePicCreateDesktop} from "./src/mianwrapper/desktop/OriginImpletement/theme-desktop-api";
-import loge from "./src/lib/config/log_config";
+import logger from "./src/lib/config/log_config";
 import express from "express"
 import cors from "cors"
 import fs from "fs";
@@ -16,18 +16,17 @@ import {AndroidBlack} from "./src/mianwrapper/templete/android/black";
 import {AndroidWhite} from "./src/mianwrapper/templete/android/white";
 import {DesktopBlack} from "./src/mianwrapper/templete/desktop/black";
 import {DesktopWhite} from "./src/mianwrapper/templete/desktop/white";
-import path from "path";
-import {translteHueAn} from "./src/lib/wapper/analyseColor-a";
-import {translateHueDe} from "./src/lib/wapper/analyseColor-d";
 import BodyParser from "body-parser";
-import checkDirectoriesAn from "./src/mianwrapper/DesktopCheck";
-import checkDireDe from "./src/mianwrapper/AndroidCheck";
+import checkDirectoriesAn from "./src/mianwrapper/desktop-check";
+import checkDireDe from "./src/mianwrapper/android-check";
 import * as https from "node:https";
 import http from "http";
 import * as process from "node:process";
-import log_config from "./src/lib/config/log_config";
+import { Telegraf } from 'telegraf'
+import {devObject,proObject} from "./config";
+import HttpsProxyAgent  from 'https-proxy-agent'
 
-let log=loge.getLogger(`${__filename}`);
+let log=logger.getLogger(`${__filename}`);
 //目录对应模板集合
 const targetAnb = 'public/tempelete/tohuemodle/android/black'; // 替换为你的目录路径
 const targetAnw = 'public/tempelete/tohuemodle/android/white'; // 替换为你的目录路径
@@ -38,19 +37,19 @@ const targetBl = 'public/tempelete/tohuemodle/desktop/black'; // 替换为你的
 const targetWh='public/tempelete/tohuemodle/desktop/white'
 checkDireDe(targetBl);
 checkDireDe(targetWh);
-
-
-
-let ip
 const port=3000;
 const port1=5000
 let  app = express()
-
 const staticPath="public/tempelete/tohuemodle"
 app.use(cors({
     origin: '*' // 允许的来源
 }))
-app.use(express.static(staticPath))
+
+app.use(express.static(staticPath,{
+    cacheControl:true,
+    maxAge: 604800
+
+}))
 app.use(BodyParser.json({limit: '210000kb'}))
 
 app.get('/test', (req, res) => {
@@ -60,8 +59,6 @@ app.get('/test', (req, res) => {
 app.post("/colorlist",async (req,res)=>{
     await basePicCreateColorPic(req,res);
 })
-
-
 //安卓预览创建
 app.post("/android*",async(req,res)=>{
    await createPreview(req,res);
@@ -142,8 +139,11 @@ app.post("/templete-editor/",async(req,res)=>{
     }
     log.info(`收到模板制作主题请求，种类 :${kind}, type:${type}, moudle:${moudle},图片大小: ${picBuffer.length}KB`);
 })
-
+let botApi:string
+let httpAgent
 if(process.env.NODE_ENV!=="dev"){
+    botApi=proObject.botApi
+
     log.info("生产环境启用")
     // ip=="167.179.118.142"
     const options = {
@@ -162,12 +162,21 @@ if(process.env.NODE_ENV!=="dev"){
     })
 
 }else {
+    botApi=devObject.botApi
+    httpAgent= HttpsProxyAgent("http://127.0.0.1:10810");
     log.info("开发环境启用")
-    // ip="127.0.0.1"
     let httpsServer = http.createServer(app);
     httpsServer.listen(port,() => {
         log.info(`app 已经运行 端口: ${port}`)
     })
-
 }
 
+let bot = new Telegraf(botApi,{
+    telegram:{agent:httpAgent}
+});
+bot.command("start",(ctx)=>{
+    console.log(ctx.args)
+})
+bot.launch().then(()=>{
+    console.log("启动bot")
+})

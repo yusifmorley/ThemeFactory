@@ -1,5 +1,5 @@
 import {translteHueAn, translteHueAnS, translteHueAnSPE} from "../../../lib/wapper/analyseColor-a";
-import {AnBaseThemeOperation} from "../BaseThemeOperation";
+import {AnBaseThemeOperation} from "../base-theme-operation";
 
 import * as Buffer from "node:buffer";
 import path from "path";
