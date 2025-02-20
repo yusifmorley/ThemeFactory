@@ -119,7 +119,9 @@ function initArr() {
            log.info("桌面主题预览完整")
        }
    }).then(()=>{
+       //@ts-ignore
        exportA.push( ...sourceAArr.map(e=>[e+'.attheme',e+'.png']))
+       //@ts-ignore
        exportD.push( ...sourceDArr.map(e=>[e+'.tdesktop-theme',e+'.png']))
    })
 }
