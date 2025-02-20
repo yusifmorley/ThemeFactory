@@ -66,7 +66,8 @@ async function generateTarget(themeArr:string[],type:boolean) {
         }).then((e)=>{
             fs.writeFileSync(targetPath, e);
         }).catch(err=>{
-            console.log(err)
+            log.error(err)
+            log.info(`错误路径: ${sourcePath}`)
         })
 
         }
@@ -86,7 +87,8 @@ async function generateTarget(themeArr:string[],type:boolean) {
             }).then((e)=>{
                 fs.writeFileSync(targetPath, e);
             }).catch(err=>{
-                console.log(err)
+                log.error(err)
+                log.info(`错误路径: ${sourcePath}`)
             })
 
         }
