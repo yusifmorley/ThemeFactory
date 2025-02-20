@@ -9,7 +9,7 @@ const logConfig = {
             type: 'file',
             filename: 'log/app.log', // 路径
             pattern:"yyyy-MM-dd", //精确到天
-            compress: true, //压缩
+            compress: false, //压缩
             numBackups: 7, //7天
         },
     },

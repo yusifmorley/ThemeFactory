@@ -25,6 +25,8 @@ import * as process from "node:process";
 import { Telegraf } from 'telegraf'
 import {devObject,proObject} from "./config";
 import HttpsProxyAgent  from 'https-proxy-agent'
+import {exportA, exportD} from "./src/mianwrapper/theme-map-check";
+import path from "path";
 
 let log=logger.getLogger(`${__filename}`);
 //目录对应模板集合
@@ -45,12 +47,27 @@ app.use(cors({
     origin: '*' // 允许的来源
 }))
 
-app.use(express.static(staticPath,{
-    cacheControl:true,
-    maxAge: 604800
+let statics=["public/tempelete/tohuemodle",
+    "public/myserver-bot-public/attheme",
+    "public/myserver-bot-public/desk",
+    "public/myserver-bot-public/source/attheme",
+    "public/myserver-bot-public/desk",
+    ]
+statics.forEach(s=>{
+        app.use(express.static(s,{
+            cacheControl:true,
+            maxAge: 604800
+        }))
+})
 
-}))
+
 app.use(BodyParser.json({limit: '210000kb'}))
+app.get('/attheme', (req, res) => {
+    res.send(exportA)
+})
+app.get('/desk', (req, res) => {
+    res.send(exportD)
+})
 
 app.get('/test', (req, res) => {
     res.send('Hello World!')
@@ -175,8 +192,30 @@ let bot = new Telegraf(botApi,{
     telegram:{agent:httpAgent}
 });
 bot.command("start",(ctx)=>{
-    console.log(ctx.args)
+    let basePath="public/myserver-bot-public/source"
+    let arStr=ctx.args[0]
+    let  fileName=arStr.substring(0,arStr.length-1)
+
+    if (arStr.endsWith("A")) {
+        fileName=fileName+".attheme"
+        //发送文件
+        let filePath=path.join(basePath,"attheme",fileName)
+        ctx.telegram.sendDocument(ctx.from.id, {
+            source: fs.readFileSync(filePath),
+            filename: path.join("attheme",fileName)})
+    }
+        //处理安卓
+    if (ctx.args[0].endsWith("D")){
+        //处理桌面
+        fileName=fileName+".tdesktop-theme"
+        //发送文件
+        let filePath=path.join(basePath,"desk",fileName)
+        ctx.telegram.sendDocument(ctx.from.id, {
+            source: fs.readFileSync(filePath),
+            filename: path.join("desk",fileName)})
+    }
+
 })
 bot.launch().then(()=>{
-    console.log("启动bot")
+    log.info("bot启动成功")
 })
