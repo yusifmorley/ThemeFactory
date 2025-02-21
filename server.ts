@@ -186,30 +186,35 @@ let bot = new Telegraf(botApi,{
     telegram:{agent:httpAgent}
 });
 bot.command("start",(ctx)=>{
-    let basePath="public/myserver-bot-public/source"
-    let arStr=ctx.args[0]
-    let  fileName=arStr.substring(0,arStr.length-1)
-
-    if (arStr.endsWith("A")) {
-        fileName=fileName+".attheme"
-        //发送文件
-        let filePath=path.join(basePath,"attheme",fileName)
-        ctx.telegram.sendDocument(ctx.from.id, {
-            source: fs.readFileSync(filePath),
-            filename: path.join("attheme",fileName)})
-    }
+    try {
+        let basePath="public/myserver-bot-public/source"
+        if(ctx.args.length==0)
+            return;
+        let arStr=ctx.args[0]
+        let  fileName=arStr.substring(0,arStr.length-1)
+        if (arStr.endsWith("A")) {
+            fileName=fileName+".attheme"
+            //发送文件
+            let filePath=path.join(basePath,"attheme",fileName)
+            ctx.telegram.sendDocument(ctx.from.id, {
+                source: fs.readFileSync(filePath),
+                filename: path.join("attheme",fileName)})
+        }
         //处理安卓
-    if (ctx.args[0].endsWith("D")){
-        //处理桌面
-        fileName=fileName+".tdesktop-theme"
-        //发送文件
-        let filePath=path.join(basePath,"desk",fileName)
-        ctx.telegram.sendDocument(ctx.from.id, {
-            source: fs.readFileSync(filePath),
-            filename: path.join("desk",fileName)})
+        if (ctx.args[0].endsWith("D")){
+            //处理桌面
+            fileName=fileName+".tdesktop-theme"
+            //发送文件
+            let filePath=path.join(basePath,"desk",fileName)
+            ctx.telegram.sendDocument(ctx.from.id, {
+                source: fs.readFileSync(filePath),
+                filename: path.join("desk",fileName)})
+        }
+    }catch (e){
+        log.error(e)
     }
-
 })
+
 bot.launch().then(()=>{
     log.info("bot启动成功")
 })
