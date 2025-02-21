@@ -40,7 +40,7 @@ const targetWh='public/tempelete/tohuemodle/desktop/white'
 checkDireDe(targetBl);
 checkDireDe(targetWh);
 const port=3000;
-const port1=5000
+
 let  app = express()
 const staticPath="public/tempelete/tohuemodle"
 app.use(cors({
@@ -172,12 +172,6 @@ if(process.env.NODE_ENV!=="dev"){
     httpsServer.listen(port, () => {
         log.info(`https: app  已经运行 端口: ${port}`)
     })
-
-    let httpsServerS = http.createServer(app);
-    httpsServerS.listen(port1, () => {
-        log.info(`http: app 已经运行 端口: ${port1}`)
-    })
-
 }else {
     botApi=devObject.botApi
     httpAgent= HttpsProxyAgent("http://127.0.0.1:10810");
