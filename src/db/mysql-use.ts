@@ -13,9 +13,13 @@ const sequelize = new Sequelize('theme_factory',
     db.password,
     {
         host: 'localhost',
-        dialect: 'mysql'/* one of 'mysql' | 'postgres' | 'sqlite' | 'mariadb' | 'mssql' | 'db2' | 'snowflake' | 'oracle' */
-});
+        dialect: 'mysql',/* one of 'mysql' | 'postgres' | 'sqlite' | 'mariadb' | 'mssql' | 'db2' | 'snowflake' | 'oracle' */
+        logging:false
+    });
 sequelize.authenticate().then(()=>{
     log.info("数据库连接成功")
 });
- export default initModels(sequelize) ;
+let iMod = initModels(sequelize);
+iMod.theme_editor_log.removeAttribute("id")
+
+export default iMod ;

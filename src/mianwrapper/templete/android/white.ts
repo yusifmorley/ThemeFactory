@@ -63,6 +63,7 @@ export namespace AndroidWhite {
         new SpeTheme2("white2", "Orange Flower @AloneSnowflake.attheme", "捕获.PNG", "actionBarTabLine"),
         new SpeTheme3("white3", "Day.attheme", "捕获.PNG", "actionBarTabLine"),
         new SpeTheme3("white4", "@Gumiho_tem1.attheme", "捕获.PNG", "actionBarDefault"),
+        new SpeTheme3("white5", "Chestnut Chiffon.attheme", "捕获.PNG", "actionBarTabLine"),
 
         // new WhiteThemeBase("white4", "Ghost.attheme", "捕获.PNG", "actionBarTabLine")
     ];
