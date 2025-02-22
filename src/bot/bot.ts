@@ -8,7 +8,7 @@ import logger from "../lib/config/log_config";
 
 let log=logger.getLogger(`${__filename}`);
 let botApi:string
-let httpAgent=null
+let httpAgent:any
 if(process.env.NODE_ENV!=="dev"){
     botApi=proObject.botApi
 }else {
