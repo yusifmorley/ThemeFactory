@@ -1,19 +1,15 @@
-import {Sequelize} from "sequelize";
-import process from "node:process";
-import {initModels, theme_editor_logAttributes} from "./src/db/models/init-models";
+function isAngleInRange(x, y, z) {
+    let start = (x - y + 360) % 360;
+    let end = (x + y) % 360;
 
-const sequelize = new Sequelize('theme_factory',
-    "root",
-    "root",
-    {
-        host: 'localhost',
-        dialect: 'mysql'/* one of 'mysql' | 'postgres' | 'sqlite' | 'mariadb' | 'mssql' | 'db2' | 'snowflake' | 'oracle' */
-    });
-
-let initModels1 = initModels(sequelize);
-let value:theme_editor_logAttributes={
-    kind:0,ip:"",date:new Date()
+    if (start < end) {
+        return z >= start && z <= end;
+    } else {
+        return z >= start || z <= end;
+    }
 }
 
-initModels1.theme_editor_log.removeAttribute('id');
-initModels1.theme_editor_log.create(value)
+// 测试示例
+console.log(isAngleInRange(357, 30, 21)); // true
+console.log(isAngleInRange(90, 30, 50));  // false
+console.log(isAngleInRange(350, 20, 10)); // true
