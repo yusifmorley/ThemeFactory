@@ -174,16 +174,12 @@ export function translteHueAnSPBigH(buff:Buffer,toHueColor:number,targetS:number
         let po= ta.get(e)
         // @ts-ignore
         let {red:r,green:g,blue:b,alpha:a} = ta.get(e)
-
         kp=  tinycolor({ r,g,b,a}).toHsl()
-
-        let minH=kp.h-mianH
-        let minS=(kp.s-mianS)*100
         // hue 上下 15
         if(isAngleInRange(mianH,25,kp.h)){
             kp.h=toHueColor
-            //s不能变
-            //l可以适当增减
+            //TODO s不能变
+            //TODO l可以适当增减
             let {r:red,g:green,b:blue,a:alpha}= tinycolor(kp).toRgb()
             ta.set(e,{red,green,blue,alpha:a})
         }

@@ -22,7 +22,7 @@ import https from "node:https";
 import http from "http";
 import db from "../db/mysql-use"
 import {theme_editor_logAttributes} from "../db/models/theme_editor_log";
-
+import themeInfo from "../mianwrapper/templete/base-theme-info"
 let log=logger.getLogger(`${__filename}`);
 //目录对应模板集合
 const targetAnb = 'public/tempelete/tohuemodle/android/black'; // 替换为你的目录路径
@@ -95,13 +95,7 @@ app.post("/tdesktop-create",async (req,res)=>{
 
 //模板信息类
 app.get("/templete-info",async (req,res)=>{
-    let tree={
-        android_black:[...AndroidBlack.androidBlackMap.keys()],
-        android_white:[...AndroidWhite.androidWhiteMap.keys()],
-        desktop_black:[...DesktopBlack.desktopBlackMap.keys()],
-        desktop_white:[...DesktopWhite.desktopWhiteMap.keys()],
-    }
-    res.end(JSON.stringify(tree));
+    res.end(JSON.stringify(themeInfo));
 })
 
 

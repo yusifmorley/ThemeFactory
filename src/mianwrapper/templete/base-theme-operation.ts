@@ -3,7 +3,14 @@
 import {translteHueAn} from "../../lib/wapper/analyseColor-a";
 import {translateHueDe} from "../../lib/wapper/analyseColor-d";
 import fs from "fs";
-
+export enum ThemeType {
+    //单色
+    Simple ,
+    //单色 但不同 S L
+    SimpleDifference ,
+    //包括多色 且不同 S L
+    MultiColor,
+}
 // 基本安卓抽象类
 export  abstract class AnBaseThemeOperation {
     abstract type: string;

@@ -1,4 +1,4 @@
-import {AnBaseThemeOperation} from "../base-theme-operation";
+import {AnBaseThemeOperation, ThemeType} from "../base-theme-operation";
 import Buffer from "node:buffer";
 import {translteHueAn} from "../../../lib/wapper/analyseColor-a";
 import path from "path";
@@ -11,7 +11,8 @@ export namespace AndroidBlack {
             public id: string,
             public tP: string,
             public pP: string = "捕获.PNG",  // 默认值
-            public mainColorSelect: string
+            public mainColorSelect: string,
+            public colorType:ThemeType=ThemeType.Simple
         ) {super();}
         translateHue(...args:[Buffer,number,number,number,string,Buffer,number]){
             return translteHueAn(...args)

@@ -1,5 +1,5 @@
 import {translteHueAn, translteHueAnS, translteHueAnSPBigH, translteHueAnSPE} from "../../../lib/wapper/analyseColor-a";
-import {AnBaseThemeOperation} from "../base-theme-operation";
+import {AnBaseThemeOperation, ThemeType} from "../base-theme-operation";
 
 import * as Buffer from "node:buffer";
 import path from "path";
@@ -13,7 +13,8 @@ export namespace AndroidWhite {
             public id: string,
             public tP: string,
             public pP: string = "捕获.PNG",  // 默认值
-            public mainColorSelect: string
+            public mainColorSelect: string,
+            public colorType:ThemeType=ThemeType.Simple
         ) {super();}
 
         translateHue(...args:[Buffer,number,number,number,string,Buffer,number]){
@@ -50,7 +51,6 @@ export namespace AndroidWhite {
             pP: string = "捕获.PNG",  // 默认值
             mainColorSelect: string
         ) {super(id,tP,pP,mainColorSelect);}
-
         translateHue(...args:[Buffer,number,number,number,string,Buffer,number]){
             return translteHueAnS(...args)
         }
@@ -61,8 +61,9 @@ export namespace AndroidWhite {
             id: string,
             tP: string,
             pP: string = "捕获.PNG",  // 默认值
-            mainColorSelect: string
-        ) {super(id,tP,pP,mainColorSelect);}
+            mainColorSelect: string,
+            themeType:ThemeType
+        ) {super(id,tP,pP,mainColorSelect,themeType);}
 
         translateHue(...args:[Buffer,number,number,number,string,Buffer,number]){
             return translteHueAnSPBigH(...args)
@@ -75,7 +76,7 @@ export namespace AndroidWhite {
         new SpeTheme2("white2", "Orange Flower @AloneSnowflake.attheme", "捕获.PNG", "actionBarTabLine"),
         new SpeTheme3("white3", "Day.attheme", "捕获.PNG", "actionBarTabLine"),
         new SpeTheme3("white4", "@Gumiho_tem1.attheme", "捕获.PNG", "actionBarDefault"),
-        new SpeTheme4("white5", "Chestnut Chiffon.attheme", "捕获.PNG", "actionBarTabLine"),
+        new SpeTheme4("white5", "Chestnut Chiffon.attheme", "捕获.PNG", "actionBarTabLine",ThemeType.SimpleDifference),
 
         // new WhiteThemeBase("white4", "Ghost.attheme", "捕获.PNG", "actionBarTabLine")
     ];

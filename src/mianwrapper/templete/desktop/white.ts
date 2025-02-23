@@ -1,4 +1,4 @@
-import {DeBaseThemeOperation} from "../base-theme-operation";
+import {DeBaseThemeOperation, ThemeType} from "../base-theme-operation";
 import Buffer from "node:buffer";
 import path from "path";
 import fs from "fs";
@@ -10,7 +10,8 @@ export namespace DesktopWhite {
             public id: string,
             public tP: string,
             public pP: string = "捕获.PNG",  // 默认值
-            public mainColorSelect: string
+            public mainColorSelect: string,
+            public colorType:ThemeType=ThemeType.Simple
         ) {super();}
 
          getPath(){
