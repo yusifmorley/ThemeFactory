@@ -39,7 +39,6 @@ function getThemeInfo(){
      return templateInfo;
 }
 
-console.log(getThemeInfo())
 export default getThemeInfo();
 
 
