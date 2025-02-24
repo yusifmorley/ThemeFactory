@@ -113,7 +113,7 @@ app.post("/templete-editor/",async(req,res)=>{
     //记录 使用情况
     let mysqlLog:theme_editor_logAttributes={
         kind:kind=="android"?0:1,
-        ip:req.hostname,
+        ip:req.ip,
         date:new Date()
     }
 
