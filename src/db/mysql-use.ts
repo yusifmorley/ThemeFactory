@@ -21,5 +21,6 @@ sequelize.authenticate().then(()=>{
 });
 let iMod = initModels(sequelize);
 iMod.theme_editor_log.removeAttribute("id")
+iMod.jump_to_theme.removeAttribute("id")
 
 export default iMod ;
