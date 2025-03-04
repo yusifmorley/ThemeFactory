@@ -12,11 +12,6 @@ const puppeteer = require(`puppeteer`);
 const { fallbacks } = require(`./fallbacks`);
 const log_config = require("../config/log_config").default.getLogger(`${__filename}`);
 
-const browser = puppeteer.launch({
-  args:[
-      '--no-sandbox'
-]
-})
 
 const variablesList = {
   dialogsBg: {
@@ -537,7 +532,7 @@ const makePrev = async (themeBuffer, themeName, themeAuthor, template) => {
 
     let preview;
     try {
-    if (template == DESKTOP_TEMPLATE) {
+    if (template === DESKTOP_TEMPLATE) {
         preview = await makePrevDesktop(themeBuffer);
     } else {
         preview = await makePrevAndroid(
@@ -555,7 +550,8 @@ const makePrev = async (themeBuffer, themeName, themeAuthor, template) => {
   const widthSvg = parseInt(svg.getAttribute(`width`));
   const heightSvg = parseInt(svg.getAttribute(`height`));
 
-  const page = await browser.then((browser) => browser.newPage());
+  const browser = await puppeteer.launch()
+  const page = await browser.newPage()
   await page.setViewport({
     width: widthSvg,
     height: heightSvg,
@@ -572,6 +568,7 @@ const makePrev = async (themeBuffer, themeName, themeAuthor, template) => {
   `);
   const screen = await page.screenshot();
   await page.close();
+  await browser.close();
   return screen;
 };
 

@@ -11,4 +11,4 @@ node_modules/
 /log/app.log
 config.ts
 test.ts
-!/public/myserver-bot-public/
+/public/myserver-bot-public/
