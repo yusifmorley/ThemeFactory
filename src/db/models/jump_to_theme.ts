@@ -4,7 +4,7 @@ import { DataTypes, Model, Optional } from 'sequelize';
 export interface jump_to_themeAttributes {
   type?: number;
   theme_name?: string;
-  date?: string;
+  date?: Date;
 }
 
 export type jump_to_themeOptionalAttributes = "type" | "theme_name" | "date";
@@ -13,7 +13,7 @@ export type jump_to_themeCreationAttributes = Optional<jump_to_themeAttributes, 
 export class jump_to_theme extends Model<jump_to_themeAttributes, jump_to_themeCreationAttributes> implements jump_to_themeAttributes {
   type?: number;
   theme_name?: string;
-  date?: string;
+  date?: Date;
 
 
   static initModel(sequelize: Sequelize.Sequelize): typeof jump_to_theme {
@@ -27,7 +27,7 @@ export class jump_to_theme extends Model<jump_to_themeAttributes, jump_to_themeC
       allowNull: true
     },
     date: {
-      type: DataTypes.STRING(100),
+      type: DataTypes.DATE,
       allowNull: true
     }
   }, {
