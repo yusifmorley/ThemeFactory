@@ -1,11 +1,13 @@
 import process from "node:process";
 import {devObject, proObject} from "../../config";
-import fs from "fs";
+
 import HttpsProxyAgent from "https-proxy-agent";
 import {Telegraf} from "telegraf";
 import path from "path";
 import logger from "../lib/config/log_config";
 import iMod from "../db/mysql-use";
+import map from "../restore/pubmap";
+import * as fs from "node:fs";
 
 let log=logger.getLogger(`${__filename}`);
 let botApi:string
@@ -28,7 +30,7 @@ function initBot() {
             if(ctx.args.length==0)
                 return;
             let arStr=ctx.args[0]
-            let  fileName=arStr.substring(0,arStr.length-1)
+            let fileName=arStr.substring(0,arStr.length-1)
             if (arStr.endsWith("A")) {
                 iMod.jump_to_theme.create({
                     type:0,
@@ -57,11 +59,30 @@ function initBot() {
                     source: fs.readFileSync(filePath),
                     filename: path.join("desk",fileName)})
             }
+            //安卓
+            if (ctx.args[0].endsWith("L")){
+                let fd = map.get(ctx.args[0]);
+                let buffer =fs.readFileSync(fd)
+                ctx.telegram.sendDocument(ctx.from.id, {
+                        source: buffer,
+                        filename: ctx.args[0].substring(0,32)+".attheme"})
+                fs.rmSync(fd);
+                log.info(`已经使用Bot跳转,路径 ${fd}`)
+            }
+            //桌面
+            if (ctx.args[0].endsWith("M")){
+                let fd = map.get(ctx.args[0]);
+                let buffer = fs.readFileSync(fd);
+                ctx.telegram.sendDocument(ctx.from.id, {
+                    source: buffer,
+                    filename: ctx.args[0].substring(0,32)+".tdesktop-theme"})
+                fs.rmSync(fd);
+                log.info(`已经使用Bot跳转,路径 ${fd}`)
+            }
         }catch (e){
             log.error(e)
         }
     })
-
     bot.launch(()=>{
         log.info("bot已经启动了");
     })

@@ -17,12 +17,14 @@ import {DesktopBlack} from "../mianwrapper/templete/desktop/black";
 import {DesktopWhite} from "../mianwrapper/templete/desktop/white";
 import {dataUriToBuffer} from "data-uri-to-buffer";
 import process from "node:process";
-import fs from "fs";
+import * as fs from "node:fs";
 import https from "node:https";
 import http from "http";
 import db from "../db/mysql-use"
 import {theme_editor_logAttributes} from "../db/models/theme_editor_log";
 import themeInfo from "../mianwrapper/templete/base-theme-info"
+import tmp from 'tmp'
+import map from "../restore/pubmap";
 let log=logger.getLogger(`${__filename}`);
 //目录对应模板集合
 const targetAnb = 'public/tempelete/tohuemodle/android/black'; // 替换为你的目录路径
@@ -116,16 +118,13 @@ app.post("/templete-editor/",async(req,res)=>{
         ip:req.ip,
         date:new Date()
     }
-
     await db.theme_editor_log.create(mysqlLog)
-
     // log.info(`alpha的值为${alpha}`)
     let picBuffer = Buffer.from(dataUriToBuffer(req.body.pic).buffer);
     let newVar:any;
     let filename=kind=="android"?"yusif.attheme":"yusif.tdesktop-theme"
     res.set({
-        'content-type': 'application/octet-stream',
-        'content-disposition': 'attachment;filename=' + encodeURI(filename)
+        'content-type': 'text/plain',
     })
 
     if (kind=="android"){
@@ -145,15 +144,25 @@ app.post("/templete-editor/",async(req,res)=>{
     }
     // console.log(newVar)
     //读取模板
+    //@ts-ignore
+    let tf=tmp.fileSync();
+    let newName= crypto.randomUUID()
     if (kind=="android"){
+        newName=newName+"L";
         let bu= newVar.translateHue(newVar.getBuffer(),targetHue,targetS,targetL,newVar.mainColorSelect,picBuffer,alpha)
-        res.end(bu,"binary");
+        fs.writeFileSync(tf.fd,bu);
+        map.set(newName,tf.name);
+        res.end(newName);
     }
     else{
         newVar.translateHue(newVar.getBuffer(), targetHue,targetS,targetL, newVar.mainColorSelect, picBuffer,alpha).then(e=>{
-            res.end(e,"binary")
+            newName=newName+"M";
+            fs.writeFileSync(tf.fd,e);
+            map.set(newName,tf.name);
+            res.end(newName)
         })
     }
+    fs.closeSync(tf.fd)
     log.info(`收到模板制作主题请求，种类 :${kind}, type:${type}, moudle:${moudle},图片大小: ${picBuffer.length}KB`);
 })
 
