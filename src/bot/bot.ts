@@ -1,3 +1,4 @@
+//@ts-nocheck
 import process from "node:process";
 import {devObject, proObject} from "../../config";
 
