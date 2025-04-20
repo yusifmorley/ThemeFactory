@@ -63,6 +63,7 @@ function initBot() {
             if (ctx.args[0].endsWith("L")){
                 let fd = map.get(ctx.args[0]);
                 let buffer =fs.readFileSync(fd)
+                ctx.telegram.sendMessage(ctx.from.id, "请使用安卓版telegram打开主题文件")
                 ctx.telegram.sendDocument(ctx.from.id, {
                         source: buffer,
                         filename: ctx.args[0].substring(0,32)+".attheme"})
@@ -73,6 +74,7 @@ function initBot() {
             if (ctx.args[0].endsWith("M")){
                 let fd = map.get(ctx.args[0]);
                 let buffer = fs.readFileSync(fd);
+                ctx.telegram.sendMessage(ctx.from.id, "请使用桌面版telegram打开主题文件")
                 ctx.telegram.sendDocument(ctx.from.id, {
                     source: buffer,
                     filename: ctx.args[0].substring(0,32)+".tdesktop-theme"})
@@ -83,9 +85,9 @@ function initBot() {
             log.error(e)
         }
     })
+
     bot.launch(()=>{
         log.info("bot已经启动了");
     })
 }
-
 export {initBot}
