@@ -63,24 +63,24 @@ function initBot() {
             //安卓
             if (ctx.args[0].endsWith("L")){
                 let fd = map.get(ctx.args[0]);
-                let buffer =fs.readFileSync(fd)
+                let buffer =fs.readFileSync(fd.tempName)
                 ctx.telegram.sendMessage(ctx.from.id, "请使用安卓版telegram打开主题文件")
                 ctx.telegram.sendDocument(ctx.from.id, {
                         source: buffer,
-                        filename: ctx.args[0].substring(0,32)+".attheme"})
-                fs.rmSync(fd);
-                log.info(`已经使用Bot跳转,路径 ${fd}`)
+                        filename: fd.themeName+".attheme"})
+                fs.rmSync(fd.tempName);
+                log.info(`已经使用Bot跳转,路径 ${fd.tempName}`)
             }
             //桌面
             if (ctx.args[0].endsWith("M")){
                 let fd = map.get(ctx.args[0]);
-                let buffer = fs.readFileSync(fd);
+                let buffer = fs.readFileSync(fd.tempName);
                 ctx.telegram.sendMessage(ctx.from.id, "请使用桌面版telegram打开主题文件")
                 ctx.telegram.sendDocument(ctx.from.id, {
                     source: buffer,
-                    filename: ctx.args[0].substring(0,32)+".tdesktop-theme"})
-                fs.rmSync(fd);
-                log.info(`已经使用Bot跳转,路径 ${fd}`)
+                    filename: fd.themeName+".tdesktop-theme"})
+                fs.rmSync(fd.tempName);
+                log.info(`已经使用Bot跳转,路径 ${fd.tempName}`)
             }
         }catch (e){
             log.error(e)

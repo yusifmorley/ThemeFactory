@@ -103,15 +103,14 @@ app.get("/templete-info",async (req,res)=>{
 
 // 桌面模板应用类
 app.post("/templete-editor/",async(req,res)=>{
-
     let kind=req.body.kind;
     let type=req.body.type;
-    let moudle=req.body.moudle;
+    let model=req.body.model;
     let targetHue=parseInt(req.body.hue);
     let targetS=parseInt(req.body.sat);
     let targetL=parseInt(req.body.lig);
     let alpha= parseFloat(req.body.alpha);
-
+    let tName=`${kind}-${model}-${targetHue}-${targetS}-${targetL}-${alpha}`;
     //记录 使用情况
     let mysqlLog:theme_editor_logAttributes={
         kind:kind=="android"?0:1,
@@ -122,24 +121,23 @@ app.post("/templete-editor/",async(req,res)=>{
     // log.info(`alpha的值为${alpha}`)
     let picBuffer = Buffer.from(dataUriToBuffer(req.body.pic).buffer);
     let newVar:any;
-    let filename=kind=="android"?"yusif.attheme":"yusif.tdesktop-theme"
     res.set({
         'content-type': 'text/plain',
     })
 
     if (kind=="android"){
         if (type=="white"){
-            newVar = AndroidWhite.androidWhiteMap.get(moudle);
+            newVar = AndroidWhite.androidWhiteMap.get(model);
         }
         else {
-            newVar = AndroidBlack.androidBlackMap.get(moudle);
+            newVar = AndroidBlack.androidBlackMap.get(model);
         }
     }else {
         if (type=="white"){
-            newVar = DesktopWhite.desktopWhiteMap.get(moudle);
+            newVar = DesktopWhite.desktopWhiteMap.get(model);
         }
         else {
-            newVar = DesktopBlack.desktopBlackMap.get(moudle);
+            newVar = DesktopBlack.desktopBlackMap.get(model);
         }
     }
     // console.log(newVar)
@@ -151,19 +149,19 @@ app.post("/templete-editor/",async(req,res)=>{
         newName=newName+"L";
         let bu= newVar.translateHue(newVar.getBuffer(),targetHue,targetS,targetL,newVar.mainColorSelect,picBuffer,alpha)
         fs.writeFileSync(tf.fd,bu);
-        map.set(newName,tf.name);
+        map.set(newName,{tempName:tf.name,themeName:tName});
         res.end(newName);
     }
     else{
         newVar.translateHue(newVar.getBuffer(), targetHue,targetS,targetL, newVar.mainColorSelect, picBuffer,alpha).then(e=>{
             newName=newName+"M";
             fs.writeFileSync(tf.fd,e);
-            map.set(newName,tf.name);
+            map.set(newName,{tempName:tf.name,themeName:tName});
             res.end(newName)
         })
     }
     fs.closeSync(tf.fd)
-    log.info(`收到模板制作主题请求，种类 :${kind}, type:${type}, moudle:${moudle},图片大小: ${picBuffer.length}KB`);
+    log.info(`收到模板制作主题请求，种类 :${kind}, type:${type}, moudle:${model},图片大小: ${picBuffer.length}KB`);
 })
 
 let httpsServer:any
