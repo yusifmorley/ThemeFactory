@@ -4,6 +4,7 @@ import {NAttheme as Attheme} from "../../lib/wapper/NAttheme";
 import tinycolor from "tinycolor2";
 import path from "path";
 import {Tdesktop as TdesktopTheme} from "../../lib/wapper/NTdesktop";
+import HSLA = tinycolor.ColorFormats.HSLA;
 export enum ThemeType {
     //单色
     Simple ,
@@ -22,6 +23,7 @@ export  class AnBaseThemeOperation {
     protected toHueColor:number
     protected targetS:number
     protected targetL:number
+    private readonly mainHSL: tinycolor.ColorFormats.HSLA;
     protected constructor(
      public type: string,
      public id: string,
@@ -31,8 +33,8 @@ export  class AnBaseThemeOperation {
      public colorType:ThemeType=ThemeType.Simple
     ) {
          this.ta = new Attheme(this.getBuffer())
-         this.mianRGB= this.ta.get(this.mainColorSelect)
-         this.mainHSL=tinycolor(this.mianRGB).toHsl()
+         let {red:r,green:g,blue:b,alpha:a}= this.ta.get(this.mainColorSelect)
+         this.mainHSL=tinycolor({r,g,b,a}).toHsl()
     }
     translateHue(toHueColor:number,targetS:number,targetL:number,background:Buffer,alphaT:number=1){
         //为 addTaOpreation添加变量
@@ -45,6 +47,9 @@ export  class AnBaseThemeOperation {
         let {h:mainH,s:mainS}=this.mainHSL
         let en=this.ta.getVariablesList()
         for (const e of en) {
+            if(e=="actionBarDefault"){
+                console.log("")
+            }
             let kp:HSLA;
             let po= this.ta.get(e)
             // @ts-ignore
@@ -72,7 +77,6 @@ export  class AnBaseThemeOperation {
         }
         this.addTaOperation()
         //@ts-ignore
-        this.ta.set(this.chatBgOut,this.ta.get(this.chatBg))
         this.ta.setWallpaper(background)
         return this.ta.toFile()
     }
@@ -93,6 +97,8 @@ export  class AnBaseThemeOperation {
 export  class DeBaseThemeOperation {
     private chatBg="msgInBg"
     private prx = "public/tempelete/tohuemodle/desktop/"
+    private mainHSL: tinycolor.ColorFormats.HSLA;
+    private tO: any;
     protected constructor(
         public type: string,
         public id: string,

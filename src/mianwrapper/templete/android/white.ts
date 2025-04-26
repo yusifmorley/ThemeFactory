@@ -2,7 +2,6 @@
 import {AnBaseThemeOperation, ThemeType} from "../base-theme-operation";
 import tinycolor from "tinycolor2";
 
-
 export namespace AndroidWhite {
     // 创建一个通用的白色主题基类
 
@@ -48,6 +47,7 @@ export namespace AndroidWhite {
         addTaOperation() {
             super.addTaOperation();
             this.ta.set(this.chatFilInfo,this.ta.get(this.chatFilNameText))
+            this.ta.set("chat_outBubble",this.ta.get(this.mainColorSelect))
         }
     }
     class SpeTheme4 extends WhiteThemeBase{
