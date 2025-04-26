@@ -75,7 +75,7 @@ export namespace AndroidWhite {
             // 目标hue
             // sideBarBgActive 为主要改变颜色 标准
             // @ts-ignore
-
+            this.init()
             let {h:mainH,s:mainS}=this.mainHSL
 
             let en=this.ta.getVariablesList()
