@@ -27,7 +27,6 @@ export async function basePicCreateDesktop(req:http.IncomingMessage, res:http.Se
                         res.end(Buffer.from(uint8Array))
                 });
                  //返回的时二进制 最后默认响应的是二进制
-
         }else {
             return;
         }

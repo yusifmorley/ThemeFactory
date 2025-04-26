@@ -59,6 +59,13 @@ statics.forEach(s=>{
 
 
 app.use(BodyParser.json({limit: '210000kb'}))
+
+app.use((err, req, res, next) => {
+    // logic
+    log.error(err.toString());
+})
+
+
 app.get('/attheme', (req, res) => {
     res.send(exportA)
 })
@@ -74,13 +81,13 @@ app.post("/colorlist",async (req,res)=>{
     await basePicCreateColorPic(req,res);
 })
 //安卓预览创建
-app.post("/android*",async(req,res)=>{
-    await createPreview(req,res);
-})
-//桌面预览创建
-app.post("/desktop*",async(req,res)=>{
-    await  createPreview(req,res);
-})
+// app.post("/android*",async(req,res)=>{
+//     await createPreview(req,res);
+// })
+// //桌面预览创建
+// app.post("/desktop*",async(req,res)=>{
+//     await  createPreview(req,res);
+// })
 
 //创建 不透明安卓主题
 app.post("/attheme-create",async(req,res)=>{
@@ -147,13 +154,13 @@ app.post("/templete-editor/",async(req,res)=>{
     let newName= crypto.randomUUID()
     if (kind=="android"){
         newName=newName+"L";
-        let bu= newVar.translateHue(newVar.getBuffer(),targetHue,targetS,targetL,newVar.mainColorSelect,picBuffer,alpha)
+        let bu= newVar.translateHue(targetHue,targetS,targetL, picBuffer,alpha)
         fs.writeFileSync(tf.fd,bu);
         map.set(newName,{tempName:tf.name,themeName:tName});
         res.end(newName);
     }
     else{
-        newVar.translateHue(newVar.getBuffer(), targetHue,targetS,targetL, newVar.mainColorSelect, picBuffer,alpha).then(e=>{
+        newVar.translateHue(targetHue,targetS,targetL, picBuffer,alpha).then(e=>{
             newName=newName+"M";
             fs.writeFileSync(tf.fd,e);
             map.set(newName,{tempName:tf.name,themeName:tName});

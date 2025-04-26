@@ -1,8 +1,9 @@
 //@ts-nocheck
-
-import {translteHueAn} from "../../lib/wapper/analyseColor-a";
-import {translateHueDe} from "../../lib/wapper/analyseColor-d";
 import fs from "fs";
+import {NAttheme as Attheme} from "../../lib/wapper/NAttheme";
+import tinycolor from "tinycolor2";
+import path from "path";
+import {Tdesktop as TdesktopTheme} from "../../lib/wapper/NTdesktop";
 export enum ThemeType {
     //单色
     Simple ,
@@ -11,41 +12,167 @@ export enum ThemeType {
     //包括多色 且不同 S L
     MultiColor,
 }
-// 基本安卓抽象类
-export  abstract class AnBaseThemeOperation {
-    abstract type: string;
-    public prx = "public/tempelete/tohuemodle/android/";
-    public pP: string = "捕获.PNG";  // 默认值
-    public id: string;
-    public tP: string;
-    public mainColorSelect: string
 
-    translateHue(...args:[Buffer,number,number,number,string,Buffer,number]){
-      return translteHueAn(...args)
+// 基本安卓抽象类
+export  class AnBaseThemeOperation {
+    protected chatBg="chat_inBubble"
+    protected chatBgOut="chat_outBubble"
+    private  prx = "public/tempelete/tohuemodle/android/";
+    protected ta:Attheme
+    protected toHueColor:number
+    protected targetS:number
+    protected targetL:number
+    protected constructor(
+     public type: string,
+     public id: string,
+     public tP: string,
+     public pP: string = "捕获.PNG",  // 默认值
+     public mainColorSelect: string,
+     public colorType:ThemeType=ThemeType.Simple
+    ) {
+         this.ta = new Attheme(this.getBuffer())
+         this.mianRGB= this.ta.get(this.mainColorSelect)
+         this.mainHSL=tinycolor(this.mianRGB).toHsl()
     }
-    abstract getPath(): string;
+    translateHue(toHueColor:number,targetS:number,targetL:number,background:Buffer,alphaT:number=1){
+        //为 addTaOpreation添加变量
+        this.toHueColor=toHueColor
+        this.targetS=targetS
+        this.targetL=targetL
+        // 目标hue
+        // sideBarBgActive 为主要改变颜色 标准
+        // @ts-ignore
+        let {h:mainH,s:mainS}=this.mainHSL
+        let en=this.ta.getVariablesList()
+        for (const e of en) {
+            let kp:HSLA;
+            let po= this.ta.get(e)
+            // @ts-ignore
+            let {red:r,green:g,blue:b,alpha:a} = this.ta.get(e)
+
+            kp=  tinycolor({ r,g,b,a}).toHsl()
+            let minH=kp.h-mainH
+            let minS=(kp.s-mainS)*100
+            // hue 上下 15
+            if(minH<15 && minH>-15){
+                kp.h=toHueColor
+                if(minS<30 && minS>-30){
+                    kp.l=targetL/100
+                }
+                let {r:red,g:green,b:blue,a:alpha}= tinycolor(kp).toRgb()
+                this.ta.set(e,{red,green,blue,alpha:a})
+            }
+        }
+        // console.log(alphaT)
+        if (alphaT<1){
+            // log.info(`${alphaT}`)
+            // @ts-ignore
+            let {red:r,green:g,blue:b} = this.ta.get(this.chatBg)
+            this.ta.set(this.chatBg,{red:r,green:g,blue:b,alpha:Math.floor(alphaT*255)})
+        }
+        this.addTaOperation()
+        //@ts-ignore
+        this.ta.set(this.chatBgOut,this.ta.get(this.chatBg))
+        this.ta.setWallpaper(background)
+        return this.ta.toFile()
+    }
+    public  addTaOperation(){
+
+    }
     //基本 buffer 获取
-    getBuffer(){
+   private getBuffer(){
         return  fs.readFileSync(this.getPath())
     }
+   private getPath(){
+        return  path.join(this.prx,this.type,this.id,this.tP)
+    }
+
 }
 
 // 基本桌面抽象类
-export abstract class DeBaseThemeOperation {
-    abstract type: string;
-    public prx = "public/tempelete/tohuemodle/desktop/";
-    public pP: string = "捕获.PNG";  // 默认值
-    public id: string;
-    public tP: string;
-    public mainColorSelect: string
-    translateHue(...args:[Buffer,number,number,number,string,Buffer,number]){
-        return translateHueDe(...args)
+export  class DeBaseThemeOperation {
+    private chatBg="msgInBg"
+    private prx = "public/tempelete/tohuemodle/desktop/"
+    protected constructor(
+        public type: string,
+        public id: string,
+        public tP: string,
+        public pP: string = "捕获.PNG",
+        public mainColorSelect: string,
+        public colorType:ThemeType=ThemeType.Simple
+    ) {
+        this.tO=new TdesktopTheme(this.getBuffer())
+        let {red:r,green:g,blue:b,alpha:a} = this.tO.resolveVariable(this.mainColorSelect)
+        this.mainHSL=tinycolor({ r,g,b,a}).toHsl()
     }
 
-    abstract  getPath():string
-    //基本 buffer 获取
-    getBuffer(path:string){
+    translateHue(toHueColor:number,targetS:number,targetL:number,background:Buffer,alphaT:number=1){
+        // sideBarBgActive
+        // 目标hue 为主要改变颜色 标准
+        //const mianColorSelect="sideBarBgActive"
+        // @ts-ignore
+        let {h:mainH,s:mainS}=this.mainHSL
+        let en=this.tO.entries()
+        for (const e of en) {
+            let kp:HSLA;
+            let ap;
+            if(typeof e[1]=="string") {
+                let resolveVariable = this.tO.resolveVariable(e[1]);
+                if (resolveVariable==null)
+                    continue
+//@ts-ignore
+                let {red:r,green:g,blue:b,alpha:a} = this.tO.resolveVariable(e[1]);
+                // console.log(`${e[0]}}`);
+                // console.log(JSON.stringify();
+                kp= tinycolor({ r,g,b,a}).toHsl()
+                ap=a
+                // @ts-ignore
+            }else {
+                let {red:r,green:g,blue:b,alpha:a} = e[1];
+                // console.log(`${e[0]}`)
+                // console.log(JSON.stringify(tinycolor({ r,g,b,a}).toHsv()));
+                kp=tinycolor({ r,g,b,a}).toHsl()
+                ap=a
+            }
+            let minH=kp.h-mainH
+            let minS=(kp.s-mainS)*100
+            // console.log(e[0])
+            // console.log(`${kp.s} ${mainS} ${minS} ${targetS}`)
+            // let minL=(kp.l-mianL)*100
+            // hue 上下 15
+            if(minH<15 && minH>-15){
+                kp.h=toHueColor
+                if(minS<30 && minS>-30){
+                    kp.l=targetL/100
+                }
+                // console.log(kp)
+                let {r:red,g:green,b:blue,a:alpha}= tinycolor(kp).toRgb()
+                // console.log({red,green,blue,alpha:ap})
+                this.tO.setVariable(e[0],{red,green,blue,alpha:ap})
+            }
+            // 目标变量
+            // 当 H 和目标变量的H相等 并且S接近 差值为30 则修改S=targetS
+            // L同理
+        }
+        if (alphaT<1){
+            // @ts-ignore
+            let {red:r,green:g,blue:b} = this.tO.resolveVariable(this.chatBg)
+
+            this.tO.setVariable(this.chatBg,{red:r,green:g,blue:b,alpha:Math.floor(alphaT*255)})
+        }
+        // tO.wallpaper.free()
+        this.tO.backbit=background
+        //fs.writeFileSync("j.jpg",tO.backbit)
+        return this.tO.toZip()
+    }
+
+
+    private getBuffer(){
         return  fs.readFileSync(this.getPath())
     }
+    private getPath(){
+        return  path.join(this.prx,this.type,this.id,this.tP)
+    }
+
 
 }

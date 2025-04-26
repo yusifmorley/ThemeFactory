@@ -17,7 +17,7 @@ if(process.env.NODE_ENV!=="dev"){
     botApi=proObject.botApi
 }else {
     botApi=devObject.botApi
-    httpAgent= HttpsProxyAgent("http://127.0.0.1:10810");
+    httpAgent= HttpsProxyAgent("http://127.0.0.1:10809");
 }
 
 function initBot() {
@@ -25,12 +25,13 @@ function initBot() {
         telegram:{agent:httpAgent}
     });
     bot.command("start",(ctx)=>{
-
         try {
             let basePath="public/myserver-bot-public/source"
             if(ctx.args.length==0)
                 return;
             let arStr=ctx.args[0]
+            if (arStr.length==0)
+                return;
             let fileName=arStr.substring(0,arStr.length-1)
             if (arStr.endsWith("A")) {
                 iMod.jump_to_theme.create({

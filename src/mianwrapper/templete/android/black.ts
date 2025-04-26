@@ -1,28 +1,15 @@
 import {AnBaseThemeOperation, ThemeType} from "../base-theme-operation";
-import Buffer from "node:buffer";
-import {translteHueAn} from "../../../lib/wapper/analyseColor-a";
-import path from "path";
-import fs from "fs";
 
 export namespace AndroidBlack {
     class BlackThemeBase extends AnBaseThemeOperation{
-        type: string="black";
         constructor(
-            public id: string,
-            public tP: string,
+            public id: string, //black{number}
+            public tP: string, //主题名
             public pP: string = "捕获.PNG",  // 默认值
             public mainColorSelect: string,
             public colorType:ThemeType=ThemeType.Simple
-        ) {super();}
-        translateHue(...args:[Buffer,number,number,number,string,Buffer,number]){
-            return translteHueAn(...args)
-        }
-        getPath(){
-            return  path.join(this.prx,this.type,this.id,this.tP)
-        }
-
-        public getBuffer() {
-            return  fs.readFileSync(this.getPath())
+        ) {
+            super("black",id,tP,pP,mainColorSelect,colorType);
         }
     }
 

@@ -15,7 +15,6 @@ export class jump_to_theme extends Model<jump_to_themeAttributes, jump_to_themeC
   theme_name?: string;
   date?: Date;
 
-
   static initModel(sequelize: Sequelize.Sequelize): typeof jump_to_theme {
     return jump_to_theme.init({
     type: {

@@ -1,8 +1,7 @@
 //TDesktop 主题对象 同时也可以 优化侧边栏
-
+//@ts-nocheck
 import JSZip from "jszip";
 import {Color, TdesktopTheme, Value} from "tdesktop-theme/node";
-import * as fs from "node:fs";
 
 export class Tdesktop {
     private _backbit: Buffer | undefined;
@@ -29,6 +28,8 @@ export class Tdesktop {
 
     }
      resolveVariable(s:string){
+        if (s==null)
+            return ;
        return  this._tdesktheme.resolveVariable(s)
      }
     entries(){

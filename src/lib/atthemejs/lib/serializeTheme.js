@@ -28,6 +28,9 @@ const serializeColor = (color, colorSignature) => {
 const serializeTheme = (theme, colorSignature = `int`) => {
     let result = ``;
     for (const [variable, color] of theme) {
+        if (variable===undefined) {
+            continue
+        }
         const hex = serializeColor(color, colorSignature);
         result += `${variable}=${hex}\n`;
     }

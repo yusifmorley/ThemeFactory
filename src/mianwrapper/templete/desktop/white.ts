@@ -5,24 +5,15 @@ import fs from "fs";
 
 export namespace DesktopWhite {
     class WhiteThemeBase extends DeBaseThemeOperation{
-        type: string="white";
         constructor(
             public id: string,
             public tP: string,
             public pP: string = "捕获.PNG",  // 默认值
             public mainColorSelect: string,
             public colorType:ThemeType=ThemeType.Simple
-        ) {super();}
-
-         getPath(){
-            return  path.join(this.prx,this.type,this.id,this.tP)
+        )
+         {super("white",id,tP,pP,mainColorSelect,colorType);}
         }
-
-        public getBuffer() {
-            return  fs.readFileSync(this.getPath())
-        }
-
-    }
 
     // 创建不同的主题实例
     const whiteThemes = [
