@@ -1,3 +1,4 @@
+//@ts-nocheck
 import {AnBaseThemeOperation, ThemeType} from "../base-theme-operation";
 import tinycolor from "tinycolor2";
 

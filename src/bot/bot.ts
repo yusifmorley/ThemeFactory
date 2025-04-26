@@ -17,7 +17,7 @@ if(process.env.NODE_ENV!=="dev"){
     botApi=proObject.botApi
 }else {
     botApi=devObject.botApi
-    httpAgent= HttpsProxyAgent("http://127.0.0.1:10809");
+    httpAgent= HttpsProxyAgent("http://127.0.0.1:10810");
 }
 
 function initBot() {
