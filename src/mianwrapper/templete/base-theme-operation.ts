@@ -1,10 +1,12 @@
-//@ts-nocheck
 import fs from "fs";
 import {NAttheme as Attheme} from "../../lib/wapper/NAttheme";
 import tinycolor from "tinycolor2";
 import path from "path";
 import {Tdesktop as TdesktopTheme} from "../../lib/wapper/NTdesktop";
 import HSLA = tinycolor.ColorFormats.HSLA;
+import logger from "../../lib/config/log_config";
+let log=logger.getLogger(`${__filename}`);
+
 export enum ThemeType {
     //单色
     Simple ,
@@ -18,25 +20,27 @@ export enum ThemeType {
 export  class AnBaseThemeOperation {
     protected chatBg="chat_inBubble"
     protected chatBgOut="chat_outBubble"
-    private  prx = "public/tempelete/tohuemodle/android/";
+    protected prx = "public/tempelete/tohuemodle/android/";
     protected ta:Attheme
     protected toHueColor:number
     protected targetS:number
     protected targetL:number
-    private readonly mainHSL: tinycolor.ColorFormats.HSLA;
+    private mainHSL: tinycolor.ColorFormats.HSLA;
     protected constructor(
-     public type: string,
+     public type:string,
      public id: string,
      public tP: string,
      public pP: string = "捕获.PNG",  // 默认值
      public mainColorSelect: string,
      public colorType:ThemeType=ThemeType.Simple
-    ) {
-         this.ta = new Attheme(this.getBuffer())
-         let {red:r,green:g,blue:b,alpha:a}= this.ta.get(this.mainColorSelect)
-         this.mainHSL=tinycolor({r,g,b,a}).toHsl()
+    ){}
+    init(){
+        this.ta = new Attheme(this.getBuffer())
+        let {red:r,green:g,blue:b,alpha:a}= this.ta.get(this.mainColorSelect)
+        this.mainHSL=tinycolor({r,g,b,a}).toHsl()
     }
     translateHue(toHueColor:number,targetS:number,targetL:number,background:Buffer,alphaT:number=1){
+        this.init()
         //为 addTaOpreation添加变量
         this.toHueColor=toHueColor
         this.targetS=targetS
@@ -45,13 +49,15 @@ export  class AnBaseThemeOperation {
         // sideBarBgActive 为主要改变颜色 标准
         // @ts-ignore
         let {h:mainH,s:mainS}=this.mainHSL
+
         let en=this.ta.getVariablesList()
+        log.info(`mainH 为${mainH} 目标H ${toHueColor}`)
+
         for (const e of en) {
-            if(e=="actionBarDefault"){
-                console.log("")
-            }
+            // if(e=="actionBarDefault"){
+            //     console.log("")
+            // }
             let kp:HSLA;
-            let po= this.ta.get(e)
             // @ts-ignore
             let {red:r,green:g,blue:b,alpha:a} = this.ta.get(e)
 
@@ -106,13 +112,14 @@ export  class DeBaseThemeOperation {
         public pP: string = "捕获.PNG",
         public mainColorSelect: string,
         public colorType:ThemeType=ThemeType.Simple
-    ) {
+    ) {}
+    init(){
         this.tO=new TdesktopTheme(this.getBuffer())
         let {red:r,green:g,blue:b,alpha:a} = this.tO.resolveVariable(this.mainColorSelect)
         this.mainHSL=tinycolor({ r,g,b,a}).toHsl()
     }
-
     translateHue(toHueColor:number,targetS:number,targetL:number,background:Buffer,alphaT:number=1){
+        this.init()
         // sideBarBgActive
         // 目标hue 为主要改变颜色 标准
         //const mianColorSelect="sideBarBgActive"

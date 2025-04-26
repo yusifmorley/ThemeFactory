@@ -16,13 +16,13 @@ export namespace AndroidWhite {
     }
 
     class SpeTheme2 extends WhiteThemeBase{
-
         constructor(
-            id: string,
-            tP: string,
-            pP: string = "捕获.PNG",  // 默认值
-            mainColorSelect: string) {
-            super(id,tP,pP,mainColorSelect);
+            public id: string,
+            public tP: string,
+            public pP: string = "捕获.PNG",  // 默认值
+            public mainColorSelect: string,
+            public colorType:ThemeType=ThemeType.Simple) {
+            super(id,tP,pP,mainColorSelect,colorType);
         }
 
         addTaOperation() {
@@ -30,7 +30,7 @@ export namespace AndroidWhite {
             let {r:red,g:green,b:blue}= tinycolor({h:super.toHueColor,s:this.targetS,l:this.targetL}).toRgb()
             this.ta.set("chats_pinnedOverlay",{red,green,blue,alpha:21})
             //@ts-ignore
-            this.ta.set(super.chatFilInfo,this.ta.get(super.chatFilNameText))
+            this.ta.set("chat_outBubble",this.ta.get("chat_inBubble"));
         }
     }
 
