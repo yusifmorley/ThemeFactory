@@ -156,6 +156,7 @@ app.post("/templete-editor/",async(req,res)=>{
         newName=newName+"L";
         let bu= newVar.translateHue(targetHue,targetS,targetL, picBuffer,alpha)
         fs.writeFileSync(tf.fd,bu);
+        fs.closeSync(tf.fd)
         map.set(newName,{tempName:tf.name,themeName:tName});
         res.end(newName);
     }
@@ -165,9 +166,10 @@ app.post("/templete-editor/",async(req,res)=>{
             fs.writeFileSync(tf.fd,e);
             map.set(newName,{tempName:tf.name,themeName:tName});
             res.end(newName)
+            fs.closeSync(tf.fd)
+
         })
     }
-    fs.closeSync(tf.fd)
     log.info(`收到模板制作主题请求，种类 :${kind}, type:${type}, moudle:${model},图片大小: ${picBuffer.length}KB`);
 })
 
