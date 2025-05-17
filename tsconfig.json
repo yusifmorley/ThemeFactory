@@ -9,7 +9,10 @@
         "moduleResolution": "node",
         "noImplicitAny": false
     },
-
+    "ts-node": {
+        "transpileOnly": true,
+        "files": true
+    },
     "include": [
       "origin/",
         "main/mianwrapper/",
