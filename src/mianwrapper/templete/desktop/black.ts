@@ -10,6 +10,7 @@ export namespace DesktopBlack{
             public colorType:ThemeType=ThemeType.Simple
         ) {super("black",id,tP,pP,mainColorSelect,colorType);}
     }
+    // TODO black2 black3 无效
     const blackThemes = [
         new BlackThemeBase("black1", "yusif.tdesktop-theme", "捕获.PNG", "dialogsTextFg"),
         new BlackThemeBase("black2", "awesome.tdesktop-theme", "捕获.PNG", "sideBarIconFg"),

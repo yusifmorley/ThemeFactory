@@ -1,4 +1,3 @@
-//@ts-nocheck
 import fs from "fs";
 import {NAttheme as Attheme} from "../../lib/wapper/NAttheme";
 import tinycolor from "tinycolor2";
@@ -121,6 +120,8 @@ export  class DeBaseThemeOperation {
     }
     translateHue(toHueColor:number,targetS:number,targetL:number,background:Buffer,alphaT:number=1){
         this.init()
+        log.info(`mainH 为${this.mainHSL.h} 目标H ${toHueColor}`)
+
         // sideBarBgActive
         // 目标hue 为主要改变颜色 标准
         //const mianColorSelect="sideBarBgActive"
