@@ -19,7 +19,7 @@ if(process.env.NODE_ENV!=="dev"){
     botApi=devObject.botApi
     httpAgent= HttpsProxyAgent("http://127.0.0.1:10810");
 }
-console.log(httpAgent);
+// console.log(httpAgent);
 function initBot() {
     let bot = new Telegraf(botApi,{
         telegram:{agent:httpAgent}

@@ -10,7 +10,7 @@
         "noImplicitAny": false
     },
     "ts-node": {
-        "transpileOnly": true,
+        "transpileOnly": true,// 跳过编译审查
         "files": true
     },
     "include": [

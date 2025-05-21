@@ -103,8 +103,8 @@ export  class AnBaseThemeOperation {
 export  class DeBaseThemeOperation {
     private chatBg="msgInBg"
     private prx = "public/tempelete/tohuemodle/desktop/"
-    private mainHSL: tinycolor.ColorFormats.HSLA;
-    private tO: any;
+    protected mainHSL: tinycolor.ColorFormats.HSLA;
+    protected tO: any;
     protected constructor(
         public type: string,
         public id: string,
@@ -175,12 +175,16 @@ export  class DeBaseThemeOperation {
 
             this.tO.setVariable(this.chatBg,{red:r,green:g,blue:b,alpha:Math.floor(alphaT*255)})
         }
+        this.addTaOperation()
         // tO.wallpaper.free()
         this.tO.backbit=background
         //fs.writeFileSync("j.jpg",tO.backbit)
         return this.tO.toZip()
     }
 
+    protected  addTaOperation(){
+
+    }
 
     private getBuffer(){
         return  fs.readFileSync(this.getPath())
