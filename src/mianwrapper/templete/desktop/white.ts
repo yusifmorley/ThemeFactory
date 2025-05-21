@@ -4,6 +4,8 @@ import path from "path";
 import fs from "fs";
 import {adjustHue} from "../../tool/colorcacu";
 import tinycolor from "tinycolor2";
+import logger from "../../../lib/config/log_config";
+let log=logger.getLogger(`${__filename}`);
 
 export namespace DesktopWhite {
     class WhiteThemeBase extends DeBaseThemeOperation{
@@ -19,14 +21,17 @@ export namespace DesktopWhite {
         protected addTaOperation() {
             super.addTaOperation();
             //windowActiveTextFg 为主色H 互补 +180
-            let {red:r,green:g,blue:b,alpha:a} = this.tO.resolveVariable(this.mainColorSelect);
+            let {red:r,green:g,blue:b,alpha:a} = this.tO.resolveVariable("windowFg");
             let  kp= tinycolor({ r,g,b,a}).toHsl()
-            kp.h=adjustHue(kp.h,180)
+            kp.h=adjustHue(kp.h,-90)
             let {r:red,g:green,b:blue,a:alpha}= tinycolor(kp).toRgb()
             // console.log({red,green,blue,alpha:ap})
-            this.tO.setVariable("windowActiveTextFg",{red,green,blue,alpha:255})
-            console.log(this.tO.resolveVariable("windowActiveTextFg"))
-            console.log(this.tO.resolveVariable(this.mainColorSelect))
+            this.tO.setVariable("windowActiveTextFg",{red,green,blue,alpha:a})
+            // console.log(this.tO.resolveVariable("windowActiveTextFg"))
+            // console.log(this.tO.resolveVariable(this.mainColorSelect))
+            log.debug(kp)
+            log.debug({red,green,blue,alpha:255})
+            log.debug(a)
         }
     }
 

@@ -16,7 +16,7 @@ const logConfig = {
     categories: {
         default: {
             appenders: process.env.NODE_ENV!=="dev"?['file'] : ['console'],
-            level: 'info'
+            level: process.env.NODE_ENV!=="dev"?'info':'debug'
         }
     }
 };
