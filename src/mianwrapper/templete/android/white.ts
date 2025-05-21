@@ -31,6 +31,8 @@ export namespace AndroidWhite {
             this.ta.set("chats_pinnedOverlay",{red,green,blue,alpha:21})
             //@ts-ignore
             this.ta.set("chat_outBubble",this.ta.get("chat_inBubble"));
+            this.ta.set("chats_unreadCounterMuted",{red:0,green:0,blue:0,alpha:1});
+
         }
     }
 
