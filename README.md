@@ -86,7 +86,9 @@ initBot();
 - **服务器地址**: `http://<your-server-ip>:3000`
 - **跨域支持**: 允许所有来源 (`*`)
 - **静态文件目录**:
-    - `/public/tempelete/tohuemodle`
+    - `/public/tempelete/tohuemodle`（存储模板文件）
+      - 每 一个模板文件都对应一个ts文件
+
     - `/public/myserver-bot-public/attheme`
     - `/public/myserver-bot-public/desk`
 ---
@@ -158,9 +160,3 @@ initBot();
     "alpha": 0.8
   }
 ```
-
-- **Response**:
-    - 成功时返回生成的主题文件路径。
-    - 失败时返回错误信息。
-
----
