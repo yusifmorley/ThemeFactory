@@ -1,4 +1,10 @@
-# 在根目录库下创建配置config.ts 文件
+# 本项目是主题创建程序的后端,需要结合[ThemeWeb](https://github.com/yusifmorley/ThemeWeb)（前端网页界面）使用
+
+
+## 配置
+
+
+### 在根目录库下创建配置config.ts 文件
 ```typescript
 interface BotConfig {
     botApi:string
