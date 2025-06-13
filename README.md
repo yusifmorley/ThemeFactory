@@ -75,8 +75,6 @@ initBot();
 - `/start ${themeNameA}`：切换到名为 `themeName` 的 Android 主题。
 - `/start ${themeNameD}`：切换到名为 `themeName` 的桌面主题。
 
-根据你提供的 `http-config.ts` 文件内容，我将整理并生成一个完整的 HTTP API 文档。以下是基于代码结构和功能的 API 列表及其描述。
-
 ---
 
 # HTTP API 文档
