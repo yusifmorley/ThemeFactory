@@ -1,5 +1,5 @@
 # 在根目录库下创建配置config.ts 文件
-```
+```typescript
 interface BotConfig {
     botApi:string
 }
